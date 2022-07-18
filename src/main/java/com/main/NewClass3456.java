@@ -8,8 +8,8 @@ package com.main;
  *
  * @author TRUNG
  */
-public class NewClass {
+public class NewClass3456 {
     public static void main(String[] args) {
-        System.out.println("com.main.NewClass.main()");
+        System.out.println("com.main.NewClass3456.mai00trungn()");
     }
 }

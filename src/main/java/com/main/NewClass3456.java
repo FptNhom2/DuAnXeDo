@@ -10,6 +10,6 @@ package com.main;
  */
 public class NewClass3456 {
     public static void main(String[] args) {
-        System.out.println("com.main.NewClass3456.mai00trungn()");
+        System.out.println("com.main.NewClass3456.mai00thien()");
     }
 }

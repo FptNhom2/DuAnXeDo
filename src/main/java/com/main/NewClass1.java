@@ -10,6 +10,6 @@ package com.main;
  */
 public class NewClass1 {
     public static void main(String[] args) {
-        System.out.println("com.main.NewClass1.main()");
+        System.out.println("com.main.NewClass444.main()");
     }
 }

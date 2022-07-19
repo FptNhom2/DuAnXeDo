@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class Xjdbc {
     public static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    public static String url = "jdbc:sqlserver://localhost:1433;databaseName = EduSys";
+     static String url = "jdbc:sqlserver://localhost:1433;databaseName=DuAnXeDo;encrypt=true;trustServerCertificate=true";
     public static String username = "sa";
     public static String password = "123";
     // nap driver

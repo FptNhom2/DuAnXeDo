@@ -62,7 +62,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         lblSoDienThoai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblSoDienThoai.setText("Số điện thoại :");
 
-        btnThem.setBackground(new java.awt.Color(153, 255, 153));
+        btnThem.setBackground(new java.awt.Color(192, 227, 149));
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setText("Thêm");
 
@@ -72,15 +72,15 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             }
         });
 
-        btnSua.setBackground(new java.awt.Color(153, 255, 153));
+        btnSua.setBackground(new java.awt.Color(192, 227, 149));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setText("Sửa");
 
-        btnXoa.setBackground(new java.awt.Color(153, 255, 153));
+        btnXoa.setBackground(new java.awt.Color(192, 227, 149));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setText("Xóa");
 
-        btnMoi.setBackground(new java.awt.Color(153, 255, 153));
+        btnMoi.setBackground(new java.awt.Color(192, 227, 149));
         btnMoi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.addActionListener(new java.awt.event.ActionListener() {

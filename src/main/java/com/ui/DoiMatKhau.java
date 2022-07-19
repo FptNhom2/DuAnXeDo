@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.ui;
 
-/**
- *
- * @author pc
- */
+import com.dao.NhanVienDAO;
+import com.utils.Auth;
+import com.utils.MsgBox;
+
 public class DoiMatKhau extends javax.swing.JPanel {
 
     /**
@@ -95,10 +91,20 @@ public class DoiMatKhau extends javax.swing.JPanel {
         btnXacNhan.setBackground(new java.awt.Color(192, 227, 149));
         btnXacNhan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnXacNhan.setText("Xác Nhận");
+        btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXacNhanActionPerformed(evt);
+            }
+        });
 
         btnHuyBo.setBackground(new java.awt.Color(192, 227, 149));
         btnHuyBo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnHuyBo.setText("Hủy Bỏ");
+        btnHuyBo.setText("Làm Mới");
+        btnHuyBo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHuyBoActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -196,6 +202,14 @@ public class DoiMatKhau extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatKhauMoiActionPerformed
 
+    private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
+        doiMatKhau();
+    }//GEN-LAST:event_btnXacNhanActionPerformed
+
+    private void btnHuyBoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyBoActionPerformed
+        lamMoi();
+    }//GEN-LAST:event_btnHuyBoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHuyBo;
@@ -214,4 +228,33 @@ public class DoiMatKhau extends javax.swing.JPanel {
     private javax.swing.JPasswordField txtMatKhauMoi;
     private javax.swing.JPasswordField txtXacNhanMatKhau;
     // End of variables declaration//GEN-END:variables
+
+    NhanVienDAO dao = new NhanVienDAO();
+
+    private void doiMatKhau() {
+        String manv = txtMaNhanVien.getText();
+        String matKhau = new String(txtMatKhauHienTai.getPassword());
+        String matKhauMoi = new String(txtMatKhauMoi.getPassword());
+        String matKhauMoi2 = new String(txtXacNhanMatKhau.getPassword());
+        if (!manv.equalsIgnoreCase(Auth.user.getMaNV())) {
+            MsgBox.alert(this, "Sai tên đăng nhập!");
+        } else if (!matKhau.equals(Auth.user.getMatKhau())) {
+            MsgBox.alert(this, "Sai mật khẩu!");
+        } else if (!matKhauMoi.equals(matKhauMoi2)) {
+            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
+        } else {
+            Auth.user.setHoTen(matKhauMoi);
+            dao.update(Auth.user);
+            MsgBox.alert(this, "Đổi mật khẩu thành công!");
+        }
+
+    }
+
+    private void lamMoi() {
+        txtMaNhanVien.setText("");
+        txtMatKhauHienTai.setText("");
+        txtMatKhauMoi.setText("");
+        txtXacNhanMatKhau.setText("");
+    }
+
 }

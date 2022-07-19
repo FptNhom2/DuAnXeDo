@@ -1,5 +1,9 @@
 package com.ui;
 
+import com.dao.NhanVienDAO;
+import com.entity.NhanVien;
+import com.utils.Auth;
+import com.utils.MsgBox;
 import com.utils.NotificationMessage;
 import java.awt.Color;
 import java.awt.Font;
@@ -169,7 +173,7 @@ public class DangNhapFormJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnKetThucActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        this.dispose();
+       dangNhap();
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**
@@ -264,4 +268,20 @@ public class DangNhapFormJDialog extends javax.swing.JDialog {
         ShowMessage showMess = new ShowMessage(null, rootPaneCheckingEnabled);
         showMess.setVisible(true);
     } // đóng ứng dụng
+    
+    NhanVienDAO dao = new NhanVienDAO();
+    
+    void dangNhap() {
+        String manv = txtTenTaiKhoan.getText();
+        String matKhau = new String(txtMatKhau.getPassword());
+        NhanVien nhanvien = dao.selectById(manv);
+        if(nhanvien == null){
+            MsgBox.alert(this,"Sai tên đăng nhập");
+        }else if(!matKhau.equals(nhanvien.getMatKhau())){
+            MsgBox.alert(this, "Sai mật khẩu");
+        }else{
+            Auth.user = nhanvien;
+            this.dispose();
+        }
+    }
 }

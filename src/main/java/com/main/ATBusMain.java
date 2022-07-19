@@ -7,7 +7,10 @@ import com.ui.DoiMatKhau;
 
 import com.ui.ShowMessage;
 import com.ui.GioiThieuForm;
+import com.ui.QuanLyKhachHangForm;
 import com.ui.QuanLyLichTrinh;
+import com.ui.QuanLyNhanVienForm;
+import com.ui.QuanLyPhuongTienForm;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -123,13 +126,13 @@ public class ATBusMain extends javax.swing.JFrame {
                 }else if(index == 2){
                     showForm(new QuanLyLichTrinh());
                 }else if(index == 3){
-//                    showForm(new QuanLyTuyenDuong(index + ""));
+                    showForm(new QuanLyNhanVienForm());
                 }else if(index == 4){
-//                    showForm(new QuanLyTuyenDuong(index + ""));
+                    showForm(new QuanLyKhachHangForm());
                 }else if(index == 5){
-//                    showForm(new QuanLyTuyenDuong(index + ""));
+                    showForm(new QuanLyPhuongTienForm());
                 }else if(index == 6){
-//                    showForm(new QuanLyTuyenDuong(index + ""));
+//                    showForm(new QuanLyPhuongTienForm());
                 }else if(index == 7){
 //                    showForm(new QuanLyTuyenDuong(index + ""));
                 }else if(index == 8){

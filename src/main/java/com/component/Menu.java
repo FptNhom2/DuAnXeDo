@@ -43,14 +43,14 @@ public class Menu extends javax.swing.JPanel {
         panelMenu = new javax.swing.JPanel();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel1.setForeground(new java.awt.Color(192, 227, 149));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo.png"))); // NOI18N
         jLabel1.setText("ATBus");
         jLabel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
 
         image.setBorderSpace(2);
         image.setGradientColor1(new java.awt.Color(63, 109, 217));
-        image.setGradientColor2(new java.awt.Color(199, 41, 67));
+        image.setGradientColor2(new java.awt.Color(192, 227, 149));
         image.setImage(new javax.swing.ImageIcon(getClass().getResource("/images/binhan.jpg"))); // NOI18N
 
         panelMenu.setOpaque(false);
@@ -63,7 +63,7 @@ public class Menu extends javax.swing.JPanel {
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 391, Short.MAX_VALUE)
+            .addGap(0, 409, Short.MAX_VALUE)
         );
 
         scroll.setViewportView(panelMenu);
@@ -113,37 +113,36 @@ public class Menu extends javax.swing.JPanel {
             
         };
         animator = new Animator(300, target);
-        animator.setAcceleration(.5f);
-        animator.setDeceleration(.5f);
-        animator.setResolution(0);
+        animator.setAcceleration(.5f); // tăng tốc
+        animator.setDeceleration(.5f); // giảm tốc độ
+        animator.setResolution(0); // độ phân giải
     }
     
     public void initMenu(MenuEvent event) {
         this.event = event;
-        addMenu("phuongtien", "Giới thiệu", 0);
+        // icon, tên, vị trí của các chức năng
+        addMenu("trangchu", "Giới thiệu", 0);
         addMenu("tuyenduong", "Quản lý tuyến đường", 1);
-        addMenu("edit", "Quản lý lịch trình", 2);
+        addMenu("lichtrinh", "Quản lý lịch trình", 2);
         addMenu("nhanvien","Quản lý nhân viên", 3);
         addMenu("khachhang", "Quản lý khách hàng", 4);
         addMenu("phuongtien", "Quản lý phương tiện", 5);
         addMenu("taixe", "Quản lý tài xế", 6);
         split("Thống kê");
         addMenu("thongke", "Thống kê doanh thu", 7);
-        
         space();
-        addMenu("khachhang", "Trợ giúp", 8);
-        addMenu("key", "Đổi mật khẩu", 9);
-        addMenu("cancel", "Thoát chương trình", 10);
-        
+        addMenu("trogiup", "Trợ giúp", 8);
+        addMenu("doimatkhau", "Đổi mật khẩu", 9);
+        addMenu("thoatchuongtrinh", "Thoát chương trình", 10);     
     }
     private void addMenu(String iconMenu, String text, int index) {
         MenuButton menu = new MenuButton(index);
         setFont(menu.getFont().deriveFont(Font.PLAIN, 14));
         menu.setIcon(new ImageIcon(getClass().getResource("/images/" + iconMenu + ".png")));
         menu.setText("" + text);
-        menu.setBackground(new Color(204, 204, 204)); // giao diện nền xám
-        menu.setFont(new Font("sansserif", 1, 12)); // font chữ to, in đậm
-        menu.setForeground(new Color(153, 153, 153)); // chữ màu xám
+        menu.setBackground(new Color(192, 227, 149)); // hover nền xanh lá nhạt
+        menu.setFont(new Font("sansserif", 1, 13)); // font chữ to, in đậm
+        menu.setForeground(new Color(0, 0, 0)); // màu chữ (đen) của các chức năng hệ thống
         menu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

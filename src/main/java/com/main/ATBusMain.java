@@ -3,7 +3,9 @@ package com.main;
 import com.event.MenuEvent;
 import com.ui.ChaoJDialog;
 import com.ui.DangNhapFormJDialog;
+
 import com.ui.ShowMessage;
+import com.ui.GioiThieuForm;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -26,7 +28,6 @@ public class ATBusMain extends javax.swing.JFrame {
         body = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -105,18 +106,18 @@ public class ATBusMain extends javax.swing.JFrame {
     private void init() {
         this.setLocationRelativeTo(null);
         // cửa sổ chào chạy trước
-        new ChaoJDialog(this, true).setVisible(true);
+//        new ChaoJDialog(this, true).setVisible(true);
         // kế tiếp đến cửa sổ đăng nhập
-        new DangNhapFormJDialog(this, true).setVisible(true);
+//        new DangNhapFormJDialog(this, true).setVisible(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setBackground(new Color(63,109,217));
         MenuEvent event = new MenuEvent() {
             @Override
             public void menuSelected(int index) {
                 if(index == 0){
-//                    showForm(new GioiThieu(index + ""));
+                    showForm(new GioiThieuForm());
                 }else if(index == 1){
-//                    showForm(new QuanLyTuyenDuong(index + ""));
+                    
                 }else if(index == 2){
 //                    showForm(new QuanLyTuyenDuong(index + ""));
                 }else if(index == 3){
@@ -135,7 +136,7 @@ public class ATBusMain extends javax.swing.JFrame {
 //                    showForm(new QuanLyTuyenDuong(index + ""));
                 }else if(index == 10){
                     closeApp();
-                    return;
+                    menu.setSelected(0);
                 }
             }
         };

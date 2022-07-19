@@ -112,8 +112,14 @@
         </Component>
         <Component class="javax.swing.JProgressBar" name="pgbLoading">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="stringPainted" type="boolean" value="true"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="ChaoJDialog_pgbLoading"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

@@ -1,5 +1,6 @@
 package com.ui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
@@ -58,6 +59,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
         lblSologan3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSologan3.setText("Trèo lên xe bus chẳng lo chuyện gì");
 
+        pgbLoading.setBackground(new java.awt.Color(255, 255, 255));
         pgbLoading.setStringPainted(true);
 
         javax.swing.GroupLayout kGradientPanel1Layout = new javax.swing.GroupLayout(kGradientPanel1);

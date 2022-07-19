@@ -12,8 +12,7 @@ import javax.swing.JScrollBar;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class ModernScrollBarUI extends BasicScrollBarUI{
-    private final int THUMB_SIZE = 80;
-
+    private final int THUMB_SIZE = 80; // độ dài của thanh scroll kéo lên xuống
     @Override
     protected Dimension getMaximumThumbSize() {
         if (scrollbar.getOrientation() == JScrollBar.VERTICAL) {

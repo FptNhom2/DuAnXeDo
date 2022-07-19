@@ -3,6 +3,7 @@ package com.main;
 import com.event.MenuEvent;
 import com.ui.ChaoJDialog;
 import com.ui.DangNhapFormJDialog;
+import com.ui.DoiMatKhau;
 
 import com.ui.ShowMessage;
 import com.ui.GioiThieuForm;
@@ -134,7 +135,7 @@ public class ATBusMain extends javax.swing.JFrame {
                 }else if(index == 8){
 //                    showForm(new QuanLyTuyenDuong(index + ""));
                 }else if(index == 9){
-//                    showForm(new QuanLyTuyenDuong(index + ""));
+                    showForm(new DoiMatKhau());
                 }else if(index == 10){
                     closeApp();
                     menu.setSelected(0);

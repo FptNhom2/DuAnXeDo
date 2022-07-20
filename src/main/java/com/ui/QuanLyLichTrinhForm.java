@@ -241,7 +241,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                                     .addComponent(txtMaLichTrinh, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtNgayXuatPhat)
                                     .addComponent(txtChiPhiBanDau, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(171, 171, 171)
+                                .addGap(28, 28, 28)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(lblTenTuyenDuong)
                                     .addComponent(lblThoiGianDuKien)
@@ -261,7 +261,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                                         .addComponent(txtThoiGianDuKien)
                                         .addComponent(cboMaPhuongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lblTong))
-                                .addGap(0, 70, Short.MAX_VALUE)))))
+                                .addGap(0, 213, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(

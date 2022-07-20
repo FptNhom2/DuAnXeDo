@@ -3,12 +3,14 @@ package com.main;
 import com.event.MenuEvent;
 import com.ui.ChaoJDialog;
 import com.ui.DangNhapFormJDialog;
-import com.ui.DoiMatKhau;
+import com.ui.DoiMatKhauForm;
+import com.ui.DoiMatKhauForm;
 
 import com.ui.ShowMessage;
 import com.ui.GioiThieuForm;
 import com.ui.QuanLyKhachHangForm;
-import com.ui.QuanLyLichTrinh;
+import com.ui.QuanLyLichTrinhForm;
+import com.ui.QuanLyLichTrinhForm;
 import com.ui.QuanLyNhanVienForm;
 import com.ui.QuanLyPhuongTienForm;
 import java.awt.Color;
@@ -124,7 +126,7 @@ public class ATBusMain extends javax.swing.JFrame {
                 }else if(index == 1){
                     
                 }else if(index == 2){
-                    showForm(new QuanLyLichTrinh());
+                    showForm(new QuanLyLichTrinhForm());
                 }else if(index == 3){
                     showForm(new QuanLyNhanVienForm());
                 }else if(index == 4){
@@ -138,7 +140,7 @@ public class ATBusMain extends javax.swing.JFrame {
                 }else if(index == 8){
 //                    showForm(new QuanLyTuyenDuong(index + ""));
                 }else if(index == 9){
-                    showForm(new DoiMatKhau());
+                    showForm(new DoiMatKhauForm());
                 }else if(index == 10){
                     closeApp();
                     menu.setSelected(0);

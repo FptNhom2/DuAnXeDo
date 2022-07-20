@@ -4,12 +4,12 @@ import com.dao.NhanVienDAO;
 import com.utils.Auth;
 import com.utils.MsgBox;
 
-public class DoiMatKhau extends javax.swing.JPanel {
+public class DoiMatKhauForm extends javax.swing.JPanel {
 
     /**
      * Creates new form DoiMatKhau
      */
-    public DoiMatKhau() {
+    public DoiMatKhauForm() {
         initComponents();
     }
 

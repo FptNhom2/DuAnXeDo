@@ -8,12 +8,12 @@ package com.ui;
  *
  * @author pc
  */
-public class QuanLyLichTrinh extends javax.swing.JPanel {
+public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
     /**
      * Creates new form QuanLyLichTrinh
      */
-    public QuanLyLichTrinh() {
+    public QuanLyLichTrinhForm() {
         initComponents();
     }
 

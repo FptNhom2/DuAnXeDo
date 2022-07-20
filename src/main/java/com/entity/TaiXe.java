@@ -39,7 +39,11 @@ public class TaiXe {
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
-
+    
+    public boolean getTrangThai(){
+        return trangThai;
+    }
+    
     public boolean isTrangThai() {
         return trangThai;
     }

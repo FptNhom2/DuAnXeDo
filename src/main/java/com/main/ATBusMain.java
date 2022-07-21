@@ -8,6 +8,7 @@ import com.ui.QuanLyTuyenDuongForm;
 import com.ui.QuanLyTaiXeForm;
 import com.ui.ShowMessage;
 import com.ui.GioiThieuForm;
+import com.ui.DoiMatKhauForm;
 import com.ui.QuanLyKhachHangForm;
 import com.ui.QuanLyLichTrinhForm;
 import com.ui.QuanLyNhanVienForm;

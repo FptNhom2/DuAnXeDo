@@ -143,10 +143,10 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(tblNhanVien);
 
-        jPanel1.setBackground(new java.awt.Color(192, 227, 149));
+        jPanel1.setBackground(new java.awt.Color(248, 250, 254));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(192, 227, 149));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ NHÂN VIÊN");
 

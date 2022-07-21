@@ -12,6 +12,9 @@ import com.ui.QuanLyKhachHangForm;
 import com.ui.QuanLyLichTrinhForm;
 import com.ui.QuanLyNhanVienForm;
 import com.ui.QuanLyPhuongTienForm;
+import com.ui.ThongKeForm;
+import com.utils.Auth;
+import com.utils.MsgBox;
 import java.awt.Color;
 import java.awt.Component;
 
@@ -112,9 +115,9 @@ public class ATBusMain extends javax.swing.JFrame {
     private void init() {
         this.setLocationRelativeTo(null);
         // cửa sổ chào chạy trước
-//        new ChaoJDialog(this, true).setVisible(true);
+        new ChaoJDialog(this, true).setVisible(true);
         // kế tiếp đến cửa sổ đăng nhập
-//        new DangNhapFormJDialog(this, true).setVisible(true);
+        new DangNhapFormJDialog(this, true).setVisible(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setBackground(new Color(63, 109, 217));
         MenuEvent event = new MenuEvent() {
@@ -135,10 +138,23 @@ public class ATBusMain extends javax.swing.JFrame {
                 } else if (index == 6) {
                     showForm(new QuanLyTaiXeForm());
                 } else if (index == 7) {
+                    if (Auth.isManager()) {
+                        showForm(new ThongKeForm());
+                    } else {
+                        MsgBox.alert(jPanel1, "Bạn không có quyền xem chức năng này");
+                        menu.setSelected(0);
+                    }
+
                 } else if (index == 8) {
 //                    showForm(new QuanLyTuyenDuong(index + ""));
                 } else if (index == 9) {
-                    showForm(new DoiMatKhauForm());
+                    if (Auth.isManager()) {
+                        showForm(new DoiMatKhauForm());
+                    } else {
+                        MsgBox.alert(jPanel1, "Bạn không có quyền xem chức năng này");
+                        menu.setSelected(0);
+                    }
+
                 } else if (index == 10) {
                     closeApp();
                     menu.setSelected(0);

@@ -29,7 +29,7 @@ public class NhanVienDAO extends AtbusDAO<NhanVien, String> {
     @Override
     public void update(NhanVien entity) {
         try {
-            Xjdbc.update(UPDATE_SQL, entity.getHoTen(), entity.getMatKhau(), entity.getVaiTro(), entity.getEmail(), entity.getSdt(), entity.getHinh());
+            Xjdbc.update(UPDATE_SQL, entity.getHoTen(), entity.getMatKhau(), entity.getVaiTro(), entity.getEmail(), entity.getSdt(), "hinh", entity.getMaNV());
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

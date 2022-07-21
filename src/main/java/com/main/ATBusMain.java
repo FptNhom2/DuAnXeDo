@@ -130,7 +130,13 @@ public class ATBusMain extends javax.swing.JFrame {
                 } else if (index == 2) {
                     showForm(new QuanLyLichTrinhForm());
                 } else if (index == 3) {
-                    showForm(new QuanLyNhanVienForm());
+                    if (Auth.isManager()) {
+                        showForm(new QuanLyNhanVienForm());
+                    } else {
+                        MsgBox.alert(jPanel1, "Bạn không có quyền xem chức năng này");
+                        menu.setSelected(0);
+                    }
+
                 } else if (index == 4) {
                     showForm(new QuanLyKhachHangForm());
                 } else if (index == 5) {

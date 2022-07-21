@@ -243,7 +243,7 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
         } else if (!matKhauMoi.equals(matKhauMoi2)) {
             MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
         } else {
-            Auth.user.setHoTen(matKhauMoi);
+            Auth.user.setMatKhau(matKhauMoi);
             dao.update(Auth.user);
             MsgBox.alert(this, "Đổi mật khẩu thành công!");
         }

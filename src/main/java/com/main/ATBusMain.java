@@ -4,12 +4,11 @@ import com.event.MenuEvent;
 import com.ui.ChaoJDialog;
 import com.ui.DangNhapFormJDialog;
 import com.ui.DoiMatKhauForm;
-import com.ui.DoiMatKhauForm;
-
+import com.ui.QuanLyTuyenDuongForm;
+import com.ui.QuanLyTaiXeForm;
 import com.ui.ShowMessage;
 import com.ui.GioiThieuForm;
 import com.ui.QuanLyKhachHangForm;
-import com.ui.QuanLyLichTrinhForm;
 import com.ui.QuanLyLichTrinhForm;
 import com.ui.QuanLyNhanVienForm;
 import com.ui.QuanLyPhuongTienForm;
@@ -117,31 +116,30 @@ public class ATBusMain extends javax.swing.JFrame {
         // kế tiếp đến cửa sổ đăng nhập
 //        new DangNhapFormJDialog(this, true).setVisible(true);
         this.setExtendedState(MAXIMIZED_BOTH);
-        getContentPane().setBackground(new Color(63,109,217));
+        getContentPane().setBackground(new Color(63, 109, 217));
         MenuEvent event = new MenuEvent() {
             @Override
             public void menuSelected(int index) {
-                if(index == 0){
+                if (index == 0) {
                     showForm(new GioiThieuForm());
-                }else if(index == 1){
-                    
-                }else if(index == 2){
+                } else if (index == 1) {
+                    showForm(new QuanLyTuyenDuongForm());
+                } else if (index == 2) {
                     showForm(new QuanLyLichTrinhForm());
-                }else if(index == 3){
+                } else if (index == 3) {
                     showForm(new QuanLyNhanVienForm());
-                }else if(index == 4){
+                } else if (index == 4) {
                     showForm(new QuanLyKhachHangForm());
-                }else if(index == 5){
+                } else if (index == 5) {
                     showForm(new QuanLyPhuongTienForm());
-                }else if(index == 6){
-//                    showForm(new QuanLyPhuongTienForm());
-                }else if(index == 7){
+                } else if (index == 6) {
+                    showForm(new QuanLyTaiXeForm());
+                } else if (index == 7) {
+                } else if (index == 8) {
 //                    showForm(new QuanLyTuyenDuong(index + ""));
-                }else if(index == 8){
-//                    showForm(new QuanLyTuyenDuong(index + ""));
-                }else if(index == 9){
+                } else if (index == 9) {
                     showForm(new DoiMatKhauForm());
-                }else if(index == 10){
+                } else if (index == 10) {
                     closeApp();
                     menu.setSelected(0);
                 }
@@ -150,14 +148,15 @@ public class ATBusMain extends javax.swing.JFrame {
         menu.initMenu(event);
         menu.setSelected(0); // app khởi động sẽ chọn tab 0 làm mặc định
     }
-    private void showForm(Component com){
+
+    private void showForm(Component com) {
         body.removeAll();
         body.add(com);
         body.revalidate();
         body.repaint();
     }
-    
-    private void closeApp(){
+
+    private void closeApp() {
         ShowMessage showMess = new ShowMessage(null, rootPaneCheckingEnabled);
         showMess.setVisible(true);
     } // đóng ứng dụng

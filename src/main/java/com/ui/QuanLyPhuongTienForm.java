@@ -1,5 +1,10 @@
 package com.ui;
 
+import com.dao.PhuongTienDAO;
+import com.entity.PhuongTien;
+import com.utils.MsgBox;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class QuanLyPhuongTienForm extends javax.swing.JPanel {
 
@@ -8,6 +13,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
      */
     public QuanLyPhuongTienForm() {
         initComponents();
+        init();
     }
 
     /**
@@ -41,7 +47,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         btnThem = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tbDanhSach = new javax.swing.JTable();
+        tbDSPT = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         jTextField1.setBackground(new java.awt.Color(192, 227, 149));
@@ -201,9 +207,9 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tbDanhSach.setBackground(new java.awt.Color(192, 227, 149));
-        tbDanhSach.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tbDanhSach.setModel(new javax.swing.table.DefaultTableModel(
+        tbDSPT.setBackground(new java.awt.Color(192, 227, 149));
+        tbDSPT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tbDSPT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -214,8 +220,8 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
                 "Mã phương tiện", "Biển số xe", "Tình trạng xe", "Số lượng chỗ ngồi", "Ngày kiểm định", "Ngày bảo trì"
             }
         ));
-        tbDanhSach.setAlignmentX(1.0F);
-        jScrollPane2.setViewportView(tbDanhSach);
+        tbDSPT.setAlignmentX(1.0F);
+        jScrollPane2.setViewportView(tbDSPT);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -303,7 +309,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTable tbDanhSach;
+    private javax.swing.JTable tbDSPT;
     private javax.swing.JTextField txtBienso;
     private javax.swing.JTextField txtMaPT;
     private javax.swing.JTextField txtNgayBT;
@@ -311,4 +317,53 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtSLCN;
     private javax.swing.JTextField txtTinhTrang;
     // End of variables declaration//GEN-END:variables
+
+    int row = -1;
+    PhuongTienDAO dao = new PhuongTienDAO();
+
+    void init() {
+        this.fillTable();
+        this.updateStatus();
+        this.row = -1;
+    }
+
+    void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) tbDSPT.getModel();
+        model.setRowCount(0);
+        try {
+            List<PhuongTien> list = dao.selectAll();
+            for (PhuongTien pt : list) {
+                Object[] row = {
+                    pt.getMaPT(),
+                    pt.getBangXoSe(),
+                    pt.isTrangThai(),
+                    pt.getSlChoNgoi(),
+                    pt.getNgayKiemDinh(),
+                    pt.getNgayBaoTri()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
+            e.printStackTrace();
+        }
+    }
+
+    void updateStatus() {
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tbDSPT.getRowCount() - 1);
+        // Trạng thái form
+        txtMaPT.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+
+        // Trạng thái điều hướng
+//        btnFirst.setEnabled(edit && !first);
+//        btnPrev.setEnabled(edit && !first);
+//        btnNext.setEnabled(edit && !last);
+//        btnLast.setEnabled(edit && !last);
+    }
+
 }

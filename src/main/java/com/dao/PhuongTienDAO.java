@@ -70,9 +70,9 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
             ResultSet rs = Xjdbc.query(sql, args);
             while (rs.next()) {
                 PhuongTien entity = new PhuongTien();
-                entity.setMaPT(rs.getInt("MaPT"));
-                entity.setBangXoSe(rs.getString("BangSoXe"));
-                entity.setTrangThai(rs.getBoolean("TrangThai"));
+                entity.setMaPT(rs.getInt("maPT"));
+                entity.setBangXoSe(rs.getString("bangSoXe"));
+                entity.setTrangThai(rs.getBoolean("tinhTrang"));
                 entity.setSlChoNgoi(rs.getInt("SLChoNgoi"));
                 entity.setNgayKiemDinh(XDate.createDate(rs.getString("ngayKiemDinh")));
                 entity.setNgayBaoTri(XDate.createDate(rs.getString("ngayBaoTri")));

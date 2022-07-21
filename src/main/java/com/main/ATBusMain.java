@@ -126,6 +126,7 @@ public class ATBusMain extends javax.swing.JFrame {
                     showForm(new QuanLyTuyenDuongForm());
                 } else if (index == 2) {
                     showForm(new QuanLyLichTrinhForm());
+                    
                 } else if (index == 3) {
                     showForm(new QuanLyNhanVienForm());
                 } else if (index == 4) {

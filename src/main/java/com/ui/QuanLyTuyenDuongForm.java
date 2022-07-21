@@ -1,11 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.ui;
 
+import com.dao.TuyenDuongDAO;
+import com.entity.TuyenDuong;
+import com.utils.MsgBox;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -53,7 +54,11 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
-        btnTaoMoiLichTrinh = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnFirst = new javax.swing.JButton();
+        btnPrevious = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(248, 250, 254));
 
@@ -62,12 +67,18 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ TUYẾN ĐƯỜNG");
 
+        lblMaTuyenDuong.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblMaTuyenDuong.setText("Mã tuyến đường:");
 
+        lblGia.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblGia.setText("Giá:");
 
+        txtMaTuyenDuong.setEditable(false);
+
+        lblTenTuyenDuong.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTenTuyenDuong.setText("Tên tuyến đường:");
 
+        lblTenMien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblTenMien.setText("Tên miền:");
 
         tblTuyenDuong.setModel(new javax.swing.table.DefaultTableModel(
@@ -75,7 +86,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã tuyến đường", "Tên tuyến đường", "Giá", "Tên miền"
+                "Mã tuyến đường", "Tên tuyến đường", "Tên miền", "Giá"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -86,33 +97,81 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblTuyenDuong.setSelectionBackground(new java.awt.Color(35, 166, 97));
+        tblTuyenDuong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTuyenDuongMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTuyenDuong);
 
         jPanel2.setBackground(new java.awt.Color(248, 250, 254));
 
-        btnThemMoi.setBackground(new java.awt.Color(192, 227, 149));
+        btnThemMoi.setBackground(new java.awt.Color(255, 255, 255));
+        btnThemMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnThemMoi.setText("Thêm mới");
         btnThemMoi.setPreferredSize(new java.awt.Dimension(260, 35));
         jPanel2.add(btnThemMoi);
 
-        btnSua.setBackground(new java.awt.Color(192, 227, 149));
+        btnSua.setBackground(new java.awt.Color(255, 255, 255));
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setPreferredSize(new java.awt.Dimension(260, 35));
         jPanel2.add(btnSua);
 
-        btnXoa.setBackground(new java.awt.Color(192, 227, 149));
+        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setPreferredSize(new java.awt.Dimension(260, 35));
         jPanel2.add(btnXoa);
 
-        btnMoi.setBackground(new java.awt.Color(192, 227, 149));
+        btnMoi.setBackground(new java.awt.Color(255, 255, 255));
+        btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.setPreferredSize(new java.awt.Dimension(260, 35));
         jPanel2.add(btnMoi);
 
-        btnTaoMoiLichTrinh.setBackground(new java.awt.Color(192, 227, 149));
-        btnTaoMoiLichTrinh.setText("Tạo mới lịch trình");
-        btnTaoMoiLichTrinh.setPreferredSize(new java.awt.Dimension(260, 35));
+        jPanel3.setBackground(new java.awt.Color(248, 250, 254));
+
+        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
+        btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
+        btnFirst.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnFirst);
+
+        btnPrevious.setBackground(new java.awt.Color(255, 255, 255));
+        btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
+        btnPrevious.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnPrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreviousActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnPrevious);
+
+        btnNext.setBackground(new java.awt.Color(255, 255, 255));
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
+        btnNext.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnNext);
+
+        btnLast.setBackground(new java.awt.Color(255, 255, 255));
+        btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
+        btnLast.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnLast);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,7 +179,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(114, 114, 114)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -140,8 +199,8 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
                             .addComponent(txtGia)
                             .addComponent(cboTenMien, 0, 413, Short.MAX_VALUE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTaoMoiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,9 +222,9 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnTaoMoiLichTrinh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -180,17 +239,44 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        first();
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
+        prev();
+    }//GEN-LAST:event_btnPreviousActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        next();
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        last();
+    }//GEN-LAST:event_btnLastActionPerformed
+
+    private void tblTuyenDuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTuyenDuongMouseClicked
+        if(evt.getClickCount() == 2){
+            this.row = tblTuyenDuong.getSelectedRow(); // lấy vị trí được chọn gán qua row
+            this.edit(); // hiện thông tin lên form
+        }
+    }//GEN-LAST:event_tblTuyenDuongMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
     private javax.swing.JButton btnMoi;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnSua;
-    private javax.swing.JButton btnTaoMoiLichTrinh;
     private javax.swing.JButton btnThemMoi;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cboTenMien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblGia;
     private javax.swing.JLabel lblMaTuyenDuong;
@@ -222,9 +308,181 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         txtGia.setFont(new java.awt.Font("sansserif", 0, 13));
         txtGia.setSelectionColor(new Color(75, 175, 152));
         // combo TenMien
-        cboTenMien.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         cboTenMien.setBackground(new Color(235,235,235)); // background
         cboTenMien.setForeground(Color.decode("#7A8C8D"));
         cboTenMien.setFont(new java.awt.Font("sansserif", 0, 13));
+        this.fillTable();
+        this.row = -1; // đang không chọn hàng nào
+        this.fillCboTenMien();
     }
+    
+    private void fillCboTenMien()
+    {
+        cboTenMien.addItem("Bắc");
+        cboTenMien.addItem("Trung");
+        cboTenMien.addItem("Nam");
+    }
+    
+    TuyenDuongDAO tddao = new TuyenDuongDAO();
+    int row = -1; // vị trí của nhân viên đang hiển thị trên form (khi form mới hiện lên chúng ta chưa chọn hàng nào cho nên là -1)
+
+    
+    //=============================Bảng=============================//
+    private void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) tblTuyenDuong.getModel();
+        model.setRowCount(0); // xóa tất cả các hàng trên bảng
+        try {
+            List<TuyenDuong> list = tddao.selectAll(); // truy vấn dữ liệu từ database lên
+            for(TuyenDuong td : list){
+                Object[] row = {
+                    td.getMaTD(),
+                    td.getTenTD(), 
+                    td.getTenMien(),
+                    td.getGia()
+                };
+                model.addRow(row); //Thêm 1 hàng vào JTable
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
+        }
+    } // Đỗ dữ liệu vào bảng (truy vấn dữ liệu và hiển thị lên bảng)
+
+    private void edit(){
+        int maTD = (int) tblTuyenDuong.getValueAt(this.row, 0); // 0 là cột trên bảng
+        TuyenDuong td = tddao.selectById(String.valueOf(maTD)); // truy vấn dữ liệu từ database lên
+        this.setForm(td); // hiển thị thông tin tuyến đường đó lên form
+//        this.updateStatus(); // cập nhật lại trạng thái các nút
+    } // đọc lấy tuyến đường của 1 hàng (tblTuyenDuong double click)
+    //==============================================================//
+    
+    //=============================Form============================//
+    private void setForm(TuyenDuong td){
+        txtMaTuyenDuong.setText(String.valueOf(td.getMaTD()));
+        txtTenTuyenDuong.setText(td.getTenTD());
+        cboTenMien.setSelectedItem(td.getTenMien());
+        txtGia.setText(String.valueOf(td.getGia()));
+    } // Hiển thị dữ liệu tuyến đường lên form
+    
+    private TuyenDuong getForm(){
+        TuyenDuong td = new TuyenDuong(); // tạo ra 1 đối tượng
+        // cài đặt thông tin cho đối tượng
+        td.setMaTD(Integer.parseInt(txtMaTuyenDuong.getText()));
+        td.setTenTD(txtTenTuyenDuong.getText());
+        td.setTenMien(String.valueOf(cboTenMien.getSelectedItem()));
+        td.setGia(Double.parseDouble(txtGia.getText()));
+        return td;
+    } // lấy dữ liệu từ form và tạo nhân viên
+    //==============================================================//
+    
+    //==========================Quản lý==========================//
+//    private void insert(){
+//        TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
+////        if(txtTenTuyenDuong.getText().isEmpty()){ 
+////            MsgBox.alert(this, "Không được để trống tên tuyến đường!");
+////            txtTenTuyenDuong.requestFocus();
+////            return;
+////        }else if(txtGia.getText().isEmpty()){
+////            MsgBox.alert(this, "Không được để trống giá!");
+////            txtGia.requestFocus();
+////            return;
+////        }else{ // đã khớp
+//            try {
+//                tddao.insert(td); // insert thành công thì:
+//                this.fillTable(); // load lại dữ liệu lên bảng
+//                this.clearForm(); // xóa trắng form
+//                MsgBox.alert(this, "Thêm mới thành công!");
+//            } catch (Exception e) {
+//                MsgBox.alert(this, "Thêm mới thất bại!");
+//            }
+////        }
+//    } // thêm mới vào csdl (btn thêm)
+    
+//    private void update(){
+//        NhanVien nv = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
+//        String mk2 = new String(txtMatKhau2.getPassword()); // lấy dữ liệu mk 2 đem so sánh
+//        if(!mk2.equals(nv.getMatKhau())){ // nếu không khớp báo lỗi
+//            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
+//        }else{ // đã khớp
+//            try {
+//                dao.update(nv); // cập nhật thành công thì:
+//                this.fillTable(); // load lại dữ liệu lên bảng
+//                MsgBox.alert(this, "Cập nhật thành công!");
+//            } catch (Exception e) {
+//                MsgBox.alert(this, "Cập nhật thất bại");
+//            }
+//        }
+//    } // cập nhật dữ liệu (btn sửa)
+    
+//    private void delete(){
+//        if(!Auth.isManager()){ // trưởng phòng mới được quyền xóa
+//            MsgBox.alert(this, "Bạn không có quyền xóa nhân viên");
+//        }else{
+//            String manv = txtMaNhanVien.getText();
+//            if(manv.equals(Auth.user.getMaNV())){ // không được xóa tài khoản đang đăng nhập hiện tại
+//                MsgBox.alert(this, "Bạn không được xóa chính bạn!");
+//            }else if(MsgBox.confirm(this, "Bạn thực sự muốn xóa nhân viên này?")){ // xác nhận 
+//                try {
+//                    dao.delete(manv); // xóa thành công thì:
+//                    this.fillTable(); // load lại dữ liệu lên bảng
+//                    this.clearForm(); // xóa trắng form
+//                    MsgBox.alert(this, "Xóa thành công!");
+//                } catch (Exception e) {
+//                    MsgBox.alert(this, "Xóa thất bại");
+//                }
+//            }
+//        }
+//    } // xóa dữ liệu (btn xóa)
+    
+    private void clearForm(){
+        TuyenDuong td = new TuyenDuong(); // tạo ra 1 đối tượng mới
+        this.setForm(td); 
+        this.row = -1; // khi xóa form sẽ không còn chọn hàng nào nữa, nên cập nhật lại -1
+//        this.updateStatus(); // cập nhật lại trạng thái các nút
+    } // xóa trắng form (btn mới)
+    //==============================================================//
+    
+    //==========================Điều hướng==========================//
+    private void first(){
+        this.row = 0;
+        this.edit();
+    } // btnFirst
+    
+    private void prev(){
+        if(this.row > 0){
+            this.row--;
+            this.edit();
+        }
+    } // btnPrev
+    
+    private void next(){
+        if(this.row < tblTuyenDuong.getRowCount() - 1){
+            this.row++;
+            this.edit();
+        }
+    } // btnNext
+    
+    private void last(){
+        this.row = tblTuyenDuong.getRowCount() - 1;
+        this.edit();
+    } // btnLast
+    //==============================================================//
+    
+    //==========================Điều khiển trạng thái nút quản lý==========================//
+//    private void updateStatus(){
+//        boolean edit = (this.row >= 0); // đang chọn 1 hàng đâu đó
+//        boolean first = (this.row == 0); // đang ở bảng ghi đầu tiên
+//        boolean last = (this.row == tblTuyenDuong.getRowCount() - 1); // đang ở vị trí cuối cùng
+        // trạng thái form
+        // Editable: đang xem
+//        txtMaNhanVien.setEditable(!edit); // nếu edit == false thì khi đó mới cho phép sửa
+//        btnThem.setEnabled(!edit);
+//        btnSua.setEnabled(edit);
+//        btnXoa.setEnabled(edit);
+//        // trạng thái điều hướng
+//        btnFirst.setEnabled(edit && !first);
+//        btnPrevious.setEnabled(edit && !first);
+//        btnNext.setEnabled(edit && !last);
+//        btnLast.setEnabled(edit && !last);
+//    } // cập nhật trạng thái các nút
+    //==============================================================//
 }

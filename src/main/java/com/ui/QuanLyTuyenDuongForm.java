@@ -8,10 +8,6 @@ import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author DELL
- */
 public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
     /**

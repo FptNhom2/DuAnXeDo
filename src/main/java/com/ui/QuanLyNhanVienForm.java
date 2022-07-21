@@ -1,8 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.ui;
+
+import com.dao.NhanVienDAO;
+import com.entity.NhanVien;
+import com.utils.Auth;
+import com.utils.MsgBox;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +18,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
      */
     public QuanLyNhanVienForm() {
         initComponents();
+        init();
     }
 
     /**
@@ -32,7 +36,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         lblSoDienThoai = new javax.swing.JLabel();
         txtMaNV = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
-        txtTenNV = new javax.swing.JTextField();
+        txtHoTen = new javax.swing.JTextField();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
@@ -42,7 +46,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         lblMatKhau = new javax.swing.JLabel();
         lblVaiTro = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblKhachHang = new javax.swing.JTable();
+        tblNhanVien = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         rdoTruongPhong = new javax.swing.JRadioButton();
@@ -62,20 +66,35 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         btnThem.setBackground(new java.awt.Color(153, 255, 153));
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setText("Thêm");
-
-        txtTenNV.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenNVActionPerformed(evt);
+                btnThemActionPerformed(evt);
+            }
+        });
+
+        txtHoTen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtHoTenActionPerformed(evt);
             }
         });
 
         btnSua.setBackground(new java.awt.Color(153, 255, 153));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setBackground(new java.awt.Color(153, 255, 153));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnMoi.setBackground(new java.awt.Color(153, 255, 153));
         btnMoi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -98,7 +117,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         lblVaiTro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblVaiTro.setText("Vai trò");
 
-        tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+        tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -108,8 +127,21 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
             new String [] {
                 "Mã nhân viên", "Họ và tên", "Mật khẩu", "Vai trò", "Email", "Số điện thoại", "Hình"
             }
-        ));
-        jScrollPane2.setViewportView(tblKhachHang);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanVienMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblNhanVien);
 
         jPanel1.setBackground(new java.awt.Color(248, 250, 254));
 
@@ -137,7 +169,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         rdoNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdoNhanVien.setText("Nhân viên");
 
-        txtMatKhau.setText("jPasswordField1");
+        txtMatKhau.setToolTipText("");
 
         lblHinh.setText("Hình");
 
@@ -163,7 +195,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(lblTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                                .addComponent(txtTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblVaiTro, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
@@ -203,7 +235,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTenNV, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtHoTen, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -249,13 +281,32 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtTenNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenNVActionPerformed
+    private void txtHoTenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHoTenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenNVActionPerformed
+    }//GEN-LAST:event_txtHoTenActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        // TODO add your handling code here:
+        this.clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        this.insert();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        this.update();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        this.delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
+        if (evt.getClickCount() == 2) {
+            this.row = tblNhanVien.getSelectedRow();
+            this.edit();
+        }
+    }//GEN-LAST:event_tblNhanVienMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -277,11 +328,135 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
     private javax.swing.JLabel lblVaiTro;
     private javax.swing.JRadioButton rdoNhanVien;
     private javax.swing.JRadioButton rdoTruongPhong;
-    private javax.swing.JTable tblKhachHang;
+    private javax.swing.JTable tblNhanVien;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtSoDienThoai;
-    private javax.swing.JTextField txtTenNV;
     // End of variables declaration//GEN-END:variables
+
+    NhanVienDAO dao = new NhanVienDAO(); // Support for NhanVien table
+    int row = -1; // Seleted row when NhanVien table open
+
+    void init() {
+        this.fillTable();
+        this.row = -1;
+        this.updateStatus();
+    }
+
+    void fillTable() { // Fill data to tblNhanVien
+        DefaultTableModel model = (DefaultTableModel) tblNhanVien.getModel();
+        model.setRowCount(0);
+        try {
+            List<NhanVien> list = dao.selectAll();
+            for (NhanVien nv : list) {
+                Object[] row = {nv.getMaNV(), nv.getHoTen(), nv.getMatKhau(), nv.getVaiTro() ? "Trưởng Phòng" : "Nhân Viên", nv.getEmail(), nv.getSdt(), nv.getHinh()};
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Loi truy van du lieu");
+        }
+    }
+
+    void setForm(NhanVien nv) { // Dsiplay NhanVien to form 
+        try {
+            txtMaNV.setText(nv.getMaNV());
+            txtHoTen.setText(nv.getHoTen());
+            txtMatKhau.setText(nv.getMatKhau());
+            if (nv.getVaiTro()) {
+                rdoTruongPhong.setSelected(nv.getVaiTro());
+            }
+            rdoNhanVien.setSelected(!nv.getVaiTro());
+            txtEmail.setText(nv.getEmail());
+            txtSoDienThoai.setText(nv.getSdt());
+        } catch (Exception e) {
+            rdoTruongPhong.setSelected(false);
+        }
+    }
+
+    NhanVien getForm() { // Create new NhanVien from form
+        NhanVien nv = new NhanVien();
+        nv.setMaNV(txtMaNV.getText());
+        nv.setHoTen(txtHoTen.getText());
+        nv.setMatKhau(new String(txtMatKhau.getPassword()));
+        nv.setVaiTro(rdoTruongPhong.isSelected());
+        nv.setEmail(txtEmail.getText());
+        nv.setSdt(txtSoDienThoai.getText());
+        return nv;
+    }
+
+    void clearForm() { // [btnMoi]
+        NhanVien nv = new NhanVien();
+        this.setForm(nv);
+        this.row = -1;
+        this.updateStatus();
+    }
+
+    void updateStatus() { // Change status of btns
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tblNhanVien.getRowCount() - 1);
+        // status form
+        txtMaNV.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+        // status backward and forward btn
+//        btnFirst.setEnabled(edit && !first);
+//        btnPrev.setEnabled(edit && !first);
+//        btnNext.setEnabled(edit && !last);
+//        btnLast.setEnabled(edit && !last);
+    }
+
+    void insert() { // [btnThem]
+        NhanVien nv = getForm();
+        try {
+            dao.insert(nv);
+            this.fillTable();
+            this.clearForm();
+            MsgBox.alert(this, "Them moi thanh cong");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Them moi that bai");
+            e.printStackTrace();
+        }
+
+    }
+
+    void update() { // [btnSua]
+        NhanVien nv = getForm();
+        try {
+            dao.update(nv);
+            this.fillTable();
+            MsgBox.alert(this, "Cap nhat thanh cong");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Cap nhat that bai");
+            e.printStackTrace();
+        }
+    }
+
+    void delete() { // [btnXoa]
+        String manv = txtMaNV.getText();
+        if (manv.equals(Auth.user.getMaNV())) {
+            MsgBox.alert(this, "Ban khong the xoa chinh ban!");
+        } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
+            try {
+                dao.delete(manv);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Xoa thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Xoa that bai");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void edit() { // [tblNhanVien double click]
+        String manv = (String) tblNhanVien.getValueAt(this.row, 0);
+        NhanVien nv = dao.selectById(manv);
+        this.setForm(nv);
+        this.updateStatus();
+    }
+
 }

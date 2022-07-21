@@ -10,7 +10,7 @@ public class XDate {
         return LocalDate.of(year, month, day);
     }
 
-    public static LocalDate createDate(String txtDate) {
+    public static LocalDate createDate(String txtDate) { 
         return LocalDate.parse(txtDate);
     }
 
@@ -23,7 +23,7 @@ public class XDate {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timePattern);
         return time.format(formatter);
     }
-
+     
     public static String formatDate(LocalDate date) {
         String datePattern = "dd-MM-uuuu";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);

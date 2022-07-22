@@ -1,5 +1,12 @@
  package com.ui;
 
+import com.dao.LichTrinhDAO;
+import com.entity.LichTrinh;
+import com.utils.MsgBox;
+import com.utils.XDate;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author pc
@@ -11,6 +18,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
      */
     public QuanLyLichTrinhForm() {
         initComponents();
+        fillTable();
     }
 
     /**
@@ -55,7 +63,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         btnMoi = new javax.swing.JButton();
         btnTaoLichTrinh = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblLichTrinh1 = new javax.swing.JTable();
+        tblLichTrinh = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setText("QUẢN LÝ LỊCH TRÌNH");
@@ -191,7 +199,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         btnTaoLichTrinh.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnTaoLichTrinh.setText("Tạo lịch trình");
 
-        tblLichTrinh1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLichTrinh.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -202,7 +210,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 "Mã Lịch Trình", "Tên Tuyến Đường", "Ngày Xuất Phát", "Thời Gian Dự Kiến", "Chi Phí Ban Đầu", "Chi Phí Phát Sinh", "Ghi Chú", "Mã Phương Tiện", "Tình Trạng", "Số Vé", "Tổng Doanh Thu"
             }
         ));
-        jScrollPane3.setViewportView(tblLichTrinh1);
+        jScrollPane3.setViewportView(tblLichTrinh);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -406,7 +414,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JLabel lblTongDoanhThu;
     private javax.swing.JRadioButton rdoChuaXuatPhat;
     private javax.swing.JRadioButton rdoDaXuatPhat;
-    private javax.swing.JTable tblLichTrinh1;
+    private javax.swing.JTable tblLichTrinh;
     private javax.swing.JTextField txtChiPhiBanDau;
     private javax.swing.JTextField txtChiPhiPhatSinh;
     private javax.swing.JTextArea txtGhiChu;
@@ -416,4 +424,44 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtTenTuyenDuong;
     private javax.swing.JTextField txtThoiGianDuKien;
     // End of variables declaration//GEN-END:variables
+
+    int row = -1;
+    LichTrinhDAO ltdao = new LichTrinhDAO();
+    
+    void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) tblLichTrinh.getModel();
+        model.setRowCount(0);
+        try {
+            List<LichTrinh> list = ltdao.selectAll();
+            for (LichTrinh lt : list) {
+                Object[] row = {
+                    lt.getMaLT(),
+                    lt.getMaTD(),
+                    lt.getMaPT(),
+                    lt.getMaNV(),
+                    lt.getNgayXP(),
+                    lt.getTgDuKien(),
+                    lt.getChiPhiBanDau(),
+                    lt.getChiPhiPhatSinh(),
+                    lt.getTongDoanhThu(),
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+             MsgBox.alert(this, "Loi truy van du lieu");
+        }
+    }
+    
+    void setForm(LichTrinh lt) { // Dsiplay NhanVien to form 
+        try {
+            txtChiPhiBanDau.setText(String.valueOf(lt.getChiPhiBanDau()));
+            txtChiPhiPhatSinh.setText(String.valueOf(lt.getChiPhiPhatSinh()));
+            txtMaLichTrinh.setText(lt.getMaLT());
+            txtNgayXuatPhat.setText(XDate.formatDate(lt.getNgayXP()));
+            txtThoiGianDuKien.setText(XDate.formatTime(lt.getTgDuKien()));
+            lblTong.setText(String.valueOf(lt.getTongDoanhThu()));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }

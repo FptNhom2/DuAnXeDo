@@ -1,9 +1,15 @@
 package com.entity;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class LichTrinh {
+
+    public static String get() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     String maLT;
     int maTD;
     int maPT;
@@ -13,6 +19,7 @@ public class LichTrinh {
     double chiPhiBanDau;
     double chiPhiPhatSinh;
     double tongDoanhThu;
+  
 
     public String getMaLT() {
         return maLT;

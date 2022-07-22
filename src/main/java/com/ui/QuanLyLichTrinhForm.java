@@ -1,7 +1,8 @@
- package com.ui;
+package com.ui;
 
 import com.dao.LichTrinhDAO;
 import com.entity.LichTrinh;
+import com.utils.Auth;
 import com.utils.MsgBox;
 import com.utils.XDate;
 import java.util.List;
@@ -201,16 +202,20 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         tblLichTrinh.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã Lịch Trình", "Tên Tuyến Đường", "Ngày Xuất Phát", "Thời Gian Dự Kiến", "Chi Phí Ban Đầu", "Chi Phí Phát Sinh", "Ghi Chú", "Mã Phương Tiện", "Tình Trạng", "Số Vé", "Tổng Doanh Thu"
+                "Mã Lịch Trình", "Tên Tuyến Đường", "Mã Phương Tiện", "MANV", "Ngày Xuất Phát", "Thời Gian Dự Kiến", "Chi Phí Ban Đầu", "Chi Phí Phát Sinh", "Tổng Doanh Thu"
             }
         ));
         jScrollPane3.setViewportView(tblLichTrinh);
+        if (tblLichTrinh.getColumnModel().getColumnCount() > 0) {
+            tblLichTrinh.getColumnModel().getColumn(2).setResizable(false);
+            tblLichTrinh.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -427,8 +432,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
     int row = -1;
     LichTrinhDAO ltdao = new LichTrinhDAO();
-    
-    void fillTable(){
+
+    void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblLichTrinh.getModel();
         model.setRowCount(0);
         try {
@@ -443,15 +448,15 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                     lt.getTgDuKien(),
                     lt.getChiPhiBanDau(),
                     lt.getChiPhiPhatSinh(),
-                    lt.getTongDoanhThu(),
-                };
+                    lt.getTongDoanhThu(),};
                 model.addRow(row);
             }
         } catch (Exception e) {
-             MsgBox.alert(this, "Loi truy van du lieu");
+            e.printStackTrace();
+            MsgBox.alert(this, "Loi truy van du lieu");
         }
     }
-    
+
     void setForm(LichTrinh lt) { // Dsiplay NhanVien to form 
         try {
             txtChiPhiBanDau.setText(String.valueOf(lt.getChiPhiBanDau()));
@@ -460,8 +465,68 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             txtNgayXuatPhat.setText(XDate.formatDate(lt.getNgayXP()));
             txtThoiGianDuKien.setText(XDate.formatTime(lt.getTgDuKien()));
             lblTong.setText(String.valueOf(lt.getTongDoanhThu()));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    LichTrinh getForm() { // Create new NhanVien from form
+        LichTrinh lt = new LichTrinh();
+        lt.setMaLT(txtMaLichTrinh.getText());
+        lt.setChiPhiBanDau(Double.valueOf(txtChiPhiBanDau.getText()));
+        lt.setChiPhiPhatSinh(Double.valueOf(txtChiPhiPhatSinh.getText()));
+        lt.setMaTD(Integer.valueOf(txtTenTuyenDuong.getText()));
+        lt.setNgayXP(XDate.createDate(lt.getNgayXP() + ""));
+//        lt.setTgDuKien(XDate.splitTime(lt.getTgDuKien()+));
+        lt.setTongDoanhThu(Double.valueOf(lblTong + ""));
+        return lt;
+    }
+
+    void clearForm() { // [btnMoi]
+        LichTrinh lt = new LichTrinh();
+        this.setForm(lt);
+        this.row = -1;
+    }
+
+    void insert() {
+        LichTrinh lt = getForm();
+        try {
+            ltdao.insert(lt);
+            this.fillTable();
+            this.clearForm();
+            MsgBox.alert(this, "Thêm mới thành công!");
+        } catch (Exception e) {
+            e.printStackTrace();
+            MsgBox.alert(this, "Thêm mới thất bại");
+        }
+    }
+
+    void update() { // [btnSua]
+        LichTrinh lt = getForm();
+        try {
+            ltdao.update(lt);
+            this.fillTable();
+            MsgBox.alert(this, "Cap nhat thanh cong");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Cap nhat that bai");
+            e.printStackTrace();
+        }
+    }
+
+    void delete() { // [btnXoa]
+        String malt = txtMaLichTrinh.getText();
+        if (!Auth.isManager()) {
+            MsgBox.alert(this, "Ban khong the xoa lich trinh!");
+        } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
+            try {
+                ltdao.delete(malt);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Xoa thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Xoa that bai");
+                e.printStackTrace();
+            }
         }
     }
 }

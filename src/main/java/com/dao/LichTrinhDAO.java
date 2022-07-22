@@ -81,6 +81,7 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String>  {
             rs.getStatement().getConnection().close();
             return list;
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
     }

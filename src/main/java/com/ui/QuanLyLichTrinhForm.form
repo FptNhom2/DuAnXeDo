@@ -495,17 +495,15 @@
             <Component class="javax.swing.JTable" name="tblLichTrinh">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="11" rowCount="4">
+                  <Table columnCount="9" rowCount="4">
                     <Column editable="true" title="M&#xe3; L&#x1ecb;ch Tr&#xec;nh" type="java.lang.Object"/>
                     <Column editable="true" title="T&#xea;n Tuy&#x1ebf;n &#x110;&#x1b0;&#x1edd;ng" type="java.lang.Object"/>
+                    <Column editable="true" title="M&#xe3; Ph&#x1b0;&#x1a1;ng Ti&#x1ec7;n" type="java.lang.Object"/>
+                    <Column editable="true" title="MANV" type="java.lang.Object"/>
                     <Column editable="true" title="Ng&#xe0;y Xu&#x1ea5;t Ph&#xe1;t" type="java.lang.Object"/>
                     <Column editable="true" title="Th&#x1edd;i Gian D&#x1ef1; Ki&#x1ebf;n" type="java.lang.Object"/>
                     <Column editable="true" title="Chi Ph&#xed; Ban &#x110;&#x1ea7;u" type="java.lang.Object"/>
                     <Column editable="true" title="Chi Ph&#xed; Ph&#xe1;t Sinh" type="java.lang.Object"/>
-                    <Column editable="true" title="Ghi Ch&#xfa;" type="java.lang.Object"/>
-                    <Column editable="true" title="M&#xe3; Ph&#x1b0;&#x1a1;ng Ti&#x1ec7;n" type="java.lang.Object"/>
-                    <Column editable="true" title="T&#xec;nh Tr&#x1ea1;ng" type="java.lang.Object"/>
-                    <Column editable="true" title="S&#x1ed1; V&#xe9;" type="java.lang.Object"/>
                     <Column editable="true" title="T&#x1ed5;ng Doanh Thu" type="java.lang.Object"/>
                   </Table>
                 </Property>
@@ -521,7 +519,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>
@@ -541,17 +539,7 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                       <Title/>
                       <Editor/>
                       <Renderer/>

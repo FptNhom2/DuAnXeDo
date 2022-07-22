@@ -7,7 +7,7 @@ public class ThongKeForm extends javax.swing.JPanel {
 
     public ThongKeForm() {
         initComponents();
-                DefaultTableCellRenderer headerCellRenderer = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer headerCellRenderer = new DefaultTableCellRenderer();
         headerCellRenderer.setBackground(new Color(192,227,149));
         for(int i = 0; i < tblThongKe.getModel().getColumnCount(); ++i)
         {

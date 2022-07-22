@@ -67,8 +67,8 @@ public class TaiXeDAO extends AtbusDAO<TaiXe, String>{
             ResultSet rs = Xjdbc.query(sql, args);
             while (rs.next()) {
                 TaiXe entity = new TaiXe();
-                entity.setMaTX(rs.getString("maNV"));
-                entity.setMaTX(rs.getString("maPT"));
+                entity.setMaTX(rs.getString("maTX"));
+                entity.setMaPT(rs.getInt("maPT"));
                 entity.setHoTen(rs.getString("hoTen"));
                 entity.setDiaChi(rs.getString("diaChi"));
                 entity.setTrangThai(rs.getBoolean("trangThai"));

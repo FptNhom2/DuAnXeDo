@@ -347,6 +347,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         int maTD = (int) tblTuyenDuong.getValueAt(this.row, 0); // 0 là cột trên bảng
         TuyenDuong td = tddao.selectById(String.valueOf(maTD)); // truy vấn dữ liệu từ database lên
         this.setForm(td); // hiển thị thông tin tuyến đường đó lên form
+        tblTuyenDuong.setRowSelectionInterval(row, row);
 //        this.updateStatus(); // cập nhật lại trạng thái các nút
     } // đọc lấy tuyến đường của 1 hàng (tblTuyenDuong double click)
     //==============================================================//

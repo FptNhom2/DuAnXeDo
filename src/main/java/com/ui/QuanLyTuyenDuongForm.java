@@ -2,6 +2,7 @@ package com.ui;
 
 import com.dao.TuyenDuongDAO;
 import com.entity.TuyenDuong;
+import com.utils.Auth;
 import com.utils.MsgBox;
 import java.awt.Color;
 import java.util.List;
@@ -107,24 +108,44 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         btnThemMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnThemMoi.setText("Thêm mới");
         btnThemMoi.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnThemMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemMoiActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnThemMoi);
 
         btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnSua);
 
         btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnXoa);
 
         btnMoi.setBackground(new java.awt.Color(255, 255, 255));
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoiActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnMoi);
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
@@ -258,6 +279,22 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblTuyenDuongMouseClicked
 
+    private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
+        insert();
+    }//GEN-LAST:event_btnThemMoiActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        update();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+        clearForm();
+    }//GEN-LAST:event_btnMoiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -314,6 +351,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     
     private void fillCboTenMien()
     {
+        cboTenMien.addItem("Chọn miền");
         cboTenMien.addItem("Bắc");
         cboTenMien.addItem("Trung");
         cboTenMien.addItem("Nam");
@@ -363,72 +401,78 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     private TuyenDuong getForm(){
         TuyenDuong td = new TuyenDuong(); // tạo ra 1 đối tượng
         // cài đặt thông tin cho đối tượng
-        td.setMaTD(Integer.parseInt(txtMaTuyenDuong.getText()));
         td.setTenTD(txtTenTuyenDuong.getText());
         td.setTenMien(String.valueOf(cboTenMien.getSelectedItem()));
-        td.setGia(Double.parseDouble(txtGia.getText()));
+        try {
+            td.setGia(Double.valueOf(txtGia.getText()));
+        } catch (Exception e) {
+            MsgBox.alert(this, "Không được để trống");
+        }
         return td;
     } // lấy dữ liệu từ form và tạo nhân viên
     //==============================================================//
     
     //==========================Quản lý==========================//
-//    private void insert(){
-//        TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
-////        if(txtTenTuyenDuong.getText().isEmpty()){ 
-////            MsgBox.alert(this, "Không được để trống tên tuyến đường!");
-////            txtTenTuyenDuong.requestFocus();
-////            return;
-////        }else if(txtGia.getText().isEmpty()){
-////            MsgBox.alert(this, "Không được để trống giá!");
-////            txtGia.requestFocus();
-////            return;
-////        }else{ // đã khớp
-//            try {
-//                tddao.insert(td); // insert thành công thì:
-//                this.fillTable(); // load lại dữ liệu lên bảng
-//                this.clearForm(); // xóa trắng form
-//                MsgBox.alert(this, "Thêm mới thành công!");
-//            } catch (Exception e) {
-//                MsgBox.alert(this, "Thêm mới thất bại!");
-//            }
-////        }
-//    } // thêm mới vào csdl (btn thêm)
+    private void insert(){
+        TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
+        try {
+             if(txtTenTuyenDuong.getText().isEmpty()){ 
+            MsgBox.alert(this, "Không được để trống tên tuyến đường!");
+            txtTenTuyenDuong.requestFocus();
+        }else if(txtGia.getText().isEmpty()){
+            MsgBox.alert(this, "Không được để trống giá!");
+            txtGia.requestFocus();
+        }else if(cboTenMien.getSelectedIndex() == 0){
+            MsgBox.alert(this, "Vui lòng chọn tên miền");
+            cboTenMien.requestFocus();
+            return;
+        }else{ // đã khớp
+            try {
+                tddao.insert(td); // insert thành công thì:
+                this.fillTable(); // load lại dữ liệu lên bảng
+                this.clearForm(); // xóa trắng form
+                MsgBox.alert(this, "Thêm mới thành công!");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Thêm mới thất bại!");
+            }
+        }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Không được để trông");
+        }
+    } // thêm mới vào csdl (btn thêm)
     
-//    private void update(){
-//        NhanVien nv = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
-//        String mk2 = new String(txtMatKhau2.getPassword()); // lấy dữ liệu mk 2 đem so sánh
+    private void update(){
+        TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
 //        if(!mk2.equals(nv.getMatKhau())){ // nếu không khớp báo lỗi
 //            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
 //        }else{ // đã khớp
-//            try {
-//                dao.update(nv); // cập nhật thành công thì:
-//                this.fillTable(); // load lại dữ liệu lên bảng
-//                MsgBox.alert(this, "Cập nhật thành công!");
-//            } catch (Exception e) {
-//                MsgBox.alert(this, "Cập nhật thất bại");
-//            }
+            try {
+                tddao.update(td); // cập nhật thành công thì:
+                this.fillTable(); // load lại dữ liệu lên bảng
+                MsgBox.alert(this, "Cập nhật thành công!");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cập nhật thất bại");
+            }
 //        }
-//    } // cập nhật dữ liệu (btn sửa)
+    } // cập nhật dữ liệu (btn sửa)
     
-//    private void delete(){
-//        if(!Auth.isManager()){ // trưởng phòng mới được quyền xóa
-//            MsgBox.alert(this, "Bạn không có quyền xóa nhân viên");
-//        }else{
-//            String manv = txtMaNhanVien.getText();
-//            if(manv.equals(Auth.user.getMaNV())){ // không được xóa tài khoản đang đăng nhập hiện tại
-//                MsgBox.alert(this, "Bạn không được xóa chính bạn!");
-//            }else if(MsgBox.confirm(this, "Bạn thực sự muốn xóa nhân viên này?")){ // xác nhận 
-//                try {
-//                    dao.delete(manv); // xóa thành công thì:
-//                    this.fillTable(); // load lại dữ liệu lên bảng
-//                    this.clearForm(); // xóa trắng form
-//                    MsgBox.alert(this, "Xóa thành công!");
-//                } catch (Exception e) {
-//                    MsgBox.alert(this, "Xóa thất bại");
-//                }
-//            }
-//        }
-//    } // xóa dữ liệu (btn xóa)
+    private void delete(){
+        if(!Auth.isManager()){ // trưởng phòng mới được quyền xóa
+            MsgBox.alert(this, "Bạn không có quyền xóa nhân viên");
+        }else{
+            if(MsgBox.confirm(this, "Bạn thực sự muốn xóa tuyến đường này?")){ // xác nhận 
+                try {
+                    String maTD = txtMaTuyenDuong.getText();
+                    tddao.delete(maTD); // xóa thành công thì:
+                    this.fillTable(); // load lại dữ liệu lên bảng
+                    this.clearForm(); // xóa trắng form
+                    MsgBox.alert(this, "Xóa thành công!");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xóa thất bại");
+                }
+            }
+        }
+    } // xóa dữ liệu (btn xóa)
     
     private void clearForm(){
         TuyenDuong td = new TuyenDuong(); // tạo ra 1 đối tượng mới

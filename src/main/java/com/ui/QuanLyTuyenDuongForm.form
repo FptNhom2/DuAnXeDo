@@ -238,6 +238,9 @@
                   <Dimension value="[260, 35]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemMoiActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnSua">
               <Properties>
@@ -252,6 +255,9 @@
                   <Dimension value="[260, 35]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnXoa">
               <Properties>
@@ -266,6 +272,9 @@
                   <Dimension value="[260, 35]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnMoi">
               <Properties>
@@ -280,6 +289,9 @@
                   <Dimension value="[260, 35]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMoiActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

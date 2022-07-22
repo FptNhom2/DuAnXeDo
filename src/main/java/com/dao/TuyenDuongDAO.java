@@ -20,7 +20,7 @@ public class TuyenDuongDAO extends AtbusDAO<TuyenDuong, String>{
     @Override
     public void insert(TuyenDuong entity) {
         try {
-            Xjdbc.update(insert_sql, entity.getMaTD(), entity.getTenTD(), entity.getTenMien(), entity.getGia());
+            Xjdbc.update(insert_sql, entity.getTenTD(), entity.getTenMien(), entity.getGia());
         } catch (SQLException ex) {
             Logger.getLogger(TuyenDuongDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

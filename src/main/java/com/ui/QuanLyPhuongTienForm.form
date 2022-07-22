@@ -88,15 +88,12 @@
                       </Group>
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="txtBienso" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtBienso" alignment="0" pref="975" max="32767" attributes="0"/>
                           <Component id="txtNgayKD" max="32767" attributes="0"/>
                           <Component id="txtMaPT" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="36" max="32767" attributes="0"/>
-                              <Component id="txtNgayBT" min="-2" pref="939" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="txtSLCN" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtTinhTrang" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtNgayBT" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jPanel3" min="-2" max="-2" attributes="0"/>

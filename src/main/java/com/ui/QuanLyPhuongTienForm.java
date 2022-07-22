@@ -336,7 +336,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
                 Object[] row = {
                     pt.getMaPT(),
                     pt.getBangXoSe(),
-                    pt.isTrangThai(),
+                    pt.isTrangThai()?"Đi":"Chưa đi",
                     pt.getSlChoNgoi(),
                     pt.getNgayKiemDinh(),
                     pt.getNgayBaoTri()

@@ -1,5 +1,13 @@
 package com.ui;
 
+import com.dao.TaiXeDAO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import com.entity.PhuongTien;
+import com.dao.PhuongTienDAO;
+import com.entity.TaiXe;
+import com.utils.MsgBox;
+import com.utils.Auth;
 public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
     /**
@@ -7,6 +15,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
      */
     public QuanLyTaiXeForm() {
         initComponents();
+        this.init();
     }
 
     /**
@@ -29,17 +38,21 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         btnMoi = new javax.swing.JButton();
         lblTenTX = new javax.swing.JLabel();
         lblMaTX = new javax.swing.JLabel();
-        lblSoDienThoai = new javax.swing.JLabel();
+        lblMaPT = new javax.swing.JLabel();
         lblTinhTrang = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblKhachHang = new javax.swing.JTable();
+        tblTaiXe = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         rdoTruongPhong = new javax.swing.JRadioButton();
         rdoNhanVien = new javax.swing.JRadioButton();
         txtDiaChi = new javax.swing.JTextField();
         lblHinh = new javax.swing.JLabel();
-        txtSoDT = new javax.swing.JTextField();
+        txtMaPT = new javax.swing.JTextField();
+        btnPre = new javax.swing.JButton();
+        btnFirst = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+        btnLast = new javax.swing.JButton();
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
 
@@ -79,13 +92,13 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         lblMaTX.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblMaTX.setText("Mã tài xế :");
 
-        lblSoDienThoai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblSoDienThoai.setText("Số điện thoại :");
+        lblMaPT.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMaPT.setText("Mã phương tiện");
 
         lblTinhTrang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblTinhTrang.setText("Tình trạng hoạt động :");
 
-        tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
+        tblTaiXe.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -93,10 +106,10 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Mã tài xế", "Họ và tên", "Số điện thoại", "Tình trạng hoạt động", "Địa chỉ", "Hình"
+                "Mã tài xế", "Họ và tên", "Mã phương tiện", "Tình trạng hoạt động", "Địa chỉ", "Hình"
             }
         ));
-        jScrollPane2.setViewportView(tblKhachHang);
+        jScrollPane2.setViewportView(tblTaiXe);
 
         jPanel1.setBackground(new java.awt.Color(192, 227, 149));
 
@@ -131,11 +144,27 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
         lblHinh.setText("Hình");
 
-        txtSoDT.addActionListener(new java.awt.event.ActionListener() {
+        txtMaPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoDTActionPerformed(evt);
+                txtMaPTActionPerformed(evt);
             }
         });
+
+        btnPre.setBackground(new java.awt.Color(153, 255, 153));
+        btnPre.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnPre.setText("<<");
+
+        btnFirst.setBackground(new java.awt.Color(153, 255, 153));
+        btnFirst.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnFirst.setText("|<");
+
+        btnNext.setBackground(new java.awt.Color(153, 255, 153));
+        btnNext.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnNext.setText(">>");
+
+        btnLast.setBackground(new java.awt.Color(153, 255, 153));
+        btnLast.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLast.setText(">|");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -160,17 +189,17 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblTinhTrang)
-                                            .addComponent(lblSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(lblMaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lblDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
                                                 .addComponent(rdoTruongPhong)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(rdoNhanVien))
                                             .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtSoDT, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(txtMaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblHinh, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(144, 144, 144)
@@ -183,7 +212,16 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                                 .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 994, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(btnPre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -202,8 +240,8 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                             .addComponent(txtTenTX, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtSoDT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblMaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,8 +260,15 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPre, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLast, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -237,7 +282,48 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    int row  = -1;
+    TaiXeDAO txdao = new TaiXeDAO();
+    
+    void init(){
+        this.fillTable();
+        this.updateStatus();
+        this.row = -1;
+    }
+    
+    void fillTable(){
+        DefaultTableModel model = (DefaultTableModel) tblTaiXe.getModel();
+        model.setRowCount(0);
+        try {
+            List<TaiXe> list  = txdao.selectAll();
+            for(TaiXe tx : list){
+               Object[] row = {
+                   tx.getMaTX(),
+                   tx.getHoTen(),
+                   tx.getMaPT(),
+                   tx.getTrangThai(),
+                   tx.getDiaChi(),
+                   tx.getHinh()
+               }; 
+               model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
+            e.printStackTrace();
+        }
+    }
+    
+    void updateStatus(){
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tblTaiXe.getRowCount() - 1);
+        // Trạng thái form
+        txtMaPT.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+    }
     private void txtTenTXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenTXActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenTXActionPerformed
@@ -246,9 +332,9 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMoiActionPerformed
 
-    private void txtSoDTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoDTActionPerformed
+    private void txtMaPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPTActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoDTActionPerformed
+    }//GEN-LAST:event_txtMaPTActionPerformed
 
     private void rdoTruongPhongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoTruongPhongActionPerformed
         // TODO add your handling code here:
@@ -256,7 +342,11 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFirst;
+    private javax.swing.JButton btnLast;
     private javax.swing.JButton btnMoi;
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPre;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
@@ -267,16 +357,16 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDiaChi;
     private javax.swing.JLabel lblHinh;
+    private javax.swing.JLabel lblMaPT;
     private javax.swing.JLabel lblMaTX;
-    private javax.swing.JLabel lblSoDienThoai;
     private javax.swing.JLabel lblTenTX;
     private javax.swing.JLabel lblTinhTrang;
     private javax.swing.JRadioButton rdoNhanVien;
     private javax.swing.JRadioButton rdoTruongPhong;
-    private javax.swing.JTable tblKhachHang;
+    private javax.swing.JTable tblTaiXe;
     private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtMaPT;
     private javax.swing.JTextField txtMaTX;
-    private javax.swing.JTextField txtSoDT;
     private javax.swing.JTextField txtTenTX;
     // End of variables declaration//GEN-END:variables
 }

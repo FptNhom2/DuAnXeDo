@@ -3,11 +3,15 @@ package com.ui;
 import com.dao.NhanVienDAO;
 import com.utils.Auth;
 import com.utils.MsgBox;
+import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 public class DoiMatKhauForm extends javax.swing.JPanel {
 
     public DoiMatKhauForm() {
         initComponents();
+        placeHolder() ;
     }
 
     /**
@@ -42,6 +46,7 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Đổi mật khẩu");
 
+        txtMaNhanVien.setText("Search");
         txtMaNhanVien.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
 
         txtMatKhauHienTai.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -228,4 +233,26 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
         txtMatKhauMoi.setText("");
         txtXacNhanMatKhau.setText("");
     }
+
+    private void placeHolder() {
+        txtMaNhanVien.setForeground(Color.GRAY);
+        txtMaNhanVien.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtMaNhanVien.getText().equals("Search")) {
+                    txtMaNhanVien.setText("");
+                    txtMaNhanVien.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtMaNhanVien.getText().isEmpty()) {
+                    txtMaNhanVien.setForeground(Color.GRAY);
+                    txtMaNhanVien.setText("Search");
+                }
+            }
+        });
+    }
+
 }

@@ -380,7 +380,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         try {
             txtMaTX.setText(tx.getMaTX());
             txtTenTX.setText(tx.getHoTen());
-            txtMaTX.setText(String.valueOf((tx.getMaPT())));
+            txtMaPT.setText(String.valueOf((tx.getMaPT())));
             if (tx.getTrangThai()) {
                 rdoKhongHoatDong.setSelected(tx.getTrangThai());
             }
@@ -395,7 +395,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         TaiXe tx = new TaiXe();
         tx.setMaTX(txtMaTX.getText());
         tx.setHoTen(txtTenTX.getText());
-        tx.setMaPT(Integer.valueOf((txtMaTX.getText())));
+        tx.setMaPT(Integer.valueOf((txtMaPT.getText())));
         tx.setTrangThai(rdoKhongHoatDong.isSelected());
         tx.setDiaChi(txtDiaChi.getText());
         return tx;

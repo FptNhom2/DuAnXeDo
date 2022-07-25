@@ -31,7 +31,7 @@ public class TaiXeDAO extends AtbusDAO<TaiXe, String>{
     @Override
     public void update(TaiXe entity) {
         try {
-            Xjdbc.update(UPDATE_SQL, entity.getMaPT(), entity.getHoTen(), entity.getDiaChi(), entity.getTrangThai(), entity.getHinh());
+            Xjdbc.update(UPDATE_SQL, entity.getMaPT(), entity.getHoTen(), entity.getDiaChi(), entity.getTrangThai(), entity.getHinh(),entity.getMaTX());
         } catch (SQLException ex) {
             Logger.getLogger(TaiXeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

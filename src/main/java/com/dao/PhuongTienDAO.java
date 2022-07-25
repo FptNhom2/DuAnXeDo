@@ -15,7 +15,7 @@ import com.utils.XDate;
  *
  * @author TRUNG
  */
-public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
+public class PhuongTienDAO extends AtbusDAO<PhuongTien, Integer> {
     String INSERT_SQL = "INSERT INTO PhuongTien (maPT,bangSoXe,TinhTrang,SLChoNgoi,ngayKiemDinh,ngayBaoTri) VALUES (?, ?, ?, ?,?,?)";
     String UPDATE_SQL = "UPDATE PhuongTien SET bangSoXe = ?, TinhTrang = ?, SLChoNgoi = ?, ngayKiemDinh = ?, ngayBaoTri = ? WHERE MaPT = ?";
     String DELETE_SQL = "DELETE FROM PhuongTien WHERE MaPT = ?";
@@ -41,7 +41,7 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
         try {
             Xjdbc.update(DELETE_SQL, id);
         } catch (SQLException ex) {
@@ -50,7 +50,7 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
     }
 
     @Override
-    public PhuongTien selectById(String id) {
+    public PhuongTien selectById(Integer id) {
         List<PhuongTien> list = this.selectBySql(SELECT_BY_ID_SQL, id);
         if (list.isEmpty()) {
             return null;

@@ -12,6 +12,7 @@ import com.ui.QuanLyKhachHangForm;
 import com.ui.QuanLyLichTrinhForm;
 import com.ui.QuanLyNhanVienForm;
 import com.ui.QuanLyPhuongTienForm;
+import com.ui.QuanLyLichTrinhForm;
 import com.ui.ThongKeForm;
 import com.utils.Auth;
 import com.utils.MsgBox;
@@ -129,7 +130,6 @@ public class ATBusMain extends javax.swing.JFrame {
                     showForm(new QuanLyTuyenDuongForm());
                 } else if (index == 2) {
                     showForm(new QuanLyLichTrinhForm());
-                    
                 } else if (index == 3) {
                     if (Auth.isManager()) {
                         showForm(new QuanLyNhanVienForm());

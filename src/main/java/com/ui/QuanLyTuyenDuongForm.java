@@ -345,7 +345,9 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         cboTenMien.setForeground(Color.decode("#7A8C8D"));
         cboTenMien.setFont(new java.awt.Font("sansserif", 0, 13));
         this.fillTable();
-        this.row = -1; // đang không chọn hàng nào
+        this.row = 0; // đang không chọn hàng nào
+        tblTuyenDuong.setRowSelectionInterval(row, row);
+        this.edit();
         this.fillCboTenMien();
     }
     

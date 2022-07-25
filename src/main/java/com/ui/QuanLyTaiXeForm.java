@@ -140,8 +140,21 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
             new String [] {
                 "Mã tài xế", "Họ và tên", "Mã phương tiện", "Tình trạng hoạt động", "Địa chỉ", "Hình"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblTaiXe.setSelectionBackground(new java.awt.Color(35, 166, 97));
+        tblTaiXe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTaiXeMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblTaiXe);
 
         jPanel1.setBackground(new java.awt.Color(248, 250, 254));
@@ -151,6 +164,11 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnThem);
 
         btnSua.setBackground(new java.awt.Color(255, 255, 255));
@@ -158,6 +176,11 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setPreferredSize(new java.awt.Dimension(251, 35));
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnSua);
 
         btnXoa.setBackground(new java.awt.Color(255, 255, 255));
@@ -165,6 +188,11 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setPreferredSize(new java.awt.Dimension(251, 35));
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnXoa);
 
         btnMoi.setBackground(new java.awt.Color(255, 255, 255));
@@ -185,24 +213,44 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         btnFirst.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnFirst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFirstActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnFirst);
 
         btnPre.setBackground(new java.awt.Color(255, 255, 255));
         btnPre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
         btnPre.setPreferredSize(new java.awt.Dimension(251, 35));
+        btnPre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnPre);
 
         btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
         btnNext.setPreferredSize(new java.awt.Dimension(251, 35));
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnNext);
 
         btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
         btnLast.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnLast.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLastActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnLast);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -211,7 +259,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -314,44 +362,148 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         this.row = -1;
     }
     
-    void fillTable(){
+    void fillTable() { // Fill data to tblTaiXe
         DefaultTableModel model = (DefaultTableModel) tblTaiXe.getModel();
         model.setRowCount(0);
         try {
-            List<TaiXe> list  = txdao.selectAll();
-            for(TaiXe tx : list){
-               Object[] row = {
-                   tx.getMaTX(),
-                   tx.getHoTen(),
-                   tx.getMaPT(),
-                   tx.getTrangThai(),
-                   tx.getDiaChi(),
-                   tx.getHinh()
-               }; 
-               model.addRow(row);
+            List<TaiXe> list = txdao.selectAll();
+            for (TaiXe nv : list) {
+                Object[] row = {nv.getMaTX(), nv.getHoTen(), nv.getMaPT(), nv.getTrangThai() ? "Không hoạt động" : "Hoạt động", nv.getDiaChi(), nv.getHinh()};
+                model.addRow(row);
             }
         } catch (Exception e) {
-            MsgBox.alert(this, "Lỗi truy vấn dữ liệu!");
-            e.printStackTrace();
+            MsgBox.alert(this, "Loi truy van du lieu");
         }
     }
     
-    void updateStatus(){
+    void setForm(TaiXe tx) { // Dsiplay TaiXe to form 
+        try {
+            txtMaTX.setText(tx.getMaTX());
+            txtTenTX.setText(tx.getHoTen());
+            txtMaTX.setText(String.valueOf((tx.getMaPT())));
+            if (tx.getTrangThai()) {
+                rdoKhongHoatDong.setSelected(tx.getTrangThai());
+            }
+            rdoDangHoatDong.setSelected(!tx.getTrangThai());
+            txtDiaChi.setText(tx.getDiaChi());
+        } catch (Exception e) {
+            
+        }
+    }
+
+    TaiXe getForm() { // Create new TaiXe from form
+        TaiXe tx = new TaiXe();
+        tx.setMaTX(txtMaTX.getText());
+        tx.setHoTen(txtTenTX.getText());
+        tx.setMaPT(Integer.valueOf((txtMaTX.getText())));
+        tx.setTrangThai(rdoKhongHoatDong.isSelected());
+        tx.setDiaChi(txtDiaChi.getText());
+        return tx;
+    }
+
+    void clearForm() { // [btnMoi]
+        TaiXe nv = new TaiXe();
+        this.setForm(nv);
+        this.row = -1;
+        this.updateStatus();
+    }
+
+    void updateStatus() { // Change status of btns
         boolean edit = (this.row >= 0);
         boolean first = (this.row == 0);
         boolean last = (this.row == tblTaiXe.getRowCount() - 1);
-        // Trạng thái form
-        txtMaPT.setEditable(!edit);
+        // status form
+        txtMaTX.setEditable(!edit);
         btnThem.setEnabled(!edit);
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
+        // status backward and forward btn
+//        btnFirst.setEnabled(edit && !first);
+//        btnPrev.setEnabled(edit && !first);
+//        btnNext.setEnabled(edit && !last);
+//        btnLast.setEnabled(edit && !last);
     }
+
+    void insert() { // [btnThem]
+        TaiXe tx = getForm();
+        try {
+            txdao.insert(tx);
+            this.fillTable();
+            this.clearForm();
+            MsgBox.alert(this, "Them moi thanh cong");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Them moi that bai");
+            e.printStackTrace();
+        }
+
+    }
+
+    void update() { // [btnSua]
+        TaiXe tx = getForm();
+        try {
+            txdao.update(tx);
+            this.fillTable();
+            MsgBox.alert(this, "Cap nhat thanh cong");
+        } catch (Exception e) {
+            MsgBox.alert(this, "Cap nhat that bai");
+            e.printStackTrace();
+        }
+    }
+
+    void delete() { // [btnXoa]
+        String manv = txtMaTX.getText();
+        if (manv.equals(Auth.user.getMaNV())) {
+            MsgBox.alert(this, "Ban khong the xoa chinh ban!");
+        } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
+            try {
+                txdao.delete(manv);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Xoa thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Xoa that bai");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void edit() { // [tblTaiXe double click]
+        String manv = (String) tblTaiXe.getValueAt(this.row, 0);
+        TaiXe nv = txdao.selectById(manv);
+        this.setForm(nv);
+        this.updateStatus();
+    }
+    
+    private void first(){
+        this.row = 0;
+        this.edit();
+    } // btnFirst
+    
+    private void prev(){
+        if(this.row > 0){
+            this.row--;
+            this.edit();
+        }
+    } // btnPrev
+    
+    private void next(){
+        if(this.row < tblTaiXe.getRowCount() - 1){
+            this.row++;
+            this.edit();
+        }
+    } // btnNext
+    
+    private void last(){
+        this.row = tblTaiXe.getRowCount() - 1;
+        this.edit();
+    } // btnLast
     private void txtTenTXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenTXActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenTXActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         // TODO add your handling code here:
+        this.clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void txtMaPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPTActionPerformed
@@ -361,6 +513,49 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     private void rdoKhongHoatDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoKhongHoatDongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdoKhongHoatDongActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        this.insert();
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        this.update();
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        this.delete();
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void tblTaiXeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTaiXeMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.row = tblTaiXe.getSelectedRow();
+            this.edit();
+        }
+    }//GEN-LAST:event_tblTaiXeMouseClicked
+
+    private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
+        // TODO add your handling code here:
+        first();
+    }//GEN-LAST:event_btnFirstActionPerformed
+
+    private void btnPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreActionPerformed
+        // TODO add your handling code here:
+        prev();
+    }//GEN-LAST:event_btnPreActionPerformed
+
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        // TODO add your handling code here:
+        next();
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
+        // TODO add your handling code here:
+        last();
+    }//GEN-LAST:event_btnLastActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

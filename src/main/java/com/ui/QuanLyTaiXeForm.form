@@ -27,7 +27,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jLabel1" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="41" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jPanel2" pref="1042" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="1" pref="0" max="32767" attributes="0"/>
@@ -257,12 +257,12 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="6" rowCount="0">
-                <Column editable="true" title="M&#xe3; t&#xe0;i x&#x1ebf;" type="java.lang.Object"/>
-                <Column editable="true" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
-                <Column editable="true" title="M&#xe3; ph&#x1b0;&#x1a1;ng ti&#x1ec7;n" type="java.lang.Object"/>
-                <Column editable="true" title="T&#xec;nh tr&#x1ea1;ng ho&#x1ea1;t &#x111;&#x1ed9;ng" type="java.lang.Object"/>
-                <Column editable="true" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
-                <Column editable="true" title="H&#xec;nh" type="java.lang.Object"/>
+                <Column editable="false" title="M&#xe3; t&#xe0;i x&#x1ebf;" type="java.lang.Object"/>
+                <Column editable="false" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
+                <Column editable="false" title="M&#xe3; ph&#x1b0;&#x1a1;ng ti&#x1ec7;n" type="java.lang.Object"/>
+                <Column editable="false" title="T&#xec;nh tr&#x1ea1;ng ho&#x1ea1;t &#x111;&#x1ed9;ng" type="java.lang.Object"/>
+                <Column editable="false" title="&#x110;&#x1ecb;a ch&#x1ec9;" type="java.lang.Object"/>
+                <Column editable="false" title="H&#xec;nh" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -306,6 +306,9 @@
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblTaiXeMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -334,6 +337,9 @@
               <Dimension value="[260, 35]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSua">
           <Properties>
@@ -351,6 +357,9 @@
               <Dimension value="[251, 35]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnXoa">
           <Properties>
@@ -368,6 +377,9 @@
               <Dimension value="[251, 35]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnMoi">
           <Properties>
@@ -415,6 +427,9 @@
               <Dimension value="[260, 35]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirstActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPre">
           <Properties>
@@ -431,6 +446,9 @@
               <Dimension value="[251, 35]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPreActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnNext">
           <Properties>
@@ -447,6 +465,9 @@
               <Dimension value="[251, 35]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnLast">
           <Properties>
@@ -463,6 +484,9 @@
               <Dimension value="[260, 35]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLastActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

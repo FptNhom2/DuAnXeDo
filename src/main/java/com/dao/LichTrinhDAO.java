@@ -30,7 +30,7 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String>  {
     @Override
     public void update(LichTrinh entity) {
         try {
-            Xjdbc.update(INSERT_SQL,entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getChiPhiBanDau(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu(), entity.getMaLT());
+            Xjdbc.update(UPDATE_SQL,entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getChiPhiBanDau(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu(), entity.getMaLT());
         } catch (SQLException ex) {
             Logger.getLogger(LichTrinhDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

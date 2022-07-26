@@ -27,6 +27,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -109,8 +110,10 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
 
         txtSLCN.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        buttonGroup1.add(rdodi);
         rdodi.setText("Đi");
 
+        buttonGroup1.add(rdochuadi);
         rdochuadi.setText("Chưa đi");
         rdochuadi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -463,6 +466,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     private javax.swing.JButton btnlast;
     private javax.swing.JButton btnnext;
     private javax.swing.JButton btnpre;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -556,8 +560,8 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         pt.setBangXoSe(txtBienso.getText());
         pt.setTrangThai(rdochuadi.isSelected());
         pt.setSlChoNgoi(Integer.valueOf(txtSLCN.getText()));
-        pt.setNgayKiemDinh(XDate.createDate(ngayKDArray[0] + ngayKDArray[1] + ngayKDArray[2]));
-        pt.setNgayBaoTri(XDate.createDate(ngayBTArray[0] + ngayBTArray[1] + ngayBTArray[2]));
+        pt.setNgayKiemDinh(XDate.createDate(Integer.valueOf( ngayKDArray[0]),Integer.valueOf( ngayKDArray[1]),Integer.valueOf( ngayKDArray[2])));
+        pt.setNgayBaoTri(XDate.createDate(Integer.valueOf( ngayBTArray[0]),Integer.valueOf( ngayBTArray[1]),Integer.valueOf( ngayBTArray[2])));
         return pt;
     }
 

@@ -504,10 +504,10 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
                 Object[] row = {
                     pt.getMaPT(),
                     pt.getBangXoSe(),
-                    pt.isTrangThai()?"Đi":"Chưa đi",
+                    pt.isTrangThai() ? "Đi" : "Chưa đi",
                     pt.getSlChoNgoi(),
-                    XDate.formatDate(pt.getNgayKiemDinh(),"dd-MM-uuuu"),
-                     XDate.formatDate( pt.getNgayBaoTri(),"dd-MM-uuuu")
+                    XDate.formatDate(pt.getNgayKiemDinh(), "dd-MM-uuuu"),
+                    XDate.formatDate(pt.getNgayBaoTri(), "dd-MM-uuuu")
                 };
                 model.addRow(row);
             }
@@ -517,7 +517,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         }
     }
 
-    void updateStatus() {
+    boolean updateStatus() {
         boolean edit = (this.row >= 0);
         boolean first = (this.row == 0);
         boolean last = (this.row == tbDSPT.getRowCount() - 1);
@@ -527,27 +527,30 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
 
-         
         btnfirst.setEnabled(edit && !first);
         btnpre.setEnabled(edit && !first);
         btnnext.setEnabled(edit && !last);
         btnlast.setEnabled(edit && !last);
+        return edit;
     }
-    
+
     void setForm(PhuongTien pt) { // Dsiplay PhuongTien to form 
-            txtMaPT.setText(String.valueOf(pt.getMaPT()));
-            txtBienso.setText(pt.getBangXoSe());
-            if (pt.isTrangThai()) {
-                rdodi.setSelected(pt.isTrangThai());
-            }
-            rdochuadi.setSelected(!pt.isTrangThai());
-            txtSLCN.setText(String.valueOf(pt.getSlChoNgoi()));
-            txtNgayKD.setText(XDate.formatDate(pt.getNgayKiemDinh(),"dd-MM-uuuu"));
-            txtNgayBT.setText(XDate.formatDate(pt.getNgayBaoTri(),"dd-MM-uuuu"));
+        txtMaPT.setText(String.valueOf(pt.getMaPT()));
+        txtBienso.setText(pt.getBangXoSe());
+        if (pt.isTrangThai()) {
+            rdodi.setSelected(pt.isTrangThai());
+        }
+        rdochuadi.setSelected(!pt.isTrangThai());
+        txtSLCN.setText(String.valueOf(pt.getSlChoNgoi()));
+        txtNgayKD.setText(XDate.formatDate(pt.getNgayKiemDinh(), "dd-MM-uuuu"));
+        txtNgayBT.setText(XDate.formatDate(pt.getNgayBaoTri(), "dd-MM-uuuu"));
     }
 
     PhuongTien getForm() { // Create new PhuongTien from form
         PhuongTien pt = new PhuongTien();
+        if (updateStatus()) {
+            pt.setMaPT(Integer.valueOf(txtMaPT.getText()));
+        }
         String[] ngayKDArray = XDate.splitDate(txtNgayKD.getText());
         String[] ngayBTArray = XDate.splitDate(txtNgayBT.getText());
         pt.setBangXoSe(txtBienso.getText());
@@ -564,7 +567,6 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         this.row = -1;
         this.updateStatus();
     }
-
 
     void insert() { // [btnThem]
         PhuongTien pt = getForm();
@@ -593,7 +595,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     }
 
     void delete() { // [btnXoa]
-       String mapt = txtMaPT.getText();
+        String mapt = txtMaPT.getText();
         if (mapt.equals(Auth.user.getMaNV())) {
             MsgBox.alert(this, "Ban khong the xoa chinh ban!");
         } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
@@ -610,32 +612,32 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     }
 
     void edit() { // [tblPhuongTien double click]
-        int mapt =  (int) tbDSPT.getValueAt(this.row, 0);
+        int mapt = (int) tbDSPT.getValueAt(this.row, 0);
         PhuongTien pt = dao.selectById(mapt);
         this.setForm(pt);
         this.updateStatus();
     }
-    
-    private void first(){
+
+    private void first() {
         this.row = 0;
         this.edit();
     } // btnFirst
-    
-    private void prev(){
-        if(this.row > 0){
+
+    private void prev() {
+        if (this.row > 0) {
             this.row--;
             this.edit();
         }
     } // btnPrev
-    
-    private void next(){
-        if(this.row < tbDSPT.getRowCount() - 1){
+
+    private void next() {
+        if (this.row < tbDSPT.getRowCount() - 1) {
             this.row++;
             this.edit();
         }
     } // btnNext
-    
-    private void last(){
+
+    private void last() {
         this.row = tbDSPT.getRowCount() - 1;
         this.edit();
     }

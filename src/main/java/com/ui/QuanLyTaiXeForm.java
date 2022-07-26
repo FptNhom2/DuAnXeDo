@@ -3,8 +3,6 @@ package com.ui;
 import com.dao.TaiXeDAO;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import com.entity.PhuongTien;
-import com.dao.PhuongTienDAO;
 import com.entity.TaiXe;
 import com.utils.MsgBox;
 import com.utils.Auth;
@@ -41,8 +39,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         txtMaTX = new javax.swing.JTextField();
         lblTenTX = new javax.swing.JLabel();
         txtTenTX = new javax.swing.JTextField();
-        lblMaPT = new javax.swing.JLabel();
-        txtMaPT = new javax.swing.JTextField();
         lblTinhTrang = new javax.swing.JLabel();
         rdoKhongHoatDong = new javax.swing.JRadioButton();
         rdoDangHoatDong = new javax.swing.JRadioButton();
@@ -80,15 +76,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         txtTenTX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTenTXActionPerformed(evt);
-            }
-        });
-
-        lblMaPT.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lblMaPT.setText("Mã phương tiện");
-
-        txtMaPT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaPTActionPerformed(evt);
             }
         });
 
@@ -138,11 +125,11 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã tài xế", "Họ và tên", "Mã phương tiện", "Tình trạng hoạt động", "Địa chỉ", "Hình"
+                "Mã tài xế", "Họ và tên", "Tình trạng hoạt động", "Địa chỉ", "Hình"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -159,7 +146,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(248, 250, 254));
 
-        btnThem.setBackground(new java.awt.Color(255, 255, 255));
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnThem.setText("Thêm");
@@ -171,7 +157,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnThem);
 
-        btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
@@ -183,7 +168,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnSua);
 
-        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
@@ -195,7 +179,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnXoa);
 
-        btnMoi.setBackground(new java.awt.Color(255, 255, 255));
         btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
@@ -209,7 +192,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(248, 250, 254));
 
-        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         btnFirst.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -220,7 +202,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnFirst);
 
-        btnPre.setBackground(new java.awt.Color(255, 255, 255));
         btnPre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
         btnPre.setPreferredSize(new java.awt.Dimension(251, 35));
@@ -231,7 +212,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnPre);
 
-        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
         btnNext.setPreferredSize(new java.awt.Dimension(251, 35));
@@ -242,7 +222,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnNext);
 
-        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
         btnLast.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -271,12 +250,9 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblTenTX, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
                                     .addComponent(lblMaTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblTinhTrang, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                    .addComponent(lblMaPT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(lblTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaPT, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtMaTX)
                             .addComponent(txtTenTX)
                             .addComponent(txtDiaChi)
@@ -303,10 +279,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTenTX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenTX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaPT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,7 +290,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                             .addComponent(txtDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(panelBorderForGioiThieuForm1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -344,12 +316,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         txtTenTX.setForeground(Color.decode("#7A8C8D"));
         txtTenTX.setFont(new java.awt.Font("sansserif", 0, 13));
         txtTenTX.setSelectionColor(new Color(75, 175, 152));
-        // textfield MaPT
-        txtMaPT.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtMaPT.setBackground(new Color(235,235,235)); // background
-        txtMaPT.setForeground(Color.decode("#7A8C8D"));
-        txtMaPT.setFont(new java.awt.Font("sansserif", 0, 13));
-        txtMaPT.setSelectionColor(new Color(75, 175, 152));
         // combo TenMien
         txtDiaChi.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         txtDiaChi.setBackground(new Color(235,235,235)); // background
@@ -368,7 +334,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         try {
             List<TaiXe> list = txdao.selectAll();
             for (TaiXe nv : list) {
-                Object[] row = {nv.getMaTX(), nv.getHoTen(), nv.getMaPT(), nv.getTrangThai() ? "Không hoạt động" : "Hoạt động", nv.getDiaChi(), nv.getHinh()};
+                Object[] row = {nv.getMaTX(), nv.getHoTen(),nv.getTrangThai() ? "Không hoạt động" : "Hoạt động", nv.getDiaChi(), nv.getHinh()};
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -380,7 +346,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         try {
             txtMaTX.setText(tx.getMaTX());
             txtTenTX.setText(tx.getHoTen());
-            txtMaTX.setText(String.valueOf((tx.getMaPT())));
             if (tx.getTrangThai()) {
                 rdoKhongHoatDong.setSelected(tx.getTrangThai());
             }
@@ -395,7 +360,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         TaiXe tx = new TaiXe();
         tx.setMaTX(txtMaTX.getText());
         tx.setHoTen(txtTenTX.getText());
-        tx.setMaPT(Integer.valueOf((txtMaTX.getText())));
         tx.setTrangThai(rdoKhongHoatDong.isSelected());
         tx.setDiaChi(txtDiaChi.getText());
         return tx;
@@ -506,10 +470,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         this.clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
 
-    private void txtMaPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaPTActionPerformed
-
     private void rdoKhongHoatDongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoKhongHoatDongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rdoKhongHoatDongActionPerformed
@@ -574,7 +534,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDiaChi;
-    private javax.swing.JLabel lblMaPT;
     private javax.swing.JLabel lblMaTX;
     private javax.swing.JLabel lblTenTX;
     private javax.swing.JLabel lblTinhTrang;
@@ -583,7 +542,6 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     private javax.swing.JRadioButton rdoKhongHoatDong;
     private javax.swing.JTable tblTaiXe;
     private javax.swing.JTextField txtDiaChi;
-    private javax.swing.JTextField txtMaPT;
     private javax.swing.JTextField txtMaTX;
     private javax.swing.JTextField txtTenTX;
     // End of variables declaration//GEN-END:variables

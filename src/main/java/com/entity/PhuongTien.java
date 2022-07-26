@@ -1,6 +1,7 @@
 package com.entity;
 
 import java.time.LocalDate;
+import com.utils.XDate;
 
 public class PhuongTien {
     int maPT;
@@ -9,6 +10,13 @@ public class PhuongTien {
     int slChoNgoi;
     LocalDate ngayKiemDinh;
     LocalDate ngayBaoTri;
+
+    public PhuongTien() {
+        this.ngayKiemDinh = XDate.createDate(01, 01, 1900);
+        this.ngayBaoTri = XDate.createDate(01, 01, 1900);
+    }
+    
+    
 
     public int getMaPT() {
         return maPT;

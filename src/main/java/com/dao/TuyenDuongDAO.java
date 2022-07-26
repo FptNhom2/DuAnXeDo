@@ -15,7 +15,6 @@ public class TuyenDuongDAO extends AtbusDAO<TuyenDuong, String>{
     String delete_sql = "delete from TuyenDuong where maTD = ?";
     String select_all_sql = "select * from TuyenDuong";
     String select_by_id_sql = "select * from TuyenDuong where maTD = ?";
-    String select_by_maTD_sql = "select * from TuyenDuong where maTD = ?";
 
     @Override
     public void insert(TuyenDuong entity) {

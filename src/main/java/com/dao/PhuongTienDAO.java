@@ -15,8 +15,8 @@ import com.utils.XDate;
  *
  * @author TRUNG
  */
-public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
-    String INSERT_SQL = "INSERT INTO PhuongTien (maPT,bangSoXe,TinhTrang,SLChoNgoi,ngayKiemDinh,ngayBaoTri) VALUES (?, ?, ?, ?,?,?)";
+public class PhuongTienDAO extends AtbusDAO<PhuongTien, Integer> {
+    String INSERT_SQL = "INSERT INTO PhuongTien (bangSoXe,TinhTrang,SLChoNgoi,ngayKiemDinh,ngayBaoTri) VALUES (?, ?, ?, ?,?)";
     String UPDATE_SQL = "UPDATE PhuongTien SET bangSoXe = ?, TinhTrang = ?, SLChoNgoi = ?, ngayKiemDinh = ?, ngayBaoTri = ? WHERE MaPT = ?";
     String DELETE_SQL = "DELETE FROM PhuongTien WHERE MaPT = ?";
     String SELECT_ALL_SQL = "SELECT * FROM PhuongTien";
@@ -25,7 +25,7 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
     @Override
     public void insert(PhuongTien entity) {
         try {
-            Xjdbc.update(INSERT_SQL, entity.getMaPT(), entity.getBangXoSe(), entity.isTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri());
+            Xjdbc.update(INSERT_SQL,entity.getBangXoSe(), entity.isTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri());
         } catch (SQLException ex) {
             Logger.getLogger(PhuongTienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -34,14 +34,14 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
     @Override
     public void update(PhuongTien entity) {
         try {
-            Xjdbc.update(UPDATE_SQL, entity.getBangXoSe(), entity.isTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri());
+            Xjdbc.update(UPDATE_SQL, entity.getBangXoSe(), entity.isTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri(), entity.getMaPT());
         } catch (SQLException ex) {
             Logger.getLogger(PhuongTienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(Integer id) {
         try {
             Xjdbc.update(DELETE_SQL, id);
         } catch (SQLException ex) {
@@ -50,7 +50,7 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, String> {
     }
 
     @Override
-    public PhuongTien selectById(String id) {
+    public PhuongTien selectById(Integer id) {
         List<PhuongTien> list = this.selectBySql(SELECT_BY_ID_SQL, id);
         if (list.isEmpty()) {
             return null;

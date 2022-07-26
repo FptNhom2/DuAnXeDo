@@ -12,8 +12,8 @@ public class PhuongTien {
     LocalDate ngayBaoTri;
 
     public PhuongTien() {
-        this.ngayKiemDinh = XDate.createDate(1, 1, 1999);
-        this.ngayBaoTri = XDate.createDate(1, 1, 1999);
+        this.ngayKiemDinh = XDate.createDate(01, 01, 1900);
+        this.ngayBaoTri = XDate.createDate(01, 01, 1900);
     }
     
     

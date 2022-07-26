@@ -2,7 +2,6 @@ package com.entity;
 
 public class TaiXe {
     String maTX;
-    int maPT;
     String hoTen;
     String diaChi;
     boolean trangThai;
@@ -14,14 +13,6 @@ public class TaiXe {
 
     public void setMaTX(String maTX) {
         this.maTX = maTX;
-    }
-
-    public int getMaPT() {
-        return maPT;
-    }
-
-    public void setMaPT(int maPT) {
-        this.maPT = maPT;
     }
 
     public String getHoTen() {

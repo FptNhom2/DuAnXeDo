@@ -22,7 +22,7 @@ public class TaiXeDAO extends AtbusDAO<TaiXe, String>{
     @Override
     public void insert(TaiXe entity) {
         try {
-            Xjdbc.update(INSERT_SQL, entity.getMaTX(), entity.getMaPT(), entity.getHoTen(), entity.getDiaChi(), entity.getTrangThai(), entity.getHinh());
+            Xjdbc.update(INSERT_SQL, entity.getMaTX(),entity.getHoTen(), entity.getDiaChi(), entity.getTrangThai(), entity.getHinh());
         } catch (SQLException ex) {
             Logger.getLogger(TaiXeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -31,7 +31,7 @@ public class TaiXeDAO extends AtbusDAO<TaiXe, String>{
     @Override
     public void update(TaiXe entity) {
         try {
-            Xjdbc.update(UPDATE_SQL, entity.getMaPT(), entity.getHoTen(), entity.getDiaChi(), entity.getTrangThai(), entity.getHinh(),entity.getMaTX());
+            Xjdbc.update(UPDATE_SQL,entity.getHoTen(), entity.getDiaChi(), entity.getTrangThai(), entity.getHinh(),entity.getMaTX());
         } catch (SQLException ex) {
             Logger.getLogger(TaiXeDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +68,6 @@ public class TaiXeDAO extends AtbusDAO<TaiXe, String>{
             while (rs.next()) {
                 TaiXe entity = new TaiXe();
                 entity.setMaTX(rs.getString("maTX"));
-                entity.setMaPT(rs.getInt("maPT"));
                 entity.setHoTen(rs.getString("hoTen"));
                 entity.setDiaChi(rs.getString("diaChi"));
                 entity.setTrangThai(rs.getBoolean("trangThai"));

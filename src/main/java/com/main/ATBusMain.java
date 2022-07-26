@@ -117,7 +117,7 @@ public class ATBusMain extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         // cửa sổ chào chạy trước
         new ChaoJDialog(this, true).setVisible(true);
-        // kế tiếp đến cửa sổ đăng nhập
+//        // kế tiếp đến cửa sổ đăng nhập
         new DangNhapFormJDialog(this, true).setVisible(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         getContentPane().setBackground(new Color(63, 109, 217));

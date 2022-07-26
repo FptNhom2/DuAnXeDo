@@ -11,12 +11,18 @@ public class XDate {
     }
 
     public static LocalDate createDate(String txtDate) { 
+       
         return LocalDate.parse(txtDate);
     }
     
     public static String[] splitTime(String timeString){
         String[] timeSplit = timeString.split(":");
         return timeSplit;
+    }
+    
+     public static String[] splitDate(String dateString){
+        String[] dateSplit = dateString.split("-");
+        return dateSplit;
     }
 
     public static LocalTime createTime(String hour, String minute, String second) {
@@ -32,8 +38,8 @@ public class XDate {
         return time.format(formatter);
     }
      
-    public static String formatDate(LocalDate date) {
-        String datePattern = "dd-MM-uuuu";
+    public static String formatDate(LocalDate date,String datePattern) {
+//        "dd-MM-uuuu"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(datePattern);
         return date.format(formatter);
     }

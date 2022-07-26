@@ -557,12 +557,14 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
     private void first(){
         this.row = 0;
         this.edit();
+        this.showDetails();
     } // btnFirst
     private void prev(){
         if(this.row > 0){
             this.row--;
             this.edit();
         }
+        this.showDetails();
     } // btnPrev
     
     private void next(){
@@ -570,10 +572,18 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
             this.row++;
             this.edit();
         }
+        this.showDetails();
     } // btnNext
     
     private void last(){
         this.row = tblNhanVien.getRowCount() - 1;
         this.edit();
+        this.showDetails();
     } // btnLast
+    
+    public void showDetails() {
+        if (row > -1) {
+            tblNhanVien.setRowSelectionInterval(row, row);
+        }
+    }
 }

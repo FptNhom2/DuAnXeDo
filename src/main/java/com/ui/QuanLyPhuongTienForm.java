@@ -619,6 +619,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     private void first(){
         this.row = 0;
         this.edit();
+        this.showDetails();
     } // btnFirst
     
     private void prev(){
@@ -626,6 +627,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
             this.row--;
             this.edit();
         }
+        this.showDetails();
     } // btnPrev
     
     private void next(){
@@ -633,11 +635,19 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
             this.row++;
             this.edit();
         }
+        this.showDetails();
     } // btnNext
     
     private void last(){
         this.row = tbDSPT.getRowCount() - 1;
         this.edit();
+        this.showDetails();
+    }
+    
+    public void showDetails() {
+        if (row > -1) {
+            tbDSPT.setRowSelectionInterval(row, row);
+        }
     }
 
 }

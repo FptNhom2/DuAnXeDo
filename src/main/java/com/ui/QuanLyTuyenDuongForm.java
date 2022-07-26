@@ -488,6 +488,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     private void first(){
         this.row = 0;
         this.edit();
+        this.showDetails();
     } // btnFirst
     
     private void prev(){
@@ -495,6 +496,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
             this.row--;
             this.edit();
         }
+        this.showDetails();
     } // btnPrev
     
     private void next(){
@@ -502,12 +504,20 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
             this.row++;
             this.edit();
         }
+        this.showDetails();
     } // btnNext
     
     private void last(){
         this.row = tblTuyenDuong.getRowCount() - 1;
         this.edit();
+        this.showDetails();
     } // btnLast
+    
+    public void showDetails() {
+        if (row > -1) {
+            tblTuyenDuong.setRowSelectionInterval(row, row);
+        }
+    }
     //==============================================================//
     
     //==========================Điều khiển trạng thái nút quản lý==========================//

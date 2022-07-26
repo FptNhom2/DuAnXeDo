@@ -128,9 +128,17 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã lịch trình", "Tên tuyến", "Bảng số xe", "Mã nhân viên", "Ngày xuất phát", "Thời gian dự kiến", "Chi phí lịch trình", "Tổng doanh thu"
+                "Mã lịch trình", "Ngày khởi hành", "Mã khách hàng", "Họ và tên khách hàng", "Số điện thoại", "Số lượng vé", "Tổng tiền thanh toán", "Mã nhân viên"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, false, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tblLichTrinh.setSelectionBackground(new java.awt.Color(35, 166, 97));
         jScrollPane2.setViewportView(tblLichTrinh);
 
@@ -530,7 +538,11 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintActionPerformed
-
+        try {
+            txtNoiDung.print();
+        } catch (PrinterException ex) {
+            Logger.getLogger(QuanLyLichTrinhForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
@@ -547,10 +559,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        //        try {
-            //
-            //        } catch (Exception e) {
-            //        }
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnGiamSoLuongVeDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiamSoLuongVeDatActionPerformed
@@ -687,10 +696,10 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private void tangSoLuongVeDat(){
         soLuong++;
         if(soLuong > 5){
-            MsgBox.alert(this, "Một khách Chỉ được đặt tối đa 5 vé");
+            MsgBox.alert(this, "Một khách chỉ được đặt tối đa 5 vé");
             return;
         }else{
             lblSoLuongVe.setText("" + soLuong);
         }
-    } // btnGiam
+    } // btnTang
 }

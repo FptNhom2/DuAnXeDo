@@ -12,8 +12,8 @@ import java.util.logging.Logger;
 
 public class TaiXeDAO extends AtbusDAO<TaiXe, String>{
     
-    String INSERT_SQL = "INSERT INTO TaiXe (maTX,maPT,hoTen,diaChi,trangThai,hinh) VALUES (?, ?, ?, ?,?,?)";
-    String UPDATE_SQL = "UPDATE TaiXe SET maPT = ?, hoTen = ?, diaChi = ?, trangThai = ?, hinh = ? WHERE maTX = ?";
+    String INSERT_SQL = "INSERT INTO TaiXe (maTX,hoTen,diaChi,trangThai,hinh) VALUES (?,?,?,?,?)";
+    String UPDATE_SQL = "UPDATE TaiXe SET hoTen = ?, diaChi = ?, trangThai = ?, hinh = ? WHERE maTX = ?";
     String DELETE_SQL = "DELETE FROM TaiXe WHERE maTX = ?";
     String SELECT_ALL_SQL = "SELECT * FROM TaiXe";
     String SELECT_BY_ID_SQL = "SELECT * FROM TaiXe WHERE maTX = ?";

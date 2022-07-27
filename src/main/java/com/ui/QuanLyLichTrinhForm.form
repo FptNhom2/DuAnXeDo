@@ -116,6 +116,7 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="lblTongVe" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtChiPhiLichTrinh" min="-2" pref="415" max="-2" attributes="0"/>
+                                          <Component id="lblTongDoanhThu" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -123,9 +124,7 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblDiaChi5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lblTongDoanhThu" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="494" max="-2" attributes="0"/>
+                              <EmptySpace min="494" pref="566" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -170,29 +169,19 @@
                           <Component id="txtChiPhiLichTrinh" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="cboMaPT" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTongDoanhThu" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblDiaChi" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="lblDiaChi5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="cboMaTX" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDiaChi" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="lblDiaChi5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="lblTongDoanhThu" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="cboMaTX" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblDiaChi1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="txtNgayXP" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="243" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" pref="45" max="-2" attributes="0"/>

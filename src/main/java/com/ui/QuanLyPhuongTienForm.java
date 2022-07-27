@@ -558,7 +558,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         String[] ngayKDArray = XDate.splitDate(txtNgayKD.getText());
         String[] ngayBTArray = XDate.splitDate(txtNgayBT.getText());
         pt.setBangXoSe(txtBienso.getText());
-        pt.setTrangThai(rdochuadi.isSelected());
+        pt.setTrangThai(rdodi.isSelected());
         pt.setSlChoNgoi(Integer.valueOf(txtSLCN.getText()));
         pt.setNgayKiemDinh(XDate.createDate(Integer.valueOf( ngayKDArray[0]),Integer.valueOf( ngayKDArray[1]),Integer.valueOf( ngayKDArray[2])));
         pt.setNgayBaoTri(XDate.createDate(Integer.valueOf( ngayBTArray[0]),Integer.valueOf( ngayBTArray[1]),Integer.valueOf( ngayBTArray[2])));

@@ -77,70 +77,65 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="lblDiaChi" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
-                          <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="lblTenTX" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lblMaTX" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="lblTinhTrang" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblDiaChi1" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtMaLT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtNgayXP" alignment="0" pref="415" max="32767" attributes="0"/>
-                          <Component id="cboMaTD" max="32767" attributes="0"/>
-                          <Component id="cboMaPT" alignment="0" max="32767" attributes="0"/>
-                          <Component id="cboMaTX" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jPanel2" max="32767" attributes="0"/>
+                                  <Component id="jPanel1" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jScrollPane3" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Component id="lblDiaChi2" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="txtTGDuKien" pref="415" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblDiaChi4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblDiaChi3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lblDiaChi" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
+                                          <Group type="103" alignment="1" groupAlignment="1" attributes="0">
+                                              <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="lblTenTX" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="lblMaTX" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="lblTinhTrang" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="lblDiaChi1" alignment="1" min="-2" pref="155" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="txtMaLT" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtNgayXP" alignment="0" pref="415" max="32767" attributes="0"/>
+                                          <Component id="cboMaTD" max="32767" attributes="0"/>
+                                          <Component id="cboMaPT" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="cboMaTX" alignment="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblTongVe" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtChiPhiLichTrinh" min="-2" pref="415" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                                  <Component id="lblDiaChi4" max="32767" attributes="0"/>
+                                                  <Component id="lblDiaChi3" max="32767" attributes="0"/>
+                                                  <Component id="lblDiaChi2" pref="115" max="32767" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="lblDiaChi5" max="32767" attributes="0"/>
+                                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lblTongDoanhThu" pref="413" max="32767" attributes="0"/>
+                                          <Component id="txtChiPhiLichTrinh" pref="413" max="32767" attributes="0"/>
+                                          <Component id="txtTGDuKien" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="lblTongVe" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="lblDiaChi5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lblTongDoanhThu" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="494" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel2" alignment="0" pref="1184" max="32767" attributes="0"/>
-                          <Component id="jPanel1" alignment="1" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -155,46 +150,40 @@
                           <Component id="txtTGDuKien" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="cboMaTD" alignment="1" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="cboMaTD" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblTenTX" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="lblDiaChi3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="lblTongVe" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="lblTongVe" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblTinhTrang" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="lblDiaChi4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="txtChiPhiLichTrinh" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="cboMaPT" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblTongDoanhThu" alignment="1" max="32767" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="lblDiaChi" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="lblDiaChi5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblDiaChi" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="lblDiaChi5" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="cboMaTX" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblDiaChi1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="txtNgayXP" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="cboMaTX" min="-2" pref="32" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="lblTongDoanhThu" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblDiaChi1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="txtNgayXP" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="243" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="364" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -221,7 +210,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tblTaiXe">
+                <Component class="javax.swing.JTable" name="tblLichTrinh">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="10" rowCount="0">
@@ -299,7 +288,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblTaiXeMouseClicked"/>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblLichTrinhMouseClicked"/>
                   </Events>
                 </Component>
               </SubComponents>
@@ -348,7 +337,7 @@
                       <Image iconType="3" name="/images/first.png"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[260, 35]"/>
+                      <Dimension value="[280, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -364,7 +353,7 @@
                       <Image iconType="3" name="/images/previous.png"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[251, 35]"/>
+                      <Dimension value="[275, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -380,7 +369,7 @@
                       <Image iconType="3" name="/images/next.png"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[251, 35]"/>
+                      <Dimension value="[275, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -396,7 +385,7 @@
                       <Image iconType="3" name="/images/last.png"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[260, 35]"/>
+                      <Dimension value="[280, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -424,7 +413,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[260, 35]"/>
+                      <Dimension value="[280, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -441,7 +430,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[251, 35]"/>
+                      <Dimension value="[275, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -458,7 +447,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[251, 35]"/>
+                      <Dimension value="[275, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -475,7 +464,7 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="M&#x1edb;i"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[260, 35]"/>
+                      <Dimension value="[280, 35]"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -694,7 +683,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="tblLichTrinh">
+                <Component class="javax.swing.JTable" name="tblDatVe">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="8" rowCount="0">
@@ -1242,7 +1231,7 @@
                           </Group>
                           <Component id="btnLamMoi" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="208" max="32767" attributes="0"/>
+                      <EmptySpace pref="257" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

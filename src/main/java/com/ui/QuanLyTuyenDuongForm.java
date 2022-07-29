@@ -357,8 +357,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
     private void fillCboTenMien() {
         cboTenMien.addItem("Chọn miền");
-        cboTenMien.addItem("Bắc");
-        cboTenMien.addItem("Trung");
+        cboTenMien.addItem("Tây");
         cboTenMien.addItem("Nam");
     }
 

@@ -9,6 +9,7 @@ import com.entity.TuyenDuong;
 import com.entity.PhuongTien;
 import com.entity.TaiXe;
 import com.utils.Auth;
+import com.utils.XValidations;
 import com.utils.XDate;
 import com.utils.MsgBox;
 import com.utils.XValidations;
@@ -1097,7 +1098,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
             List<LichTrinh> list = ltDao.selectAll();
             for (LichTrinh lt : list) {
-                Object[] row = {lt.getMaLT(), lt.getMaTD(), lt.getMaPT(), lt.getMaTX(), lt.getMaNV(),
+                PhuongTien pt = ptDao.selectById(lt.getMaPT());
+                TuyenDuong td = tdDao.selectById(lt.getMaTD());
+                Object[] row = {lt.getMaLT(), td.getTenTD(), pt.getBangXoSe(), lt.getMaTX(), lt.getMaNV(),
                     XDate.formatDate(lt.getNgayXP(), "dd-MM-uuuu"), XDate.formatTime(lt.getTgDuKien()),
                     String.valueOf(lt.getTongVe()), String.valueOf(lt.getChiPhiPhatSinh()), String.valueOf(lt.getTongDoanhThu())};
                 model.addRow(row);
@@ -1180,7 +1183,26 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }
 
     LichTrinh getForm() { // Create new NhanVien from form
-        LichTrinh nv = new LichTrinh();
+        LichTrinh lt = new LichTrinh();
+        if (!XValidations.checkIsEmpty(this, txtMaLT, txtChiPhiLichTrinh, txtNgayXP)) {
+            if (XValidations.checkComboBox(this, cboMaPT, cboMaTD, cboMaTX, cboTGDuKien)) {
+                lt.setMaLT(txtMaLT.getText());
+                PhuongTien pt = (PhuongTien) cboMaPT.getSelectedItem();
+                TaiXe tx = (TaiXe) cboMaTX.getSelectedItem();
+                TuyenDuong td = (TuyenDuong) cboMaTD.getSelectedItem();
+                lt.setMaTD(td.getMaTD());
+                lt.setMaPT(pt.getMaPT());
+                lt.setMaTX(tx.getMaTX());
+                lt.setMaNV(Auth.user.getMaNV());
+                String[] ngayXP = XDate.splitDate(txtNgayXP.getText());
+                String[] tgDK = XDate.splitTime((String) cboTGDuKien.getSelectedItem());
+                lt.setNgayXP(XDate.createDate(ngayXP[0], ngayXP[1], ngayXP[2]));
+                lt.setTgDuKien(XDate.createTime(tgDK[0], tgDK[1], tgDK[2]));
+                lt.setTongVe(Integer.valueOf(lblTongVe.getText()));
+                lt.setTongDoanhThu(Double.valueOf(lblTongDoanhThu.getText()));
+                return lt;
+            }
+        }
         return null;
     }
 
@@ -1239,10 +1261,10 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
     void delete() { // [btnXoa]
         if (!XValidations.checkIsEmpty(this, txtMaLT)) {
-            String manv = txtMaLT.getText();
+            String maLt = txtMaLT.getText();
             if (MsgBox.confirm(this, "Ban thuc su muon xoa lich trinh nay?")) {
                 try {
-                    ltDao.delete(manv);
+                    ltDao.delete(maLt);
                     this.fillTable();
                     this.clearForm();
                     MsgBox.alert(this, "Xoa thanh cong");

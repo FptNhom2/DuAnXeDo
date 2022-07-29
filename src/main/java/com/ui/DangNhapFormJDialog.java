@@ -7,6 +7,7 @@ import com.utils.MsgBox;
 import com.utils.NotificationMessage;
 import java.awt.Color;
 import java.awt.Font;
+import com.utils.XValidations;
 
 public class DangNhapFormJDialog extends javax.swing.JDialog {
 
@@ -173,7 +174,7 @@ public class DangNhapFormJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnKetThucActionPerformed
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-       dangNhap();
+        dangNhap();
     }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**
@@ -233,7 +234,10 @@ public class DangNhapFormJDialog extends javax.swing.JDialog {
     private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTenTaiKhoan;
     // End of variables declaration//GEN-END:variables
-        private void init(){
+
+    NhanVienDAO dao = new NhanVienDAO();
+
+    private void init() {
         this.setLocationRelativeTo(null);
         // Design giao diện DangNhapForm
         // Tiêu đề
@@ -257,31 +261,31 @@ public class DangNhapFormJDialog extends javax.swing.JDialog {
         txtMatKhau.setFont(new java.awt.Font("sansserif", 0, 13));
         txtMatKhau.setSelectionColor(new Color(75, 175, 152));
         // button đăng nhập
-        btnDangNhap.setBackground(new Color(22,116,66));
+        btnDangNhap.setBackground(new Color(22, 116, 66));
         btnDangNhap.setForeground(new Color(250, 250, 250));
         // button kết thúc
-        btnKetThuc.setBackground(new Color(22,116,66));
+        btnKetThuc.setBackground(new Color(22, 116, 66));
         btnKetThuc.setForeground(new Color(250, 250, 250));
     }
-        
-    private void closeApp(){
+
+    private void closeApp() {
         ShowMessage showMess = new ShowMessage(null, rootPaneCheckingEnabled);
         showMess.setVisible(true);
     } // đóng ứng dụng
-    
-    NhanVienDAO dao = new NhanVienDAO();
-    
+
     void dangNhap() {
-        String manv = txtTenTaiKhoan.getText();
-        String matKhau = new String(txtMatKhau.getPassword());
-        NhanVien nhanvien = dao.selectById(manv);
-        if(nhanvien == null){
-            MsgBox.alert(this,"Sai tên đăng nhập");
-        }else if(!matKhau.equals(nhanvien.getMatKhau())){
-            MsgBox.alert(this, "Sai mật khẩu");
-        }else{
-            Auth.user = nhanvien;
-            this.dispose();
+        if (!XValidations.checkIsEmpty(this, txtTenTaiKhoan, txtMatKhau)) {
+            String manv = txtTenTaiKhoan.getText();
+            String matKhau = new String(txtMatKhau.getPassword());
+            NhanVien nhanvien = dao.selectById(manv);
+            if (nhanvien == null) {
+                MsgBox.alert(this, "Sai tên đăng nhập");
+            } else if (!matKhau.equals(nhanvien.getMatKhau())) {
+                MsgBox.alert(this, "Sai mật khẩu");
+            } else {
+                Auth.user = nhanvien;
+                this.dispose();
+            }
         }
     }
 }

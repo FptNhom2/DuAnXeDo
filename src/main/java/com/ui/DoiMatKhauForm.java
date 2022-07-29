@@ -6,12 +6,12 @@ import com.utils.MsgBox;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import com.utils.XValidations;
 
 public class DoiMatKhauForm extends javax.swing.JPanel {
 
     public DoiMatKhauForm() {
         initComponents();
-        placeHolder() ;
     }
 
     /**
@@ -209,22 +209,23 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
     NhanVienDAO dao = new NhanVienDAO();
 
     private void doiMatKhau() {
-        String manv = txtMaNhanVien.getText();
-        String matKhau = new String(txtMatKhauHienTai.getPassword());
-        String matKhauMoi = new String(txtMatKhauMoi.getPassword());
-        String matKhauMoi2 = new String(txtXacNhanMatKhau.getPassword());
-        if (!manv.equalsIgnoreCase(Auth.user.getMaNV())) {
-            MsgBox.alert(this, "Sai tên đăng nhập!");
-        } else if (!matKhau.equals(Auth.user.getMatKhau())) {
-            MsgBox.alert(this, "Sai mật khẩu!");
-        } else if (!matKhauMoi.equals(matKhauMoi2)) {
-            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
-        } else {
-            Auth.user.setMatKhau(matKhauMoi);
-            dao.update(Auth.user);
-            MsgBox.alert(this, "Đổi mật khẩu thành công!");
+        if (!XValidations.checkIsEmpty(this, txtMaNhanVien, txtMatKhauHienTai, txtMatKhauMoi, txtXacNhanMatKhau)) {
+            String manv = txtMaNhanVien.getText();
+            String matKhau = new String(txtMatKhauHienTai.getPassword());
+            String matKhauMoi = new String(txtMatKhauMoi.getPassword());
+            String matKhauMoi2 = new String(txtXacNhanMatKhau.getPassword());
+            if (!manv.equalsIgnoreCase(Auth.user.getMaNV())) {
+                MsgBox.alert(this, "Sai tên đăng nhập!");
+            } else if (!matKhau.equals(Auth.user.getMatKhau())) {
+                MsgBox.alert(this, "Sai mật khẩu!");
+            } else if (!matKhauMoi.equals(matKhauMoi2)) {
+                MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
+            } else {
+                Auth.user.setMatKhau(matKhauMoi);
+                dao.update(Auth.user);
+                MsgBox.alert(this, "Đổi mật khẩu thành công!");
+            }
         }
-
     }
 
     private void boQua() {
@@ -234,25 +235,25 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
         txtXacNhanMatKhau.setText("");
     }
 
-    private void placeHolder() {
-        txtMaNhanVien.setForeground(Color.GRAY);
-        txtMaNhanVien.addFocusListener(new FocusListener() {
-            @Override
-            public void focusGained(FocusEvent e) {
-                if (txtMaNhanVien.getText().equals("Search")) {
-                    txtMaNhanVien.setText("");
-                    txtMaNhanVien.setForeground(Color.BLACK);
-                }
-            }
-
-            @Override
-            public void focusLost(FocusEvent e) {
-                if (txtMaNhanVien.getText().isEmpty()) {
-                    txtMaNhanVien.setForeground(Color.GRAY);
-                    txtMaNhanVien.setText("Search");
-                }
-            }
-        });
-    }
+//    private void placeHolder() {
+//        txtMaNhanVien.setForeground(Color.GRAY);
+//        txtMaNhanVien.addFocusListener(new FocusListener() {
+//            @Override
+//            public void focusGained(FocusEvent e) {
+//                if (txtMaNhanVien.getText().equals("Search")) {
+//                    txtMaNhanVien.setText("");
+//                    txtMaNhanVien.setForeground(Color.BLACK);
+//                }
+//            }
+//
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//                if (txtMaNhanVien.getText().isEmpty()) {
+//                    txtMaNhanVien.setForeground(Color.GRAY);
+//                    txtMaNhanVien.setText("Search");
+//                }
+//            }
+//        });
+//    }
 
 }

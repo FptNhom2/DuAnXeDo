@@ -65,6 +65,11 @@ public class PhuongTien {
     public void setNgayBaoTri(LocalDate ngayBaoTri) {
         this.ngayBaoTri = ngayBaoTri;
     }
+
+    @Override
+    public String toString() {
+        return this.bangXoSe;
+    }
     
     
     

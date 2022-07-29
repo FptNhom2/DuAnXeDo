@@ -1,6 +1,7 @@
 package com.entity;
 
 public class TaiXe {
+
     String maTX;
     String hoTen;
     String diaChi;
@@ -30,11 +31,11 @@ public class TaiXe {
     public void setDiaChi(String diaChi) {
         this.diaChi = diaChi;
     }
-    
-    public boolean getTrangThai(){
+
+    public boolean getTrangThai() {
         return trangThai;
     }
-    
+
     public boolean isTrangThai() {
         return trangThai;
     }
@@ -50,6 +51,10 @@ public class TaiXe {
     public void setHinh(String hinh) {
         this.hinh = hinh;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return this.maTX;
+    }
+
 }

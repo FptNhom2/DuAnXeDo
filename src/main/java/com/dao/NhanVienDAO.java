@@ -13,9 +13,9 @@ public class NhanVienDAO extends AtbusDAO<NhanVien, String> {
 
     String INSERT_SQL = "INSERT INTO NhanVien (maNV,hoTen,matKhau,vaitro,email,sdt,hinh) VALUES (?, ?, ?, ?,?,?,?)";
     String UPDATE_SQL = "UPDATE NhanVien SET hoTen = ?, matKhau = ?, vaiTro = ?, email = ?, sdt = ?, hinh = ? WHERE maNV = ?";
-    String DELETE_SQL = "DELETE FROM NhanVien WHERE MaNV = ?";
+    String DELETE_SQL = "DELETE FROM NhanVien WHERE maNV = ?";
     String SELECT_ALL_SQL = "SELECT * FROM NhanVien";
-    String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE MaNV = ?";
+    String SELECT_BY_ID_SQL = "SELECT * FROM NhanVien WHERE maNV = ?";
 
     @Override
     public void insert(NhanVien entity) {

@@ -6,6 +6,7 @@ import com.utils.Auth;
 import com.utils.MsgBox;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import com.utils.XValidations;
 
 /**
  *
@@ -473,13 +474,19 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
 
     NhanVien getForm() { // Create new NhanVien from form
         NhanVien nv = new NhanVien();
+        boolean isValidated = false;
+        if (!XValidations.checkIsEmpty(this, txtMaNV, txtHoTen, txtMatKhau, txtEmail, txtSoDienThoai)) {
+            isValidated = XValidations.checkEmailPttern(this, txtEmail) ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
+        } else {
+            isValidated = false;
+        }
         nv.setMaNV(txtMaNV.getText());
         nv.setHoTen(txtHoTen.getText());
         nv.setMatKhau(new String(txtMatKhau.getPassword()));
         nv.setVaiTro(rdoTruongPhong.isSelected());
         nv.setEmail(txtEmail.getText());
         nv.setSdt(txtSoDienThoai.getText());
-        return nv;
+        return isValidated ? nv : null;
     }
 
     void clearForm() { // [btnMoi]
@@ -498,52 +505,58 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         btnThem.setEnabled(!edit);
         btnSua.setEnabled(edit);
         btnXoa.setEnabled(edit);
-        // status backward and forward btn
-//        btnFirst.setEnabled(edit && !first);
-//        btnPrev.setEnabled(edit && !first);
-//        btnNext.setEnabled(edit && !last);
-//        btnLast.setEnabled(edit && !last);
+//         status backward and forward btn
+        btnFirst.setEnabled(edit && !first);
+        btnPre.setEnabled(edit && !first);
+        btnNext.setEnabled(edit && !last);
+        btnLast.setEnabled(edit && !last);
     }
 
     void insert() { // [btnThem]
-        NhanVien nv = getForm();
-        try {
-            dao.insert(nv);
-            this.fillTable();
-            this.clearForm();
-            MsgBox.alert(this, "Them moi thanh cong");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Them moi that bai");
-            e.printStackTrace();
+        if (getForm() != null) {
+            NhanVien nv = getForm();
+            try {
+                dao.insert(nv);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Them moi thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Them moi that bai");
+                e.printStackTrace();
+            }
         }
 
     }
 
-    void update() { // [btnSua]
-        NhanVien nv = getForm();
-        try {
-            dao.update(nv);
-            this.fillTable();
-            MsgBox.alert(this, "Cap nhat thanh cong");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Cap nhat that bai");
-            e.printStackTrace();
+    void update() { // [btnSua]\
+        if (getForm() != null) {
+            NhanVien nv = getForm();
+            try {
+                dao.update(nv);
+                this.fillTable();
+                MsgBox.alert(this, "Cap nhat thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cap nhat that bai");
+                e.printStackTrace();
+            }
         }
     }
 
     void delete() { // [btnXoa]
-        String manv = txtMaNV.getText();
-        if (manv.equals(Auth.user.getMaNV())) {
-            MsgBox.alert(this, "Ban khong the xoa chinh ban!");
-        } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
-            try {
-                dao.delete(manv);
-                this.fillTable();
-                this.clearForm();
-                MsgBox.alert(this, "Xoa thanh cong");
-            } catch (Exception e) {
-                MsgBox.alert(this, "Xoa that bai");
-                e.printStackTrace();
+        if (!XValidations.checkIsEmpty(this, txtMaNV)) {
+            String manv = txtMaNV.getText();
+            if (manv.equals(Auth.user.getMaNV())) {
+                MsgBox.alert(this, "Ban khong the xoa chinh ban!");
+            } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
+                try {
+                    dao.delete(manv);
+                    this.fillTable();
+                    this.clearForm();
+                    MsgBox.alert(this, "Xoa thanh cong");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xoa that bai");
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -554,33 +567,35 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         this.setForm(nv);
         this.updateStatus();
     }
-    private void first(){
+
+    private void first() {
         this.row = 0;
         this.edit();
         this.showDetails();
     } // btnFirst
-    private void prev(){
-        if(this.row > 0){
+
+    private void prev() {
+        if (this.row > 0) {
             this.row--;
             this.edit();
         }
         this.showDetails();
     } // btnPrev
-    
-    private void next(){
-        if(this.row < tblNhanVien.getRowCount() - 1){
+
+    private void next() {
+        if (this.row < tblNhanVien.getRowCount() - 1) {
             this.row++;
             this.edit();
         }
         this.showDetails();
     } // btnNext
-    
-    private void last(){
+
+    private void last() {
         this.row = tblNhanVien.getRowCount() - 1;
         this.edit();
         this.showDetails();
     } // btnLast
-    
+
     public void showDetails() {
         if (row > -1) {
             tblNhanVien.setRowSelectionInterval(row, row);

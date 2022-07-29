@@ -1,5 +1,6 @@
 package com.ui;
 
+import com.dao.PhuongTienDAO;
 import com.utils.MsgBox;
 import java.awt.Color;
 import java.awt.print.PrinterException;
@@ -131,7 +132,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã lịch trình", "Mã tuyến đường", "Mã phương tiện", "Mã tài xế", "Mã Nhân viên", "Ngày xuất phát", "Thời gian dự kiến", "Tổng vé", "Chi phí phát sinh", "Tổng doanh thu"
+                "Mã lịch trình", "Tuyến đường", "Phương tiện", "Mã tài xế", "Mã Nhân viên", "Ngày xuất phát", "Thời gian dự kiến", "Tổng vé", "Chi phí phát sinh", "Tổng doanh thu"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -983,7 +984,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKiemNgayKhoiHanh;
     // End of variables declaration//GEN-END:variables
     
-    
+    PhuongTienDAO dao = new PhuongTienDAO();
     
     private void init(){
         // design giao diện

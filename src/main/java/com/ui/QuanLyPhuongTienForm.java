@@ -7,6 +7,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import com.utils.XDate;
 import com.utils.Auth;
+import com.utils.XValidations;
 
 public class QuanLyPhuongTienForm extends javax.swing.JPanel {
 
@@ -558,11 +559,11 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         String[] ngayKDArray = XDate.splitDate(txtNgayKD.getText());
         String[] ngayBTArray = XDate.splitDate(txtNgayBT.getText());
         pt.setBangXoSe(txtBienso.getText());
-        pt.setTrangThai(rdochuadi.isSelected());
+        pt.setTrangThai(rdodi.isSelected());
         pt.setSlChoNgoi(Integer.valueOf(txtSLCN.getText()));
-        pt.setNgayKiemDinh(XDate.createDate(Integer.valueOf( ngayKDArray[0]),Integer.valueOf( ngayKDArray[1]),Integer.valueOf( ngayKDArray[2])));
-        pt.setNgayBaoTri(XDate.createDate(Integer.valueOf( ngayBTArray[0]),Integer.valueOf( ngayBTArray[1]),Integer.valueOf( ngayBTArray[2])));
-        return pt;
+        pt.setNgayKiemDinh(XDate.createDate(Integer.valueOf(ngayKDArray[0]), Integer.valueOf(ngayKDArray[1]), Integer.valueOf(ngayKDArray[2])));
+        pt.setNgayBaoTri(XDate.createDate(Integer.valueOf(ngayBTArray[0]), Integer.valueOf(ngayBTArray[1]), Integer.valueOf(ngayBTArray[2])));
+        return XValidations.checkIsEmpty(this, txtMaPT, txtNgayKD, txtBienso, txtSLCN, txtNgayBT) ? null : pt;
     }
 
     void clearForm() { // [btnMoi]
@@ -573,44 +574,49 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     }
 
     void insert() { // [btnThem]
-        PhuongTien pt = getForm();
-        try {
-            dao.insert(pt);
-            this.fillTable();
-            this.clearForm();
-            MsgBox.alert(this, "Them moi thanh cong");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Them moi that bai");
-            e.printStackTrace();
+        if (getForm() != null) {
+            PhuongTien pt = getForm();
+            try {
+                dao.insert(pt);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Them moi thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Them moi that bai");
+                e.printStackTrace();
+            }
         }
-
     }
 
     void update() { // [btnSua]
-        PhuongTien pt = getForm();
-        try {
-            dao.update(pt);
-            this.fillTable();
-            MsgBox.alert(this, "Cap nhat thanh cong");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Cap nhat that bai");
-            e.printStackTrace();
+        if (getForm() != null) {
+            PhuongTien pt = getForm();
+            try {
+                dao.update(pt);
+                this.fillTable();
+                MsgBox.alert(this, "Cap nhat thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cap nhat that bai");
+                e.printStackTrace();
+            }
         }
     }
 
     void delete() { // [btnXoa]
-        String mapt = txtMaPT.getText();
-        if (mapt.equals(Auth.user.getMaNV())) {
-            MsgBox.alert(this, "Ban khong the xoa chinh ban!");
-        } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
-            try {
-                dao.delete(Integer.valueOf(mapt));
-                this.fillTable();
-                this.clearForm();
-                MsgBox.alert(this, "Xoa thanh cong");
-            } catch (Exception e) {
-                MsgBox.alert(this, "Xoa that bai");
-                e.printStackTrace();
+        if (!XValidations.checkIsEmpty(this, txtMaPT)) {
+            String mapt = txtMaPT.getText();
+            if (mapt.equals(Auth.user.getMaNV())) {
+                MsgBox.alert(this, "Ban khong the xoa chinh ban!");
+            } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
+                try {
+                    dao.delete(Integer.valueOf(mapt));
+                    this.fillTable();
+                    this.clearForm();
+                    MsgBox.alert(this, "Xoa thanh cong");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xoa that bai");
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -649,7 +655,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
         this.edit();
         this.showDetails();
     }
-    
+
     public void showDetails() {
         if (row > -1) {
             tbDSPT.setRowSelectionInterval(row, row);

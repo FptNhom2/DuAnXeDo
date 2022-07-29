@@ -37,6 +37,11 @@ public class TuyenDuong {
     public void setGia(double gia) {
         this.gia = gia;
     }
+
+    @Override
+    public String toString() {
+        return this.tenTD;
+    }
     
     
 }

@@ -4,6 +4,7 @@ import com.dao.TuyenDuongDAO;
 import com.entity.TuyenDuong;
 import com.utils.Auth;
 import com.utils.MsgBox;
+import com.utils.XValidations;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -17,9 +18,8 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     public QuanLyTuyenDuongForm() {
         initComponents();
         DefaultTableCellRenderer headerCellRenderer = new DefaultTableCellRenderer();
-        headerCellRenderer.setBackground(new Color(192,227,149));
-        for(int i = 0; i < tblTuyenDuong.getModel().getColumnCount(); ++i)
-        {
+        headerCellRenderer.setBackground(new Color(192, 227, 149));
+        for (int i = 0; i < tblTuyenDuong.getModel().getColumnCount(); ++i) {
             tblTuyenDuong.getColumnModel().getColumn(i).setHeaderRenderer(headerCellRenderer);
         }
         init();
@@ -273,7 +273,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void tblTuyenDuongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTuyenDuongMouseClicked
-        if(evt.getClickCount() == 2){
+        if (evt.getClickCount() == 2) {
             this.row = tblTuyenDuong.getSelectedRow(); // lấy vị trí được chọn gán qua row
             this.edit(); // hiện thông tin lên form
         }
@@ -320,28 +320,32 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaTuyenDuong;
     private javax.swing.JTextField txtTenTuyenDuong;
     // End of variables declaration//GEN-END:variables
-    private void init(){
+
+    TuyenDuongDAO tddao = new TuyenDuongDAO();
+    int row = -1; // vị trí của nhân viên đang hiển thị trên form (khi form mới hiện lên chúng ta chưa chọn hàng nào cho nên là -1)
+
+    private void init() {
         // design giao diện
         // textfield MaTuyenDuong
         txtMaTuyenDuong.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtMaTuyenDuong.setBackground(new Color(235,235,235)); // background
+        txtMaTuyenDuong.setBackground(new Color(235, 235, 235)); // background
         txtMaTuyenDuong.setForeground(Color.decode("#7A8C8D"));
         txtMaTuyenDuong.setFont(new java.awt.Font("sansserif", 0, 13));
         txtMaTuyenDuong.setSelectionColor(new Color(75, 175, 152));
         // textfield TenTuyenDuong
         txtTenTuyenDuong.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtTenTuyenDuong.setBackground(new Color(235,235,235)); // background
+        txtTenTuyenDuong.setBackground(new Color(235, 235, 235)); // background
         txtTenTuyenDuong.setForeground(Color.decode("#7A8C8D"));
         txtTenTuyenDuong.setFont(new java.awt.Font("sansserif", 0, 13));
         txtTenTuyenDuong.setSelectionColor(new Color(75, 175, 152));
         // textfield Giá
         txtGia.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtGia.setBackground(new Color(235,235,235)); // background
+        txtGia.setBackground(new Color(235, 235, 235)); // background
         txtGia.setForeground(Color.decode("#7A8C8D"));
         txtGia.setFont(new java.awt.Font("sansserif", 0, 13));
         txtGia.setSelectionColor(new Color(75, 175, 152));
         // combo TenMien
-        cboTenMien.setBackground(new Color(235,235,235)); // background
+        cboTenMien.setBackground(new Color(235, 235, 235)); // background
         cboTenMien.setForeground(Color.decode("#7A8C8D"));
         cboTenMien.setFont(new java.awt.Font("sansserif", 0, 13));
         this.fillTable();
@@ -350,29 +354,24 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         this.edit();
         this.fillCboTenMien();
     }
-    
-    private void fillCboTenMien()
-    {
+
+    private void fillCboTenMien() {
         cboTenMien.addItem("Chọn miền");
         cboTenMien.addItem("Bắc");
         cboTenMien.addItem("Trung");
         cboTenMien.addItem("Nam");
     }
-    
-    TuyenDuongDAO tddao = new TuyenDuongDAO();
-    int row = -1; // vị trí của nhân viên đang hiển thị trên form (khi form mới hiện lên chúng ta chưa chọn hàng nào cho nên là -1)
 
-    
     //=============================Bảng=============================//
-    private void fillTable(){
+    private void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblTuyenDuong.getModel();
         model.setRowCount(0); // xóa tất cả các hàng trên bảng
         try {
             List<TuyenDuong> list = tddao.selectAll(); // truy vấn dữ liệu từ database lên
-            for(TuyenDuong td : list){
+            for (TuyenDuong td : list) {
                 Object[] row = {
                     td.getMaTD(),
-                    td.getTenTD(), 
+                    td.getTenTD(),
                     td.getTenMien(),
                     td.getGia()
                 };
@@ -383,7 +382,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         }
     } // Đỗ dữ liệu vào bảng (truy vấn dữ liệu và hiển thị lên bảng)
 
-    private void edit(){
+    private void edit() {
         int maTD = (int) tblTuyenDuong.getValueAt(this.row, 0); // 0 là cột trên bảng
         TuyenDuong td = tddao.selectById(String.valueOf(maTD)); // truy vấn dữ liệu từ database lên
         this.setForm(td); // hiển thị thông tin tuyến đường đó lên form
@@ -391,44 +390,38 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 //        this.updateStatus(); // cập nhật lại trạng thái các nút
     } // đọc lấy tuyến đường của 1 hàng (tblTuyenDuong double click)
     //==============================================================//
-    
+
     //=============================Form============================//
-    private void setForm(TuyenDuong td){
+    private void setForm(TuyenDuong td) {
         txtMaTuyenDuong.setText(String.valueOf(td.getMaTD()));
         txtTenTuyenDuong.setText(td.getTenTD());
         cboTenMien.setSelectedItem(td.getTenMien());
         txtGia.setText(String.valueOf(td.getGia()));
     } // Hiển thị dữ liệu tuyến đường lên form
-    
-    private TuyenDuong getForm(){
+
+    private TuyenDuong getForm() {
         TuyenDuong td = new TuyenDuong(); // tạo ra 1 đối tượng
-        // cài đặt thông tin cho đối tượng
-        td.setTenTD(txtTenTuyenDuong.getText());
-        td.setTenMien(String.valueOf(cboTenMien.getSelectedItem()));
-        try {
-            td.setGia(Double.valueOf(txtGia.getText()));
-        } catch (Exception e) {
-            MsgBox.alert(this, "Không được để trống");
+        boolean isValidate = false;
+        String tenTd = txtTenTuyenDuong.getText();
+        String gia = txtGia.getText();
+        if (!XValidations.checkIsEmpty(this, txtTenTuyenDuong, txtGia)) {
+            isValidate = XValidations.checkGia(this, txtGia).size() <= 0;
+            XValidations.displayErrors(this, XValidations.checkGia(this, txtGia));
         }
-        return td;
+        // cài đặt thông tin cho đối tượng
+        td.setTenTD(tenTd);
+        td.setTenMien(String.valueOf(cboTenMien.getSelectedItem()));
+        if (isValidate) {
+            td.setGia(Double.valueOf(gia));
+        }
+        return isValidate ? td : null;
     } // lấy dữ liệu từ form và tạo nhân viên
     //==============================================================//
-    
+
     //==========================Quản lý==========================//
-    private void insert(){
-        TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
-        try {
-             if(txtTenTuyenDuong.getText().isEmpty()){ 
-            MsgBox.alert(this, "Không được để trống tên tuyến đường!");
-            txtTenTuyenDuong.requestFocus();
-        }else if(txtGia.getText().isEmpty()){
-            MsgBox.alert(this, "Không được để trống giá!");
-            txtGia.requestFocus();
-        }else if(cboTenMien.getSelectedIndex() == 0){
-            MsgBox.alert(this, "Vui lòng chọn tên miền");
-            cboTenMien.requestFocus();
-            return;
-        }else{ // đã khớp
+    private void insert() {
+        if (getForm() != null) {
+            TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
             try {
                 tddao.insert(td); // insert thành công thì:
                 this.fillTable(); // load lại dữ liệu lên bảng
@@ -438,13 +431,12 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
                 MsgBox.alert(this, "Thêm mới thất bại!");
             }
         }
-        } catch (Exception e) {
-            MsgBox.alert(this, "Không được để trông");
-        }
+
     } // thêm mới vào csdl (btn thêm)
-    
-    private void update(){
-        TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
+
+    private void update() {
+        if (getForm() != null) {
+            TuyenDuong td = getForm(); // lấy dữ liệu từ form và tạo mới nhân viên
 //        if(!mk2.equals(nv.getMatKhau())){ // nếu không khớp báo lỗi
 //            MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
 //        }else{ // đã khớp
@@ -455,78 +447,81 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
             } catch (Exception e) {
                 MsgBox.alert(this, "Cập nhật thất bại");
             }
+        }
 //        }
     } // cập nhật dữ liệu (btn sửa)
-    
-    private void delete(){
-        if(!Auth.isManager()){ // trưởng phòng mới được quyền xóa
-            MsgBox.alert(this, "Bạn không có quyền xóa nhân viên");
-        }else{
-            if(MsgBox.confirm(this, "Bạn thực sự muốn xóa tuyến đường này?")){ // xác nhận 
-                try {
-                    String maTD = txtMaTuyenDuong.getText();
-                    tddao.delete(maTD); // xóa thành công thì:
-                    this.fillTable(); // load lại dữ liệu lên bảng
-                    this.clearForm(); // xóa trắng form
-                    MsgBox.alert(this, "Xóa thành công!");
-                } catch (Exception e) {
-                    MsgBox.alert(this, "Xóa thất bại");
+
+    private void delete() {
+        if (!XValidations.checkIsEmpty(this, txtMaTuyenDuong)) {
+            if (!Auth.isManager()) { // trưởng phòng mới được quyền xóa
+                MsgBox.alert(this, "Bạn không có quyền xóa nhân viên");
+            } else {
+                if (MsgBox.confirm(this, "Bạn thực sự muốn xóa tuyến đường này?")) { // xác nhận 
+                    try {
+                        String maTD = txtMaTuyenDuong.getText();
+                        tddao.delete(maTD); // xóa thành công thì:
+                        this.fillTable(); // load lại dữ liệu lên bảng
+                        this.clearForm(); // xóa trắng form
+                        MsgBox.alert(this, "Xóa thành công!");
+                    } catch (Exception e) {
+                        MsgBox.alert(this, "Xóa thất bại");
+                    }
                 }
             }
         }
     } // xóa dữ liệu (btn xóa)
-    
-    private void clearForm(){
+
+    private void clearForm() {
         TuyenDuong td = new TuyenDuong(); // tạo ra 1 đối tượng mới
-        this.setForm(td); 
+        this.setForm(td);
         this.row = -1; // khi xóa form sẽ không còn chọn hàng nào nữa, nên cập nhật lại -1
 //        this.updateStatus(); // cập nhật lại trạng thái các nút
     } // xóa trắng form (btn mới)
     //==============================================================//
-    
+
     //==========================Điều hướng==========================//
-    private void first(){
+    private void first() {
         this.row = 0;
         this.edit();
         this.showDetails();
     } // btnFirst
-    
-    private void prev(){
-        if(this.row > 0){
+
+    private void prev() {
+        if (this.row > 0) {
             this.row--;
             this.edit();
         }
         this.showDetails();
     } // btnPrev
-    
-    private void next(){
-        if(this.row < tblTuyenDuong.getRowCount() - 1){
+
+    private void next() {
+        if (this.row < tblTuyenDuong.getRowCount() - 1) {
             this.row++;
             this.edit();
         }
         this.showDetails();
     } // btnNext
-    
-    private void last(){
+
+    private void last() {
         this.row = tblTuyenDuong.getRowCount() - 1;
         this.edit();
         this.showDetails();
     } // btnLast
-    
+
     public void showDetails() {
         if (row > -1) {
             tblTuyenDuong.setRowSelectionInterval(row, row);
         }
     }
     //==============================================================//
-    
+
     //==========================Điều khiển trạng thái nút quản lý==========================//
 //    private void updateStatus(){
 //        boolean edit = (this.row >= 0); // đang chọn 1 hàng đâu đó
 //        boolean first = (this.row == 0); // đang ở bảng ghi đầu tiên
 //        boolean last = (this.row == tblTuyenDuong.getRowCount() - 1); // đang ở vị trí cuối cùng
-        // trạng thái form
-        // Editable: đang xem
+    // trạng thái form
+    // Editable: đang xem
 //        txtMaNhanVien.setEditable(!edit); // nếu edit == false thì khi đó mới cho phép sửa
 //        btnThem.setEnabled(!edit);
 //        btnSua.setEnabled(edit);

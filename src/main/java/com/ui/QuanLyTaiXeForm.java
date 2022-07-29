@@ -6,8 +6,10 @@ import javax.swing.table.DefaultTableModel;
 import com.entity.TaiXe;
 import com.utils.MsgBox;
 import com.utils.Auth;
+import com.utils.XValidations;
 import java.awt.Color;
 import javax.swing.table.DefaultTableCellRenderer;
+
 public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
     /**
@@ -16,9 +18,8 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     public QuanLyTaiXeForm() {
         initComponents();
         DefaultTableCellRenderer headerCellRenderer = new DefaultTableCellRenderer();
-        headerCellRenderer.setBackground(new Color(192,227,149));
-        for(int i = 0; i < tblTaiXe.getModel().getColumnCount(); ++i)
-        {
+        headerCellRenderer.setBackground(new Color(192, 227, 149));
+        for (int i = 0; i < tblTaiXe.getModel().getColumnCount(); ++i) {
             tblTaiXe.getColumnModel().getColumn(i).setHeaderRenderer(headerCellRenderer);
         }
         this.init();
@@ -298,27 +299,27 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    int row  = -1;
+
+    int row = -1;
     TaiXeDAO txdao = new TaiXeDAO();
-    
-    void init(){
+
+    void init() {
         // design giao diện
         // textfield MaTX
         txtMaTX.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtMaTX.setBackground(new Color(235,235,235)); // background
+        txtMaTX.setBackground(new Color(235, 235, 235)); // background
         txtMaTX.setForeground(Color.decode("#7A8C8D"));
         txtMaTX.setFont(new java.awt.Font("sansserif", 0, 13));
         txtMaTX.setSelectionColor(new Color(75, 175, 152));
         // textfield TenTX
         txtTenTX.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtTenTX.setBackground(new Color(235,235,235)); // background
+        txtTenTX.setBackground(new Color(235, 235, 235)); // background
         txtTenTX.setForeground(Color.decode("#7A8C8D"));
         txtTenTX.setFont(new java.awt.Font("sansserif", 0, 13));
         txtTenTX.setSelectionColor(new Color(75, 175, 152));
         // combo TenMien
         txtDiaChi.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        txtDiaChi.setBackground(new Color(235,235,235)); // background
+        txtDiaChi.setBackground(new Color(235, 235, 235)); // background
         txtDiaChi.setForeground(Color.decode("#7A8C8D"));
         txtDiaChi.setFont(new java.awt.Font("sansserif", 0, 13));
         txtDiaChi.setSelectionColor(new Color(75, 175, 152));
@@ -327,21 +328,21 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         this.updateStatus();
         this.row = -1;
     }
-    
+
     void fillTable() { // Fill data to tblTaiXe
         DefaultTableModel model = (DefaultTableModel) tblTaiXe.getModel();
         model.setRowCount(0);
         try {
             List<TaiXe> list = txdao.selectAll();
             for (TaiXe nv : list) {
-                Object[] row = {nv.getMaTX(), nv.getHoTen(),nv.getTrangThai() ? "Không hoạt động" : "Hoạt động", nv.getDiaChi(), nv.getHinh()};
+                Object[] row = {nv.getMaTX(), nv.getHoTen(), nv.getTrangThai() ? "Không hoạt động" : "Hoạt động", nv.getDiaChi(), nv.getHinh()};
                 model.addRow(row);
             }
         } catch (Exception e) {
             MsgBox.alert(this, "Loi truy van du lieu");
         }
     }
-    
+
     void setForm(TaiXe tx) { // Dsiplay TaiXe to form 
         try {
             txtMaTX.setText(tx.getMaTX());
@@ -352,16 +353,22 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
             rdoDangHoatDong.setSelected(!tx.getTrangThai());
             txtDiaChi.setText(tx.getDiaChi());
         } catch (Exception e) {
-            
+
         }
     }
 
     TaiXe getForm() { // Create new TaiXe from form
         TaiXe tx = new TaiXe();
-        tx.setMaTX(txtMaTX.getText());
-        tx.setHoTen(txtTenTX.getText());
+        String maTx = txtMaTX.getText();
+        String tenTx = txtTenTX.getText();
+        String diaChi = txtDiaChi.getText();
+        if (XValidations.checkIsEmpty(this, txtMaTX, txtTenTX, txtDiaChi)) {
+            return null;
+        }
+        tx.setMaTX(maTx);
+        tx.setHoTen(tenTx);
         tx.setTrangThai(rdoKhongHoatDong.isSelected());
-        tx.setDiaChi(txtDiaChi.getText());
+        tx.setDiaChi(diaChi);
         return tx;
     }
 
@@ -389,46 +396,52 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     }
 
     void insert() { // [btnThem]
-        TaiXe tx = getForm();
-        try {
-            txdao.insert(tx);
-            this.fillTable();
-            this.clearForm();
-            MsgBox.alert(this, "Them moi thanh cong");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Them moi that bai");
-            e.printStackTrace();
+        if (getForm() != null) {
+            TaiXe tx = getForm();
+            try {
+                txdao.insert(tx);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Them moi thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Them moi that bai");
+                e.printStackTrace();
+            }
         }
-
     }
 
     void update() { // [btnSua]
-        TaiXe tx = getForm();
-        try {
-            txdao.update(tx);
-            this.fillTable();
-            MsgBox.alert(this, "Cap nhat thanh cong");
-        } catch (Exception e) {
-            MsgBox.alert(this, "Cap nhat that bai");
-            e.printStackTrace();
+        if (getForm() != null) {
+            TaiXe tx = getForm();
+            try {
+                txdao.update(tx);
+                this.fillTable();
+                MsgBox.alert(this, "Cap nhat thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cap nhat that bai");
+                e.printStackTrace();
+            }
         }
     }
 
     void delete() { // [btnXoa]
-        String manv = txtMaTX.getText();
-        if (manv.equals(Auth.user.getMaNV())) {
-            MsgBox.alert(this, "Ban khong the xoa chinh ban!");
-        } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
-            try {
-                txdao.delete(manv);
-                this.fillTable();
-                this.clearForm();
-                MsgBox.alert(this, "Xoa thanh cong");
-            } catch (Exception e) {
-                MsgBox.alert(this, "Xoa that bai");
-                e.printStackTrace();
+        if (!XValidations.checkIsEmpty(this, txtMaTX)) {
+            String manv = txtMaTX.getText();
+            if (manv.equals(Auth.user.getMaNV())) {
+                MsgBox.alert(this, "Ban khong the xoa chinh ban!");
+            } else if (MsgBox.confirm(this, "Ban thuc su muon xoa nhan vien nay?")) {
+                try {
+                    txdao.delete(manv);
+                    this.fillTable();
+                    this.clearForm();
+                    MsgBox.alert(this, "Xoa thanh cong");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xoa that bai");
+                    e.printStackTrace();
+                }
             }
         }
+
     }
 
     void edit() { // [tblTaiXe double click]
@@ -437,27 +450,27 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         this.setForm(nv);
         this.updateStatus();
     }
-    
-    private void first(){
+
+    private void first() {
         this.row = 0;
         this.edit();
     } // btnFirst
-    
-    private void prev(){
-        if(this.row > 0){
+
+    private void prev() {
+        if (this.row > 0) {
             this.row--;
             this.edit();
         }
     } // btnPrev
-    
-    private void next(){
-        if(this.row < tblTaiXe.getRowCount() - 1){
+
+    private void next() {
+        if (this.row < tblTaiXe.getRowCount() - 1) {
             this.row++;
             this.edit();
         }
     } // btnNext
-    
-    private void last(){
+
+    private void last() {
         this.row = tblTaiXe.getRowCount() - 1;
         this.edit();
     } // btnLast

@@ -8,7 +8,10 @@ import com.entity.LichTrinh;
 import com.entity.TuyenDuong;
 import com.entity.PhuongTien;
 import com.entity.TaiXe;
+import com.utils.Auth;
+import com.utils.XDate;
 import com.utils.MsgBox;
+import com.utils.XValidations;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -69,8 +72,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         cboMaPT = new javax.swing.JComboBox<>();
         cboMaTX = new javax.swing.JComboBox<>();
         PanelDatVe = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        suaTTVeBtn = new javax.swing.JButton();
+        inVeBtn = new javax.swing.JButton();
         jLabel30 = new javax.swing.JLabel();
         txtTimKiemNgayKhoiHanh = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -175,6 +178,11 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         btnFirst.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(280, 35));
+        btnFirst.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                btnFirstMouseDragged(evt);
+            }
+        });
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFirstActionPerformed(evt);
@@ -293,50 +301,45 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         PanelLichTrinh.setLayout(PanelLichTrinhLayout);
         PanelLichTrinhLayout.setHorizontalGroup(
             PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelLichTrinhLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLichTrinhLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1140, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLichTrinhLayout.createSequentialGroup()
+                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblTenTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblMaTX, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDiaChi1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtMaLT, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNgayXP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
+                            .addComponent(cboMaTD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboMaPT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboMaTX, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(127, 127, 127))
-                    .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
                             .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblTenTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblMaTX, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(lblTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblDiaChi1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtMaLT, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNgayXP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                                    .addComponent(cboMaTD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cboMaPT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cboMaTX, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lblDiaChi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblDiaChi3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblDiaChi2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                                        .addComponent(lblDiaChi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(25, 25, 25)))
-                                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                                    .addComponent(txtChiPhiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                                    .addComponent(txtTGDuKien)
-                                    .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(122, 122, 122))))
+                                    .addComponent(lblDiaChi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDiaChi3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDiaChi2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(PanelLichTrinhLayout.createSequentialGroup()
+                                .addComponent(lblDiaChi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(25, 25, 25)))
+                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                            .addComponent(txtChiPhiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                            .addComponent(txtTGDuKien)
+                            .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(173, 173, 173))
         );
         PanelLichTrinhLayout.setVerticalGroup(
             PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,21 +381,21 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+                .addGap(7, 7, 7))
         );
 
         jTabbedPane2.addTab("Lịch trình", new javax.swing.ImageIcon(getClass().getResource("/images/lichtrinh.png")), PanelLichTrinh); // NOI18N
 
         PanelDatVe.setBackground(new java.awt.Color(248, 250, 254));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
-        jButton5.setText("Sửa thông tin vé");
+        suaTTVeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
+        suaTTVeBtn.setText("Sửa thông tin vé");
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
-        jButton6.setText("In vé");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        inVeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
+        inVeBtn.setText("In vé");
+        inVeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                inVeBtnActionPerformed(evt);
             }
         });
 
@@ -592,8 +595,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         jLabel22.setText("Ngày - tháng - năm");
 
-        cboMaLichTrinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel8.setText("mặc định");
 
         jLabel20.setText("Giá");
@@ -683,9 +684,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addGap(45, 45, 45)
                 .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(PanelDatVeLayout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(suaTTVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -697,7 +698,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelBorderForGioiThieuForm4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelDatVeLayout.setVerticalGroup(
             PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -711,8 +712,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(suaTTVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(inVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel30, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTimKiemNgayKhoiHanh))
                 .addGap(18, 18, 18)
@@ -766,7 +767,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnLamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
         PanelInVeLayout.setVerticalGroup(
             PanelInVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -779,7 +780,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(257, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("In vé", PanelInVe);
@@ -788,15 +789,18 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jTabbedPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1234, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -817,12 +821,12 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         txtNoiDung.setText("");
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void inVeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inVeBtnActionPerformed
         //        try {
         //
         //        } catch (Exception e) {
         //        }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_inVeBtnActionPerformed
 
     private void btnGiamSoLuongVeDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiamSoLuongVeDatActionPerformed
         giamSoLuongVeDat();
@@ -833,51 +837,42 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTangSoLuongVeDatActionPerformed
 
     private void tblLichTrinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLichTrinhMouseClicked
-        // TODO add your handling code here:
-//        if (evt.getClickCount() == 2) {
-//            this.row = tblTaiXe.getSelectedRow();
-//            this.edit();
-//        }
+        if (evt.getClickCount() == 2) {
+            this.row = tblLichTrinh.getSelectedRow();
+            this.edit();
+        }
     }//GEN-LAST:event_tblLichTrinhMouseClicked
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
-        // TODO add your handling code here:
-//        first();
+        first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
     private void btnPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreActionPerformed
-        // TODO add your handling code here:
-//        prev();
+        prev();
     }//GEN-LAST:event_btnPreActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        // TODO add your handling code here:
-//        next();
+        next();
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
-        // TODO add your handling code here:
-//        last();
+        last();
     }//GEN-LAST:event_btnLastActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
-//        this.insert();
+        this.insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
-//        this.update();
+        this.update();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
-//        this.delete();
+        this.delete();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        // TODO add your handling code here:
-//        this.clearForm();
+        this.clearForm();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void txtNgayXPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNgayXPActionPerformed
@@ -887,6 +882,10 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private void txtTGDuKienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTGDuKienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTGDuKienActionPerformed
+
+    private void btnFirstMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFirstMouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnFirstMouseDragged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -910,10 +909,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboMaPT;
     private javax.swing.JComboBox<String> cboMaTD;
     private javax.swing.JComboBox<String> cboMaTX;
+    private javax.swing.JButton inVeBtn;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -964,6 +962,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm1;
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm2;
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm4;
+    private javax.swing.JButton suaTTVeBtn;
     private javax.swing.JTable tblDatVe;
     private javax.swing.JTable tblLichTrinh;
     private javax.swing.JTextField txtChiPhiLichTrinh;
@@ -1084,6 +1083,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         this.fillComboBoxTuyenDuong();
         this.fillComboBoxPhuongTien();
         this.fillComboBoxTaiXe();
+        this.fillTable();
+        this.row = -1;
+        this.updateStatus();
     }
 
     void fillTable() { // Fill data to lichTrinh table
@@ -1091,9 +1093,11 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         model.setRowCount(0);
         try {
 
-            List<LichTrinh> list = null;
-            for (LichTrinh kh : list) {
-                Object[] row = {};
+            List<LichTrinh> list = ltDao.selectAll();
+            for (LichTrinh lt : list) {
+                Object[] row = {lt.getMaLT(), lt.getMaTD(), lt.getMaPT(), lt.getMaTX(), lt.getMaNV(),
+                    XDate.formatDate(lt.getNgayXP(), "dd-MM-uuuu"), XDate.formatTime(lt.getTgDuKien()),
+                    String.valueOf(lt.getTongVe()), String.valueOf(lt.getChiPhiPhatSinh()), String.valueOf(lt.getTongDoanhThu())};
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -1154,5 +1158,126 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             lblSoLuongVe.setText("" + soLuong);
         }
     } // btnTang
+
+    void setForm(LichTrinh lt) { // Dsiplay NhanVien to form 
+        txtMaLT.setText(lt.getMaNV());
+
+    }
+
+    LichTrinh getForm() { // Create new NhanVien from form
+        LichTrinh nv = new LichTrinh();
+        return null;
+    }
+
+    void clearForm() { // [btnMoi]
+        LichTrinh lt = new LichTrinh();
+        this.setForm(lt);
+        this.row = -1;
+        this.updateStatus();
+    }
+
+    void updateStatus() { // Change status of btns
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tblLichTrinh.getRowCount() - 1);
+        // status form
+        txtMaLT.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+//         status backward and forward btn
+        btnFirst.setEnabled(edit && !first);
+        btnPre.setEnabled(edit && !first);
+        btnNext.setEnabled(edit && !last);
+        btnLast.setEnabled(edit && !last);
+    }
+
+    void insert() { // [btnThem]
+        if (getForm() != null) {
+            LichTrinh lt = getForm();
+            try {
+                ltDao.insert(lt);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Them moi thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Them moi that bai");
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    void update() { // [btnSua]\
+        if (getForm() != null) {
+            LichTrinh lt = getForm();
+            try {
+                ltDao.update(lt);
+                this.fillTable();
+                MsgBox.alert(this, "Cap nhat thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cap nhat that bai");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void delete() { // [btnXoa]
+        if (!XValidations.checkIsEmpty(this, txtMaLT)) {
+            String manv = txtMaLT.getText();
+            if (MsgBox.confirm(this, "Ban thuc su muon xoa lich trinh nay?")) {
+                try {
+                    ltDao.delete(manv);
+                    this.fillTable();
+                    this.clearForm();
+                    MsgBox.alert(this, "Xoa thanh cong");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xoa that bai");
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    void edit() { // [tblNhanVien double click]
+        String maLt = (String) tblLichTrinh.getValueAt(this.row, 0);
+        LichTrinh lt = ltDao.selectById(maLt);
+        this.setForm(lt);
+        this.updateStatus();
+    }
+
+    private void first() {
+        this.row = 0;
+        this.edit();
+        this.showDetails();
+    } // btnFirst
+
+    private void prev() {
+        if (this.row > 0) {
+            this.row--;
+            this.edit();
+        }
+        this.showDetails();
+    } // btnPrev
+
+    private void next() {
+        if (this.row < tblLichTrinh.getRowCount() - 1) {
+            this.row++;
+            this.edit();
+        }
+        this.showDetails();
+    } // btnNext
+
+    private void last() {
+        this.row = tblLichTrinh.getRowCount() - 1;
+        this.edit();
+        this.showDetails();
+    } // btnLast
+
+    public void showDetails() {
+        if (row > -1) {
+            tblLichTrinh.setRowSelectionInterval(row, row);
+        }
+    }
 
 }

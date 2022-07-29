@@ -6,19 +6,16 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class LichTrinh {
-
-    public static String get() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     String maLT;
     int maTD;
     int maPT;
+    String maTX;
     String maNV;
     LocalDate ngayXP;
     LocalTime tgDuKien;
-    double chiPhiBanDau;
     double chiPhiPhatSinh;
     double tongDoanhThu;
+    int tongVe;
   
 
     public String getMaLT() {
@@ -69,14 +66,6 @@ public class LichTrinh {
         this.tgDuKien = tgDuKien;
     }
 
-    public double getChiPhiBanDau() {
-        return chiPhiBanDau;
-    }
-
-    public void setChiPhiBanDau(double chiPhiBanDau) {
-        this.chiPhiBanDau = chiPhiBanDau;
-    }
-
     public double getChiPhiPhatSinh() {
         return chiPhiPhatSinh;
     }
@@ -92,6 +81,21 @@ public class LichTrinh {
     public void setTongDoanhThu(double tongDoanhThu) {
         this.tongDoanhThu = tongDoanhThu;
     }
-    
+
+    public String getMaTX() {
+        return maTX;
+    }
+
+    public void setMaTX(String maTX) {
+        this.maTX = maTX;
+    }
+
+    public int getTongVe() {
+        return tongVe;
+    }
+
+    public void setTongVe(int tongVe) {
+        this.tongVe = tongVe;
+    }
     
 }

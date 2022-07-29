@@ -10,18 +10,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import com.utils.XDate;
 
+public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
 
-public class LichTrinhDAO extends AtbusDAO<LichTrinh, String>  {
-    String INSERT_SQL = "INSERT INTO LichTrinh (maLT,maTD,maPT,maNV,ngayXP,TGDuKien,chiPhiBanDau,chiPhiPhatSinh,tongDoanhThu) VALUES (?,?,?,?,?,?,?,?,?)";
-    String UPDATE_SQL = "UPDATE LichTrinh SET maTD = ?, maPT = ?, maNV = ?, ngayXP = ?, TGDuKien = ?, chiPhiBanDau = ?, chiPhiPhatSinh = ?, tongDoanhThu = ? WHERE maLT = ?";
+    String INSERT_SQL = "INSERT INTO LichTrinh (maLT,maTD,maPT,maNV,maTX,ngayXP,TGDuKien,chiPhiPhatSinh,tongDoanhThu) VALUES (?,?,?,?,?,?,?,?,?)";
+    String UPDATE_SQL = "UPDATE LichTrinh SET maTD = ?, maPT = ?, maNV = ?, ngayXP = ?, TGDuKien = ?, maTX = ?, chiPhiPhatSinh = ?, tongDoanhThu = ? WHERE maLT = ?";
     String DELETE_SQL = "DELETE FROM LichTrinh WHERE maLT = ?";
     String SELECT_ALL_SQL = "SELECT * FROM LichTrinh";
     String SELECT_BY_ID_SQL = "SELECT * FROM LichTrinh WHERE maLT = ?";
-    
+
     @Override
     public void insert(LichTrinh entity) {
         try {
-            Xjdbc.update(INSERT_SQL, entity.getMaLT(), entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getChiPhiBanDau(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu());
+            Xjdbc.update(INSERT_SQL, entity.getMaLT(), entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getMaTX(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu());
         } catch (SQLException ex) {
             Logger.getLogger(LichTrinhDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -30,7 +30,7 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String>  {
     @Override
     public void update(LichTrinh entity) {
         try {
-            Xjdbc.update(UPDATE_SQL,entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getChiPhiBanDau(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu(), entity.getMaLT());
+            Xjdbc.update(UPDATE_SQL, entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getMaTX(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu(), entity.getMaLT());
         } catch (SQLException ex) {
             Logger.getLogger(LichTrinhDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -65,15 +65,15 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String>  {
         try {
             ResultSet rs = Xjdbc.query(sql, args);
             while (rs.next()) {
-                String[] times = XDate.splitTime( rs.getString("tgDuKien"));
+                String[] times = XDate.splitTime(rs.getString("tgDuKien"));
                 LichTrinh entity = new LichTrinh();
                 entity.setMaLT(rs.getString("maLT"));
                 entity.setMaTD(rs.getInt("maTD"));
                 entity.setMaPT(rs.getInt("maPT"));
                 entity.setMaNV(rs.getString("maNV"));
+                entity.setMaTX(rs.getString("maTX"));
                 entity.setNgayXP(XDate.createDate(rs.getString("ngayXP")));
-                entity.setTgDuKien(XDate.createTime(times[0],times[1],times[2]));
-                entity.setChiPhiBanDau(rs.getDouble("chiPhiBanDau"));
+                entity.setTgDuKien(XDate.createTime(times[0], times[1], times[2].substring(0, 2)));
                 entity.setChiPhiPhatSinh(rs.getDouble("chiPhiPhatSinh"));
                 entity.setTongDoanhThu(rs.getDouble("tongDoanhThu"));
                 list.add(entity);

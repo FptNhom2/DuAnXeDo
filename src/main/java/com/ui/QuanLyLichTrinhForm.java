@@ -1,7 +1,6 @@
 package com.ui;
 
 import com.dao.LichTrinhDAO;
-import com.dao.PhuongTienDAO;
 import com.entity.LichTrinh;
 import com.utils.MsgBox;
 import java.awt.Color;
@@ -994,12 +993,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtTGDuKien;
     private javax.swing.JTextField txtTimKiemNgayKhoiHanh;
     // End of variables declaration//GEN-END:variables
-
-    
-    PhuongTienDAO dao = new PhuongTienDAO();
-    
-
-
 
     private void init(){
         // design giao diện 

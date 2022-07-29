@@ -509,7 +509,7 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
                 Object[] row = {
                     pt.getMaPT(),
                     pt.getBangXoSe(),
-                    pt.isTrangThai() ? "Đi" : "Chưa đi",
+                    pt.getTrangThai() ? "Đi" : "Chưa đi",
                     pt.getSlChoNgoi(),
                     XDate.formatDate(pt.getNgayKiemDinh(), "dd-MM-uuuu"),
                     XDate.formatDate(pt.getNgayBaoTri(), "dd-MM-uuuu")
@@ -542,10 +542,10 @@ public class QuanLyPhuongTienForm extends javax.swing.JPanel {
     void setForm(PhuongTien pt) { // Dsiplay PhuongTien to form 
         txtMaPT.setText(String.valueOf(pt.getMaPT()));
         txtBienso.setText(pt.getBangXoSe());
-        if (pt.isTrangThai()) {
-            rdodi.setSelected(pt.isTrangThai());
+        if (pt.getTrangThai()) {
+            rdodi.setSelected(pt.getTrangThai());
         }
-        rdochuadi.setSelected(!pt.isTrangThai());
+        rdochuadi.setSelected(!pt.getTrangThai());
         txtSLCN.setText(String.valueOf(pt.getSlChoNgoi()));
         txtNgayKD.setText(XDate.formatDate(pt.getNgayKiemDinh(), "dd-MM-uuuu"));
         txtNgayBT.setText(XDate.formatDate(pt.getNgayBaoTri(), "dd-MM-uuuu"));

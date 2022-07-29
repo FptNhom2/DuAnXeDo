@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import com.utils.XDate;
 
 public class PhuongTien {
+
     int maPT;
     String bangXoSe;
     boolean trangThai;
@@ -15,8 +16,6 @@ public class PhuongTien {
         this.ngayKiemDinh = XDate.createDate(01, 01, 1900);
         this.ngayBaoTri = XDate.createDate(01, 01, 1900);
     }
-    
-    
 
     public int getMaPT() {
         return maPT;
@@ -34,7 +33,7 @@ public class PhuongTien {
         this.bangXoSe = bangXoSe;
     }
 
-    public boolean isTrangThai() {
+    public boolean getTrangThai() {
         return trangThai;
     }
 
@@ -70,8 +69,5 @@ public class PhuongTien {
     public String toString() {
         return this.bangXoSe;
     }
-    
-    
-    
-    
+
 }

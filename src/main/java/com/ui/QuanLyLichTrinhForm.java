@@ -1086,27 +1086,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         this.fillComboBoxTaiXe();
     }
 
-    // tăng giảm số lượng vé đang đặt
-    private void giamSoLuongVeDat() {
-        if (soLuong == 0) {
-            lblSoLuongVe.setText("" + soLuong);
-            return;
-        } else {
-            soLuong--;
-            lblSoLuongVe.setText("" + soLuong);
-        }
-    } // btnGiam
-
-    private void tangSoLuongVeDat() {
-        soLuong++;
-        if (soLuong > 5) {
-            MsgBox.alert(this, "Một khách Chỉ được đặt tối đa 5 vé");
-            return;
-        } else {
-            lblSoLuongVe.setText("" + soLuong);
-        }
-    } // btnTang
-
     void fillTable() { // Fill data to lichTrinh table
         DefaultTableModel model = (DefaultTableModel) tblLichTrinh.getModel();
         model.setRowCount(0);
@@ -1137,7 +1116,10 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         model.removeAllElements();
         List<PhuongTien> list = ptDao.selectAll();
         for (PhuongTien pt : list) {
-            model.addElement(pt);
+            if (!pt.getTrangThai()) {
+                model.addElement(pt);
+            }
+
         }
     }
 
@@ -1146,8 +1128,31 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         model.removeAllElements();
         List<TaiXe> list = txDao.selectAll();
         for (TaiXe tx : list) {
-            model.addElement(tx);
+            if (!tx.getTrangThai()) {
+                model.addElement(tx);
+            }
         }
     }
+
+    // tăng giảm số lượng vé đang đặt
+    private void giamSoLuongVeDat() {
+        if (soLuong == 0) {
+            lblSoLuongVe.setText("" + soLuong);
+            return;
+        } else {
+            soLuong--;
+            lblSoLuongVe.setText("" + soLuong);
+        }
+    } // btnGiam
+
+    private void tangSoLuongVeDat() {
+        soLuong++;
+        if (soLuong > 5) {
+            MsgBox.alert(this, "Một khách Chỉ được đặt tối đa 5 vé");
+            return;
+        } else {
+            lblSoLuongVe.setText("" + soLuong);
+        }
+    } // btnTang
 
 }

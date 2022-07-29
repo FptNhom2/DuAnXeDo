@@ -25,7 +25,7 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, Integer> {
     @Override
     public void insert(PhuongTien entity) {
         try {
-            Xjdbc.update(INSERT_SQL,entity.getBangXoSe(), entity.isTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri());
+            Xjdbc.update(INSERT_SQL,entity.getBangXoSe(), entity.getTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri());
         } catch (SQLException ex) {
             Logger.getLogger(PhuongTienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -34,7 +34,7 @@ public class PhuongTienDAO extends AtbusDAO<PhuongTien, Integer> {
     @Override
     public void update(PhuongTien entity) {
         try {
-            Xjdbc.update(UPDATE_SQL, entity.getBangXoSe(), entity.isTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri(), entity.getMaPT());
+            Xjdbc.update(UPDATE_SQL, entity.getBangXoSe(), entity.getTrangThai(), entity.getSlChoNgoi(), entity.getNgayKiemDinh(), entity.getNgayBaoTri(), entity.getMaPT());
         } catch (SQLException ex) {
             Logger.getLogger(PhuongTienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

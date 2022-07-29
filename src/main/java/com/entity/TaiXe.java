@@ -36,10 +36,6 @@ public class TaiXe {
         return trangThai;
     }
 
-    public boolean isTrangThai() {
-        return trangThai;
-    }
-
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }

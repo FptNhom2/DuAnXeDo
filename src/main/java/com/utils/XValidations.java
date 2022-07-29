@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JComboBox;
 import javax.swing.text.JTextComponent;
 
 public class XValidations {

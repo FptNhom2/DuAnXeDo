@@ -47,7 +47,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTuyenDuong = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        btnThemMoi = new javax.swing.JButton();
+        btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
@@ -104,18 +104,16 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(248, 250, 254));
 
-        btnThemMoi.setBackground(new java.awt.Color(255, 255, 255));
-        btnThemMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
-        btnThemMoi.setText("Thêm mới");
-        btnThemMoi.setPreferredSize(new java.awt.Dimension(260, 35));
-        btnThemMoi.addActionListener(new java.awt.event.ActionListener() {
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
+        btnThem.setText("Thêm mới");
+        btnThem.setPreferredSize(new java.awt.Dimension(260, 35));
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemMoiActionPerformed(evt);
+                btnThemActionPerformed(evt);
             }
         });
-        jPanel2.add(btnThemMoi);
+        jPanel2.add(btnThem);
 
-        btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -126,7 +124,6 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnSua);
 
-        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -137,7 +134,6 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnXoa);
 
-        btnMoi.setBackground(new java.awt.Color(255, 255, 255));
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -150,7 +146,6 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
 
-        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(260, 35));
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +155,6 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnFirst);
 
-        btnPrevious.setBackground(new java.awt.Color(255, 255, 255));
         btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
         btnPrevious.setPreferredSize(new java.awt.Dimension(260, 35));
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +164,6 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnPrevious);
 
-        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
         btnNext.setPreferredSize(new java.awt.Dimension(260, 35));
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -180,7 +173,6 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnNext);
 
-        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
         btnLast.setPreferredSize(new java.awt.Dimension(260, 35));
         btnLast.addActionListener(new java.awt.event.ActionListener() {
@@ -279,9 +271,9 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblTuyenDuongMouseClicked
 
-    private void btnThemMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemMoiActionPerformed
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         insert();
-    }//GEN-LAST:event_btnThemMoiActionPerformed
+    }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         delete();
@@ -303,7 +295,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnSua;
-    private javax.swing.JButton btnThemMoi;
+    private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cboTenMien;
     private javax.swing.JLabel jLabel1;
@@ -400,6 +392,9 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
     private TuyenDuong getForm() {
         TuyenDuong td = new TuyenDuong(); // tạo ra 1 đối tượng
+        if (updateStatus()) {
+            td.setMaTD(Integer.valueOf(txtMaTuyenDuong.getText()));
+        }
         boolean isValidate = false;
         String tenTd = txtTenTuyenDuong.getText();
         String gia = txtGia.getText();
@@ -515,21 +510,23 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
     //==============================================================//
 
     //==========================Điều khiển trạng thái nút quản lý==========================//
-//    private void updateStatus(){
-//        boolean edit = (this.row >= 0); // đang chọn 1 hàng đâu đó
-//        boolean first = (this.row == 0); // đang ở bảng ghi đầu tiên
-//        boolean last = (this.row == tblTuyenDuong.getRowCount() - 1); // đang ở vị trí cuối cùng
-    // trạng thái form
-    // Editable: đang xem
-//        txtMaNhanVien.setEditable(!edit); // nếu edit == false thì khi đó mới cho phép sửa
-//        btnThem.setEnabled(!edit);
-//        btnSua.setEnabled(edit);
-//        btnXoa.setEnabled(edit);
-//        // trạng thái điều hướng
-//        btnFirst.setEnabled(edit && !first);
-//        btnPrevious.setEnabled(edit && !first);
-//        btnNext.setEnabled(edit && !last);
-//        btnLast.setEnabled(edit && !last);
-//    } // cập nhật trạng thái các nút
+    private boolean updateStatus() {
+        boolean edit = (this.row >= 0); // đang chọn 1 hàng đâu đó
+        boolean first = (this.row == 0); // đang ở bảng ghi đầu tiên
+        boolean last = (this.row == tblTuyenDuong.getRowCount() - 1); // đang ở vị trí cuối cùng
+//     trạng thái form
+//     Editable: đang xem
+        txtMaTuyenDuong.setEditable(!edit); // nếu edit == false thì khi đó mới cho phép sửa
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
+        // trạng thái điều hướng
+        btnFirst.setEnabled(edit && !first);
+        btnPrevious.setEnabled(edit && !first);
+        btnNext.setEnabled(edit && !last);
+        btnLast.setEnabled(edit && !last);
+
+        return edit;
+    } // cập nhật trạng thái các nút
     //==============================================================//
 }

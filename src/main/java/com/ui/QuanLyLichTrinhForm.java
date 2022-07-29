@@ -1,10 +1,17 @@
 package com.ui;
 
 import com.dao.LichTrinhDAO;
+import com.dao.TuyenDuongDAO;
+import com.dao.PhuongTienDAO;
+import com.dao.TaiXeDAO;
 import com.entity.LichTrinh;
+import com.entity.TuyenDuong;
+import com.entity.PhuongTien;
+import com.entity.TaiXe;
 import com.utils.MsgBox;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,16 +20,15 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     public QuanLyLichTrinhForm() {
         initComponents();
         DefaultTableCellRenderer headerCellRenderer = new DefaultTableCellRenderer();
-        headerCellRenderer.setBackground(new Color(192,227,149));
-        for(int i = 0; i < tblDatVe.getModel().getColumnCount(); ++i)
-        {
+        headerCellRenderer.setBackground(new Color(192, 227, 149));
+        for (int i = 0; i < tblDatVe.getModel().getColumnCount(); ++i) {
             tblDatVe.getColumnModel().getColumn(i).setHeaderRenderer(headerCellRenderer);
         }
-        for(int i = 0; i < tblLichTrinh.getModel().getColumnCount(); ++i)
-        {
+        for (int i = 0; i < tblLichTrinh.getModel().getColumnCount(); ++i) {
             tblLichTrinh.getColumnModel().getColumn(i).setHeaderRenderer(headerCellRenderer);
         }
-        init();
+        initUI();
+        initData();
     }
 
     @SuppressWarnings("unchecked")
@@ -166,7 +172,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(248, 250, 254));
 
-        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         btnFirst.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(280, 35));
@@ -177,7 +182,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnFirst);
 
-        btnPre.setBackground(new java.awt.Color(255, 255, 255));
         btnPre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
         btnPre.setPreferredSize(new java.awt.Dimension(275, 35));
@@ -188,7 +192,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnPre);
 
-        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
         btnNext.setPreferredSize(new java.awt.Dimension(275, 35));
@@ -199,7 +202,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnNext);
 
-        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
         btnLast.setPreferredSize(new java.awt.Dimension(280, 35));
@@ -212,7 +214,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(248, 250, 254));
 
-        btnThem.setBackground(new java.awt.Color(255, 255, 255));
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnThem.setText("Thêm");
@@ -224,7 +225,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnThem);
 
-        btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
@@ -236,7 +236,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnSua);
 
-        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
@@ -248,7 +247,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnXoa);
 
-        btnMoi.setBackground(new java.awt.Color(255, 255, 255));
         btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
@@ -290,12 +288,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         lblTongVe.setText("0");
 
         lblTongDoanhThu.setText("Tổng vé");
-
-        cboMaTD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cboMaPT.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cboMaTX.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout PanelLichTrinhLayout = new javax.swing.GroupLayout(PanelLichTrinh);
         PanelLichTrinh.setLayout(PanelLichTrinhLayout);
@@ -341,10 +333,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                                         .addGap(25, 25, 25)))
                                 .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                                    .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtChiPhiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                                        .addComponent(txtTGDuKien)
-                                        .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(txtChiPhiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                                    .addComponent(txtTGDuKien)
+                                    .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(122, 122, 122))))
         );
         PanelLichTrinhLayout.setVerticalGroup(
@@ -394,11 +385,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         PanelDatVe.setBackground(new java.awt.Color(248, 250, 254));
 
-        jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         jButton5.setText("Sửa thông tin vé");
 
-        jButton6.setBackground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/print.png"))); // NOI18N
         jButton6.setText("In vé");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -425,7 +414,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         jLabel26.setText("Số lượng vé:");
 
-        btnGiamSoLuongVeDat.setBackground(new java.awt.Color(255, 255, 255));
         btnGiamSoLuongVeDat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/subtract.png"))); // NOI18N
         btnGiamSoLuongVeDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -437,7 +425,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         lblSoLuongVe.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblSoLuongVe.setText("0");
 
-        btnTangSoLuongVeDat.setBackground(new java.awt.Color(255, 255, 255));
         btnTangSoLuongVeDat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/plus.png"))); // NOI18N
         btnTangSoLuongVeDat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -451,11 +438,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel29.setText("0 VND");
 
-        jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/order_ticket.png"))); // NOI18N
         jButton3.setText("Đặt vé");
 
-        jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         jButton4.setText("Hủy vé");
 
@@ -834,9 +819,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         //        try {
-            //
-            //        } catch (Exception e) {
-            //        }
+        //
+        //        } catch (Exception e) {
+        //        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnGiamSoLuongVeDatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiamSoLuongVeDatActionPerformed
@@ -994,7 +979,14 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtTimKiemNgayKhoiHanh;
     // End of variables declaration//GEN-END:variables
 
-    private void init(){
+    private LichTrinhDAO ltDao = new LichTrinhDAO();
+    private TuyenDuongDAO tdDao = new TuyenDuongDAO();
+    private PhuongTienDAO ptDao = new PhuongTienDAO();
+    private TaiXeDAO txDao = new TaiXeDAO();
+    private int soLuong = 0;
+    private int row = -1;
+
+    private void initUI() {
         // design giao diện 
         /*
             Tab lịch trình
@@ -1004,33 +996,33 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             txtNgayXP
             txtTGDuKien
             txtChiPhiLichTrinh
-        */
-        cboMaTD.setBackground(new Color(235,235,235)); // background
+         */
+        cboMaTD.setBackground(new Color(235, 235, 235)); // background
         cboMaTD.setForeground(Color.decode("#7A8C8D"));
         cboMaTD.setFont(new java.awt.Font("sansserif", 0, 13));
-        cboMaPT.setBackground(new Color(235,235,235)); // background
+        cboMaPT.setBackground(new Color(235, 235, 235)); // background
         cboMaPT.setForeground(Color.decode("#7A8C8D"));
         cboMaPT.setFont(new java.awt.Font("sansserif", 0, 13));
-        cboMaTX.setBackground(new Color(235,235,235)); // background
+        cboMaTX.setBackground(new Color(235, 235, 235)); // background
         cboMaTX.setForeground(Color.decode("#7A8C8D"));
         cboMaTX.setFont(new java.awt.Font("sansserif", 0, 13));
         txtMaLT.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        txtMaLT.setBackground(new Color(192,227,149)); // background
+        txtMaLT.setBackground(new Color(192, 227, 149)); // background
         txtMaLT.setForeground(Color.decode("#7A8C8D"));
         txtMaLT.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtMaLT.setSelectionColor(new Color(75, 175, 152));
         txtNgayXP.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        txtNgayXP.setBackground(new Color(192,227,149)); // background
+        txtNgayXP.setBackground(new Color(192, 227, 149)); // background
         txtNgayXP.setForeground(Color.decode("#7A8C8D"));
         txtNgayXP.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtNgayXP.setSelectionColor(new Color(75, 175, 152));
         txtTGDuKien.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        txtTGDuKien.setBackground(new Color(192,227,149)); // background
+        txtTGDuKien.setBackground(new Color(192, 227, 149)); // background
         txtTGDuKien.setForeground(Color.decode("#7A8C8D"));
         txtTGDuKien.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtTGDuKien.setSelectionColor(new Color(75, 175, 152));
         txtChiPhiLichTrinh.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        txtChiPhiLichTrinh.setBackground(new Color(192,227,149)); // background
+        txtChiPhiLichTrinh.setBackground(new Color(192, 227, 149)); // background
         txtChiPhiLichTrinh.setForeground(Color.decode("#7A8C8D"));
         txtChiPhiLichTrinh.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtChiPhiLichTrinh.setSelectionColor(new Color(75, 175, 152));
@@ -1046,66 +1038,116 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             button tạo vé
             button in vé
             button làm mới
-        */
-        cboMaLichTrinh.setBackground(new Color(235,235,235)); // background
+         */
+        cboMaLichTrinh.setBackground(new Color(235, 235, 235)); // background
         cboMaLichTrinh.setForeground(Color.decode("#7A8C8D"));
         cboMaLichTrinh.setFont(new java.awt.Font("sansserif", 0, 13));
         txtMaKhachHang.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        txtMaKhachHang.setBackground(new Color(192,227,149)); // background
+        txtMaKhachHang.setBackground(new Color(192, 227, 149)); // background
         txtMaKhachHang.setForeground(Color.decode("#7A8C8D"));
         txtMaKhachHang.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtMaKhachHang.setSelectionColor(new Color(75, 175, 152));
         txtHoVaTen.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        txtHoVaTen.setBackground(new Color(192,227,149)); // background
+        txtHoVaTen.setBackground(new Color(192, 227, 149)); // background
         txtHoVaTen.setForeground(Color.decode("#7A8C8D"));
         txtHoVaTen.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtHoVaTen.setSelectionColor(new Color(75, 175, 152));
         txtSoDienThoai.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8)); // độ lớn của ô nhập
-        txtSoDienThoai.setBackground(new Color(192,227,149)); // background
+        txtSoDienThoai.setBackground(new Color(192, 227, 149)); // background
         txtSoDienThoai.setForeground(Color.decode("#7A8C8D"));
         txtSoDienThoai.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtSoDienThoai.setSelectionColor(new Color(75, 175, 152));
         txtEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8)); // độ lớn của ô nhập
-        txtEmail.setBackground(new Color(192,227,149)); // background
+        txtEmail.setBackground(new Color(192, 227, 149)); // background
         txtEmail.setForeground(Color.decode("#7A8C8D"));
         txtEmail.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtEmail.setSelectionColor(new Color(75, 175, 152));
         txtMaLichTrinh.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8)); // độ lớn của ô nhập
-        txtMaLichTrinh.setBackground(new Color(192,227,149)); // background
+        txtMaLichTrinh.setBackground(new Color(192, 227, 149)); // background
         txtMaLichTrinh.setForeground(Color.decode("#7A8C8D"));
         txtMaLichTrinh.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtMaLichTrinh.setSelectionColor(new Color(75, 175, 152));
         txtTimKiemNgayKhoiHanh.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8)); // độ lớn của ô nhập
-        txtTimKiemNgayKhoiHanh.setBackground(new Color(192,227,149)); // background
+        txtTimKiemNgayKhoiHanh.setBackground(new Color(192, 227, 149)); // background
         txtTimKiemNgayKhoiHanh.setForeground(Color.decode("#7A8C8D"));
         txtTimKiemNgayKhoiHanh.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtTimKiemNgayKhoiHanh.setSelectionColor(new Color(75, 175, 152));
-        btnCreate.setBackground(new Color(22,116,66));
+        btnCreate.setBackground(new Color(22, 116, 66));
         btnCreate.setForeground(new Color(250, 250, 250));
-        btnPrint.setBackground(new Color(22,116,66));
+        btnPrint.setBackground(new Color(22, 116, 66));
         btnPrint.setForeground(new Color(250, 250, 250));
-        btnLamMoi.setBackground(new Color(22,116,66));
+        btnLamMoi.setBackground(new Color(22, 116, 66));
         btnLamMoi.setForeground(new Color(250, 250, 250));
     }
+
+    private void initData() {
+        this.fillComboBoxTuyenDuong();
+        this.fillComboBoxPhuongTien();
+        this.fillComboBoxTaiXe();
+    }
+
     // tăng giảm số lượng vé đang đặt
-    int soLuong = 0;
-    private void giamSoLuongVeDat(){
-        if(soLuong == 0){
+    private void giamSoLuongVeDat() {
+        if (soLuong == 0) {
             lblSoLuongVe.setText("" + soLuong);
             return;
-        }else{
+        } else {
             soLuong--;
             lblSoLuongVe.setText("" + soLuong);
         }
     } // btnGiam
-    private void tangSoLuongVeDat(){
+
+    private void tangSoLuongVeDat() {
         soLuong++;
-        if(soLuong > 5){
+        if (soLuong > 5) {
             MsgBox.alert(this, "Một khách Chỉ được đặt tối đa 5 vé");
             return;
-        }else{
+        } else {
             lblSoLuongVe.setText("" + soLuong);
         }
     } // btnTang
-    
+
+    void fillTable() { // Fill data to lichTrinh table
+        DefaultTableModel model = (DefaultTableModel) tblLichTrinh.getModel();
+        model.setRowCount(0);
+        try {
+
+            List<LichTrinh> list = null;
+            for (LichTrinh kh : list) {
+                Object[] row = {};
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Loi truy van du lieu");
+            e.printStackTrace();
+        }
+    }
+
+    void fillComboBoxTuyenDuong() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaTD.getModel();
+        model.removeAllElements();
+        List<TuyenDuong> list = tdDao.selectAll();
+        for (TuyenDuong td : list) {
+            model.addElement(td);
+        }
+    }
+
+    void fillComboBoxPhuongTien() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaPT.getModel();
+        model.removeAllElements();
+        List<PhuongTien> list = ptDao.selectAll();
+        for (PhuongTien pt : list) {
+            model.addElement(pt);
+        }
+    }
+
+    void fillComboBoxTaiXe() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaTX.getModel();
+        model.removeAllElements();
+        List<TaiXe> list = txDao.selectAll();
+        for (TaiXe tx : list) {
+            model.addElement(tx);
+        }
+    }
+
 }

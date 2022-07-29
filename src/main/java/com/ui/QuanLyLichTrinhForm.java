@@ -128,8 +128,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(248, 250, 254));
 
+        jLabel1.setBackground(new java.awt.Color(192, 227, 149));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(192, 227, 149));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ LỊCH TRÌNH");
 
@@ -800,7 +800,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 764, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

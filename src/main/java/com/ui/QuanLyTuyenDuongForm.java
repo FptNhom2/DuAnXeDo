@@ -375,7 +375,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
     private void edit() {
         int maTD = (int) tblTuyenDuong.getValueAt(this.row, 0); // 0 là cột trên bảng
-        TuyenDuong td = tddao.selectById(String.valueOf(maTD)); // truy vấn dữ liệu từ database lên
+        TuyenDuong td = tddao.selectById(maTD); // truy vấn dữ liệu từ database lên
         this.setForm(td); // hiển thị thông tin tuyến đường đó lên form
         tblTuyenDuong.setRowSelectionInterval(row, row);
 //        this.updateStatus(); // cập nhật lại trạng thái các nút
@@ -452,7 +452,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
             } else {
                 if (MsgBox.confirm(this, "Bạn thực sự muốn xóa tuyến đường này?")) { // xác nhận 
                     try {
-                        String maTD = txtMaTuyenDuong.getText();
+                        int maTD = Integer.valueOf(txtMaTuyenDuong.getText());
                         tddao.delete(maTD); // xóa thành công thì:
                         this.fillTable(); // load lại dữ liệu lên bảng
                         this.clearForm(); // xóa trắng form

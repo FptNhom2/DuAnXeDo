@@ -65,12 +65,12 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         lblDiaChi4 = new javax.swing.JLabel();
         lblDiaChi5 = new javax.swing.JLabel();
         txtNgayXP = new javax.swing.JTextField();
-        txtTGDuKien = new javax.swing.JTextField();
         lblTongVe = new javax.swing.JLabel();
         lblTongDoanhThu = new javax.swing.JLabel();
         cboMaTD = new javax.swing.JComboBox<>();
         cboMaPT = new javax.swing.JComboBox<>();
         cboMaTX = new javax.swing.JComboBox<>();
+        cboTGDuKien = new javax.swing.JComboBox<>();
         PanelDatVe = new javax.swing.JPanel();
         suaTTVeBtn = new javax.swing.JButton();
         inVeBtn = new javax.swing.JButton();
@@ -116,9 +116,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        cboTD2 = new javax.swing.JComboBox<>();
-        cboTG2 = new javax.swing.JComboBox<>();
-        cboNgay2 = new javax.swing.JComboBox<>();
+        cboTD = new javax.swing.JComboBox<>();
+        cboTG = new javax.swing.JComboBox<>();
+        cboNgay = new javax.swing.JComboBox<>();
         PanelInVe = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtNoiDung = new javax.swing.JTextArea();
@@ -287,15 +287,11 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             }
         });
 
-        txtTGDuKien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTGDuKienActionPerformed(evt);
-            }
-        });
-
         lblTongVe.setText("0");
 
         lblTongDoanhThu.setText("Tổng vé");
+
+        cboTGDuKien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "07:00:00", "13:00:00", "18:00:00" }));
 
         javax.swing.GroupLayout PanelLichTrinhLayout = new javax.swing.GroupLayout(PanelLichTrinh);
         PanelLichTrinh.setLayout(PanelLichTrinhLayout);
@@ -337,19 +333,19 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                             .addComponent(txtChiPhiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                            .addComponent(txtTGDuKien)
-                            .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(173, 173, 173))
+                            .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cboTGDuKien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(171, 171, 171))
         );
         PanelLichTrinhLayout.setVerticalGroup(
             PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLichTrinhLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(12, 12, 12)
                 .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaTX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaLT, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDiaChi2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTGDuKien, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboTGDuKien, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(cboMaTD)
@@ -376,8 +372,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                             .addComponent(txtNgayXP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -619,7 +615,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboTD2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cboTD, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBorderForGioiThieuForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -637,8 +633,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorderForGioiThieuForm2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelBorderForGioiThieuForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboTG2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboNgay2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cboTG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboNgay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         panelBorderForGioiThieuForm2Layout.setVerticalGroup(
@@ -648,15 +644,15 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addGroup(panelBorderForGioiThieuForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelBorderForGioiThieuForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cboNgay2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cboNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBorderForGioiThieuForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                    .addComponent(cboTD2)
+                    .addComponent(cboTD)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cboTG2))
+                    .addComponent(cboTG))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelBorderForGioiThieuForm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
@@ -785,7 +781,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnPrint, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnLamMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(225, Short.MAX_VALUE))
+                .addContainerGap(170, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("In vé", PanelInVe);
@@ -804,7 +800,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane2))
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -883,10 +880,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNgayXPActionPerformed
 
-    private void txtTGDuKienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTGDuKienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTGDuKienActionPerformed
-
     private void btnFirstMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFirstMouseDragged
         // TODO add your handling code here:
     }//GEN-LAST:event_btnFirstMouseDragged
@@ -913,14 +906,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboMaTD;
     private javax.swing.JComboBox<String> cboMaTX;
     private javax.swing.JComboBox<String> cboNgay;
-    private javax.swing.JComboBox<String> cboNgay1;
-    private javax.swing.JComboBox<String> cboNgay2;
     private javax.swing.JComboBox<String> cboTD;
-    private javax.swing.JComboBox<String> cboTD1;
-    private javax.swing.JComboBox<String> cboTD2;
     private javax.swing.JComboBox<String> cboTG;
-    private javax.swing.JComboBox<String> cboTG1;
-    private javax.swing.JComboBox<String> cboTG2;
+    private javax.swing.JComboBox<String> cboTGDuKien;
     private javax.swing.JButton inVeBtn;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -941,47 +929,13 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
-    private javax.swing.JLabel jLabel54;
-    private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel60;
-    private javax.swing.JLabel jLabel61;
-    private javax.swing.JLabel jLabel62;
-    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1005,9 +959,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JLabel lblTongVe;
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm1;
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm2;
-    private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm3;
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm4;
-    private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm5;
     private javax.swing.JButton suaTTVeBtn;
     private javax.swing.JTable tblDatVe;
     private javax.swing.JTable tblLichTrinh;
@@ -1020,7 +972,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtNgayXP;
     private javax.swing.JTextArea txtNoiDung;
     private javax.swing.JTextField txtSoDienThoai;
-    private javax.swing.JTextField txtTGDuKien;
     private javax.swing.JTextField txtTimKiemNgayKhoiHanh;
     // End of variables declaration//GEN-END:variables
 
@@ -1061,11 +1012,10 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         txtNgayXP.setForeground(Color.decode("#7A8C8D"));
         txtNgayXP.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtNgayXP.setSelectionColor(new Color(75, 175, 152));
-        txtTGDuKien.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
-        txtTGDuKien.setBackground(new Color(192, 227, 149)); // background
-        txtTGDuKien.setForeground(Color.decode("#7A8C8D"));
-        txtTGDuKien.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
-        txtTGDuKien.setSelectionColor(new Color(75, 175, 152));
+        cboTGDuKien.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
+        cboTGDuKien.setBackground(new Color(192, 227, 149)); // background
+        cboTGDuKien.setForeground(Color.decode("#7A8C8D"));
+        cboTGDuKien.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtChiPhiLichTrinh.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8));
         txtChiPhiLichTrinh.setBackground(new Color(192, 227, 149)); // background
         txtChiPhiLichTrinh.setForeground(Color.decode("#7A8C8D"));
@@ -1160,7 +1110,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
     void fillComboBoxTuyenDuong() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboMaTD.getModel();
-        model.removeAllElements();
+
         List<TuyenDuong> list = tdDao.selectAll();
         for (TuyenDuong td : list) {
             model.addElement(td);
@@ -1211,9 +1161,22 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         }
     } // btnTang
 
-    void setForm(LichTrinh lt) { // Dsiplay NhanVien to form 
-        txtMaLT.setText(lt.getMaNV());
-
+    void setForm(LichTrinh lt) { // Dsiplay NhanVien to form
+        PhuongTien pt = ptDao.selectById(lt.getMaPT());
+        TaiXe tx = txDao.selectById(lt.getMaTX());
+        TuyenDuong td = tdDao.selectById(lt.getMaTD());
+        DefaultComboBoxModel modelTD = (DefaultComboBoxModel) cboMaTD.getModel();
+        DefaultComboBoxModel modelTX = (DefaultComboBoxModel) cboMaTX.getModel();
+        DefaultComboBoxModel modelPT = (DefaultComboBoxModel) cboMaPT.getModel();
+        txtMaLT.setText(lt.getMaLT());
+        modelTD.setSelectedItem(td);
+        modelTX.setSelectedItem(tx);
+        modelPT.setSelectedItem(pt);
+        txtNgayXP.setText(XDate.formatDate(lt.getNgayXP(), "dd-MM-uuuu"));
+        cboTGDuKien.setSelectedItem(XDate.formatTime(lt.getTgDuKien()));
+        lblTongVe.setText(String.valueOf(lt.getTongVe()));
+        txtChiPhiLichTrinh.setText(String.valueOf(lt.getChiPhiPhatSinh()));
+        lblTongDoanhThu.setText(String.valueOf(lt.getTongDoanhThu()));
     }
 
     LichTrinh getForm() { // Create new NhanVien from form

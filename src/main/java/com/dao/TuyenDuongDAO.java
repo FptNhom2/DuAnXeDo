@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TuyenDuongDAO extends AtbusDAO<TuyenDuong, String>{
+public class TuyenDuongDAO extends AtbusDAO<TuyenDuong, Integer>{
     String insert_sql = "insert into TuyenDuong (tenTD, tenMien, gia) values (?, ?, ?)";
     String update_sql = "update TuyenDuong set tenTD = ?, tenMien = ?, gia = ? where maTD = ?";
     String delete_sql = "delete from TuyenDuong where maTD = ?";
@@ -35,7 +35,7 @@ public class TuyenDuongDAO extends AtbusDAO<TuyenDuong, String>{
     }
 
     @Override
-    public void delete(String maTuyenDuong) {
+    public void delete(Integer maTuyenDuong) {
         try {
             Xjdbc.update(delete_sql, maTuyenDuong);
         } catch (SQLException ex) {
@@ -44,7 +44,7 @@ public class TuyenDuongDAO extends AtbusDAO<TuyenDuong, String>{
     }
 
     @Override
-    public TuyenDuong selectById(String maTuyenDuong) {
+    public TuyenDuong selectById(Integer maTuyenDuong) {
         List<TuyenDuong> list = this.selectBySql(select_by_id_sql, maTuyenDuong);
         if(list.isEmpty()){
             return null;

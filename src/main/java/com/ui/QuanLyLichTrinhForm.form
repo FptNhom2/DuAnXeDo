@@ -33,7 +33,8 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jLabel1" min="-2" pref="62" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane2" max="32767" attributes="0"/>
+              <Component id="jTabbedPane2" min="-2" pref="709" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -124,24 +125,24 @@
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="lblTongDoanhThu" pref="413" max="32767" attributes="0"/>
                                   <Component id="txtChiPhiLichTrinh" pref="413" max="32767" attributes="0"/>
-                                  <Component id="txtTGDuKien" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lblTongVe" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cboTGDuKien" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblMaTX" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="txtMaLT" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="lblDiaChi2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="txtTGDuKien" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="cboTGDuKien" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -176,8 +177,8 @@
                           <Component id="lblTongDoanhThu" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="364" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="320" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" pref="45" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -513,11 +514,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNgayXPActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="txtTGDuKien">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTGDuKienActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="lblTongVe">
               <Properties>
                 <Property name="text" type="java.lang.String" value="0"/>
@@ -552,6 +548,20 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="cboTGDuKien">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="07:00:00"/>
+                    <StringItem index="1" value="13:00:00"/>
+                    <StringItem index="2" value="18:00:00"/>
+                  </StringArray>
                 </Property>
               </Properties>
               <AuxValues>
@@ -990,7 +1000,7 @@
                               <Component id="jLabel12" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel16" alignment="1" max="32767" attributes="0"/>
                               <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
-                              <Component id="cboTD2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cboTD" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -1012,8 +1022,8 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="cboTG2" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
-                                      <Component id="cboNgay2" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="cboTG" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                      <Component id="cboNgay" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1028,7 +1038,7 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="jLabel17" alignment="3" max="32767" attributes="0"/>
-                                  <Component id="cboNgay2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="cboNgay" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jLabel18" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
@@ -1036,9 +1046,9 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel9" alignment="0" pref="32" max="32767" attributes="0"/>
-                              <Component id="cboTD2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cboTD" alignment="0" max="32767" attributes="0"/>
                               <Component id="jLabel19" alignment="0" max="32767" attributes="0"/>
-                              <Component id="cboTG2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cboTG" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1152,7 +1162,7 @@
                     <Property name="text" type="java.lang.String" value="c&#xf2;n 30 v&#xe9;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cboTD2">
+                <Component class="javax.swing.JComboBox" name="cboTD">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
@@ -1162,7 +1172,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cboTG2">
+                <Component class="javax.swing.JComboBox" name="cboTG">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
@@ -1172,7 +1182,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cboNgay2">
+                <Component class="javax.swing.JComboBox" name="cboNgay">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
@@ -1232,7 +1242,7 @@
                           </Group>
                           <Component id="btnLamMoi" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="225" max="32767" attributes="0"/>
+                      <EmptySpace pref="170" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

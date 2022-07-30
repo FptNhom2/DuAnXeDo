@@ -1,7 +1,16 @@
 package com.ui;
 
+import com.dao.LichTrinhDAO;
+import com.dao.PhuongTienDAO;
+import com.dao.TuyenDuongDAO;
+import com.entity.LichTrinh;
+import com.entity.PhuongTien;
+import com.entity.TuyenDuong;
+import com.utils.MsgBox;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class ThongKeForm extends javax.swing.JPanel {
 
@@ -118,7 +127,11 @@ public class ThongKeForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblThongKe;
     // End of variables declaration//GEN-END:variables
-
+    
+    private LichTrinhDAO ltDao = new LichTrinhDAO();
+    private TuyenDuongDAO tdDao = new TuyenDuongDAO();
+    private PhuongTienDAO ptDao = new PhuongTienDAO();
+    
     private void init() {
         // design giao diện
         // combobox theo năm
@@ -129,5 +142,25 @@ public class ThongKeForm extends javax.swing.JPanel {
         cboThongKeTheoThang.setBackground(new Color(235,235,235)); // background
         cboThongKeTheoThang.setForeground(Color.decode("#7A8C8D"));
         cboThongKeTheoThang.setFont(new java.awt.Font("sansserif", 0, 13));
+        fillTableThongKe();
+    }
+    
+    void fillTableThongKe(){
+       DefaultTableModel model = (DefaultTableModel) tblThongKe.getModel();
+        model.setRowCount(0);
+        try {
+
+            List<LichTrinh> list = ltDao.selectAll();
+            for (LichTrinh lt : list) {
+                PhuongTien pt = ptDao.selectById(lt.getMaPT());
+                TuyenDuong td = tdDao.selectById(lt.getMaTD());
+                Object[] row = {td.getTenTD(), lt.getMaLT(), lt.getTongVe(), pt.getBangXoSe(), lt.getTongDoanhThu(),
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.alert(this, "Loi truy van du lieu");
+            e.printStackTrace();
+        } 
     }
 }

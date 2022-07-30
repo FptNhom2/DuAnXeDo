@@ -1146,9 +1146,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
             List<LichTrinh> list = ltDao.selectAll();
             for (LichTrinh lt : list) {
-                PhuongTien pt = ptDao.selectById(lt.getMaPT());
-                TuyenDuong td = tdDao.selectById(lt.getMaTD());
-                Object[] row = {lt.getMaLT(), td.getTenTD(), pt.getBangXoSe(), lt.getMaTX(), lt.getMaNV(),
+//                PhuongTien pt = ptDao.selectById(lt.getMaPT());
+//                TuyenDuong td = tdDao.selectById(lt.getMaTD());
+                Object[] row = {lt.getMaLT(), lt.getMaTD(),lt.getMaPT(), lt.getMaTX(), lt.getMaNV(),
                     XDate.formatDate(lt.getNgayXP(), "dd-MM-uuuu"), XDate.formatTime(lt.getTgDuKien()),
                     String.valueOf(lt.getTongVe()), String.valueOf(lt.getChiPhiPhatSinh()), String.valueOf(lt.getTongDoanhThu())};
                 model.addRow(row);

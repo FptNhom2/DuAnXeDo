@@ -81,9 +81,11 @@ public class XValidations {
         boolean isValidate = true;
         for (JComboBox cbo : cbos) {
             if (cbo.getSelectedIndex() < 0) {
-                cbo.setRequestFocusEnabled(true);
+                cbo.setBackground(Color.yellow);
                 isValidate = false;
                 break;
+            } else {
+                cbo.setBackground(new Color(235, 235, 235));
             }
         }
         if (!isValidate) {

@@ -16,10 +16,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Component id="jPanel3" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -43,35 +40,47 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="lblSoDienThoai2" min="-2" pref="103" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="txtMaLT" min="-2" pref="697" max="-2" attributes="0"/>
+                      </Group>
                       <Component id="jPanel4" max="32767" attributes="0"/>
                       <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
                       <Component id="lblSoDienThoai" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="lblMaKH1" max="32767" attributes="0"/>
+                              <Component id="lblHoVaTen" max="32767" attributes="0"/>
+                              <Component id="lblMaKH" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtLSMV" max="32767" attributes="0"/>
+                              <Component id="txtMaKH" max="32767" attributes="0"/>
+                              <Component id="txtHoTen" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="lblGioKhoiHanh" min="-2" pref="103" max="-2" attributes="0"/>
                               <Component id="lblSoDienThoai1" alignment="0" min="-2" pref="103" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtEmail" max="32767" attributes="0"/>
-                              <Component id="txtSoDienThoai" max="32767" attributes="0"/>
-                              <Component id="txtSoDienThoai1" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="lblHoVaTen" max="32767" attributes="0"/>
-                              <Component id="lblMaKH" max="32767" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtMaKH" max="32767" attributes="0"/>
-                              <Component id="txtHoTen" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="22" pref="22" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtSoDienThoai" pref="696" max="32767" attributes="0"/>
+                                      <Component id="txtEmail" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="txtSoVe" alignment="1" min="-2" pref="697" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="43" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,7 +88,12 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblMaKH1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="txtLSMV" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMaKH" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="txtMaKH" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
@@ -101,11 +115,16 @@
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtSoDienThoai1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="txtSoVe" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="lblSoDienThoai1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="294" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtMaLT" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="lblSoDienThoai2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="147" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
@@ -132,6 +151,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMaKH">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtHoTen">
           <Events>
@@ -166,13 +188,14 @@
             <Component class="javax.swing.JTable" name="tblKhachHang">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="6" rowCount="4">
+                  <Table columnCount="7" rowCount="4">
                     <Column editable="false" title="M&#xe3; kh&#xe1;ch h&#xe0;ng" type="java.lang.Object"/>
                     <Column editable="false" title="H&#x1ecd; v&#xe0; t&#xea;n" type="java.lang.Object"/>
                     <Column editable="false" title="Email" type="java.lang.Object"/>
                     <Column editable="false" title="S&#x1ed1; &#x111;i&#x1ec7;n tho&#x1ea1;i" type="java.lang.Object"/>
                     <Column editable="true" title="M&#xe3; L&#x1ecb;ch tr&#xec;nh" type="java.lang.Object"/>
                     <Column editable="false" title="S&#x1ed1; v&#x1ebd; mua" type="java.lang.Object"/>
+                    <Column editable="true" title="M&#xe3; l&#x1ecb;ch s&#x1eed; mua v&#xe9;" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -213,6 +236,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblKhachHangMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -226,7 +252,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" pref="953" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -380,10 +406,36 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="S&#x1ed1; v&#x1ebd; mua"/>
+            <Property name="text" type="java.lang.String" value="S&#x1ed1; v&#xe9; mua :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSoDienThoai1">
+        <Component class="javax.swing.JTextField" name="txtSoVe">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblMaKH1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="M&#xe3; L&#x1ecb;ch s&#x1eed; mua v&#xe9; :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtLSMV">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSoDienThoai2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="M&#xe3; l&#x1ecb;ch tr&#xec;nh :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtMaLT">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

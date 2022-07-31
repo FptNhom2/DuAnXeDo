@@ -1,7 +1,11 @@
 package com.ui;
 
 import com.dao.KhachHangDAO;
+import com.dao.LichSuMuaVeDAO;
+import com.dao.LichTrinhDAO;
 import com.entity.KhachHang;
+import com.entity.LichSuMuaVe;
+import com.entity.LichTrinh;
 import com.utils.MsgBox;
 import com.utils.XValidations;
 import java.util.List;
@@ -14,6 +18,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
      */
     public QuanLyKhachHangForm() {
         initComponents();
+        this.init();
     }
 
     /**
@@ -47,7 +52,11 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         btnLast = new javax.swing.JButton();
         lblSoDienThoai1 = new javax.swing.JLabel();
-        txtSoDienThoai1 = new javax.swing.JTextField();
+        txtSoVe = new javax.swing.JTextField();
+        lblMaKH1 = new javax.swing.JLabel();
+        txtLSMV = new javax.swing.JTextField();
+        lblSoDienThoai2 = new javax.swing.JLabel();
+        txtMaLT = new javax.swing.JTextField();
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
 
@@ -56,6 +65,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
 
         lblSoDienThoai.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblSoDienThoai.setText("Số điện thoại :");
+
+        txtMaKH.setEnabled(false);
 
         txtHoTen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,21 +82,26 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
 
         tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã khách hàng", "Họ và tên", "Email", "Số điện thoại", "Mã Lịch trình", "Số vẽ mua"
+                "Mã khách hàng", "Họ và tên", "Email", "Số điện thoại", "Mã Lịch trình", "Số vẽ mua", "Mã lịch sử mua vé"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false
+                false, false, false, false, true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhachHangMouseClicked(evt);
             }
         });
         jScrollPane2.setViewportView(tblKhachHang);
@@ -101,7 +117,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +197,17 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         jPanel4.add(btnLast);
 
         lblSoDienThoai1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblSoDienThoai1.setText("Số vẽ mua");
+        lblSoDienThoai1.setText("Số vé mua :");
+
+        lblMaKH1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblMaKH1.setText("Mã Lịch sử mua vé :");
+
+        txtLSMV.setEnabled(false);
+
+        lblSoDienThoai2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblSoDienThoai2.setText("Mã lịch trình :");
+
+        txtMaLT.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -191,34 +217,47 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(lblSoDienThoai2, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtMaLT, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblMaKH1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblHoVaTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtLSMV)
+                            .addComponent(txtMaKH)
+                            .addComponent(txtHoTen)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblGioKhoiHanh, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblSoDienThoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(24, 24, 24)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail)
-                            .addComponent(txtSoDienThoai)
-                            .addComponent(txtSoDienThoai1)))
-                    .addComponent(jScrollPane2)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblHoVaTen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtMaKH)
-                            .addComponent(txtHoTen))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtSoDienThoai, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+                                    .addComponent(txtEmail)))
+                            .addComponent(txtSoVe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 697, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMaKH1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLSMV, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -236,10 +275,14 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                     .addComponent(txtSoDienThoai, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSoDienThoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoVe, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSoDienThoai1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtMaLT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSoDienThoai2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -250,9 +293,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -271,11 +312,13 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
 
         this.update();
+        this.fillTable();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 
         this.delete();
+        this.fillTable();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
@@ -297,6 +340,15 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         last();
     }//GEN-LAST:event_btnLastActionPerformed
 
+    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.row = tblKhachHang.getSelectedRow();
+            this.edit();
+//            this.editLS();
+        }
+    }//GEN-LAST:event_tblKhachHangMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -314,14 +366,18 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
     private javax.swing.JLabel lblGioKhoiHanh;
     private javax.swing.JLabel lblHoVaTen;
     private javax.swing.JLabel lblMaKH;
+    private javax.swing.JLabel lblMaKH1;
     private javax.swing.JLabel lblSoDienThoai;
     private javax.swing.JLabel lblSoDienThoai1;
+    private javax.swing.JLabel lblSoDienThoai2;
     private javax.swing.JTable tblKhachHang;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoTen;
+    private javax.swing.JTextField txtLSMV;
     private javax.swing.JTextField txtMaKH;
+    private javax.swing.JTextField txtMaLT;
     private javax.swing.JTextField txtSoDienThoai;
-    private javax.swing.JTextField txtSoDienThoai1;
+    private javax.swing.JTextField txtSoVe;
     // End of variables declaration//GEN-END:variables
 
     KhachHangDAO khDao = new KhachHangDAO();
@@ -332,18 +388,23 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         this.row = -1;
         this.updateStatus();
     }
+//    LichTrinhDAO ltdao = new LichTrinhDAO();
+    LichSuMuaVeDAO lsmvdao = new LichSuMuaVeDAO();
 
     void fillTable() { // Fill data to tblNhanVien
         DefaultTableModel model = (DefaultTableModel) tblKhachHang.getModel();
         model.setRowCount(0);
         try {
-            List<KhachHang> list = khDao.selectAll();
-            for (KhachHang kh : list) {
-                Object[] row = {kh.getMaKH(), kh.getHoTen(), kh.getEmail(), kh.getSdt()};
+            List<LichSuMuaVe> list = lsmvdao.selectAll();
+            for (LichSuMuaVe lsmv : list) {
+                KhachHang kh = khDao.selectById(lsmv.getMaKH());
+                Object[] row = {lsmv.getMaKH(), kh.getHoTen(), kh.getEmail(), kh.getSdt(), lsmv.getMaLT(), lsmv.getVeMua(),lsmv.getMaLSMV()};
                 model.addRow(row);
             }
         } catch (Exception e) {
             MsgBox.alert(this, "Loi truy van du lieu");
+            e.printStackTrace();
+//            System.out.println(e);
         }
     }
 
@@ -352,6 +413,13 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         txtHoTen.setText(nv.getHoTen());
         txtEmail.setText(nv.getEmail());
         txtSoDienThoai.setText(nv.getSdt());
+    }
+
+    void setFormLSMV(LichSuMuaVe ls) { // Dsiplay NhanVien to form 
+        txtLSMV.setText(String.valueOf(ls.getMaLSMV()));
+        txtMaLT.setText(ls.getMaLT());
+        txtMaKH.setText(ls.getMaKH());
+        txtSoVe.setText(String.valueOf(ls.getVeMua()));
     }
 
     KhachHang getForm() { // Create new NhanVien from form
@@ -369,7 +437,24 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         return isValidated ? kh : null;
     }
 
-    void updateStatus() { // Change status of btns
+    LichSuMuaVe getFormLSMV() { // Create new NhanVien from form
+        LichSuMuaVe ls = new LichSuMuaVe();
+        boolean isValidated = false;
+        if (!XValidations.checkIsEmpty(this, txtLSMV, txtMaLT, txtSoVe)) {
+            isValidated = XValidations.checkEmailPttern(this, txtEmail) ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
+        } else {
+            isValidated = false;
+        }
+        if (updateStatus()) {
+            ls.setMaLSMV(Integer.valueOf(txtLSMV.getText()));
+        }
+        ls.setMaLT(txtMaLT.getText());
+        ls.setMaKH(txtMaKH.getText());
+        ls.setVeMua(Integer.valueOf(txtSoVe.getText()));
+        return isValidated ? ls : null;
+    }
+
+    boolean updateStatus() { // Change status of btns
         boolean edit = (this.row >= 0);
         boolean first = (this.row == 0);
         boolean last = (this.row == tblKhachHang.getRowCount() - 1);
@@ -382,6 +467,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         btnPre.setEnabled(edit && !first);
         btnNext.setEnabled(edit && !last);
         btnLast.setEnabled(edit && !last);
+        return edit;
     }
 
     void update() { // [btnSua]\
@@ -389,7 +475,18 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             KhachHang nv = getForm();
             try {
                 khDao.update(nv);
-                this.fillTable();
+//                this.fillTable();
+//                MsgBox.alert(this, "Cap nhat thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cap nhat that bai");
+                e.printStackTrace();
+            }
+        }
+        if (getFormLSMV()!= null) {
+            LichSuMuaVe ls = getFormLSMV();
+            try {
+                lsmvdao.update(ls);
+//                this.fillTable();
                 MsgBox.alert(this, "Cap nhat thanh cong");
             } catch (Exception e) {
                 MsgBox.alert(this, "Cap nhat that bai");
@@ -399,12 +496,27 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
     }
 
     void delete() { // [btnXoa]
+        if (!XValidations.checkIsEmpty(this, txtLSMV)) {
+            int maLS = Integer.parseInt(txtLSMV.getText());
+//            if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
+                try {
+                    lsmvdao.delete(maLS);
+//                    this.fillTable();
+//                    MsgBox.alert(this, "Xoa thanh cong");
+                } catch (Exception e) {
+                    MsgBox.alert(this, "Xoa that bai");
+                    e.printStackTrace();
+                }
+//            }
+        }
         if (!XValidations.checkIsEmpty(this, txtMaKH)) {
             String maKh = txtMaKH.getText();
+            
             if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
                 try {
+//                    lsmvdao.delete(maLS);
                     khDao.delete(maKh);
-                    this.fillTable();
+//                    this.fillTable();
                     MsgBox.alert(this, "Xoa thanh cong");
                 } catch (Exception e) {
                     MsgBox.alert(this, "Xoa that bai");
@@ -412,6 +524,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                 }
             }
         }
+        
     }
 
     void edit() { // [tblNhanVien double click]
@@ -419,7 +532,13 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         KhachHang kh = khDao.selectById(maKH);
         this.setForm(kh);
         this.updateStatus();
+        int maLS = (Integer) tblKhachHang.getValueAt(this.row, 6);
+        LichSuMuaVe ls = lsmvdao.selectById(maLS);
+        this.setFormLSMV(ls);
+        this.updateStatus();
     }
+
+    
 
     private void first() {
         this.row = 0;

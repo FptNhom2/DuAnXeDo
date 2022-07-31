@@ -15,7 +15,7 @@ public class KhachHangDAO extends AtbusDAO<KhachHang, String> {
     String UPDATE_SQL = "UPDATE KhachHang SET hoTen = ?, email = ?, sdt = ? WHERE maKH = ?";
     String DELETE_SQL = "DELETE FROM KhachHang WHERE maKH = ?";
     String SELECT_ALL_SQL = "SELECT * FROM KhachHang";
-    String SELECT_BY_ID_SQL = "SELECT * FROM KhachHang WHERE MaNV = ?";
+    String SELECT_BY_ID_SQL = "SELECT * FROM KhachHang WHERE MaKH = ?";
 
     @Override
     public void insert(KhachHang entity) {
@@ -65,7 +65,7 @@ public class KhachHangDAO extends AtbusDAO<KhachHang, String> {
             ResultSet rs = Xjdbc.query(sql, args);
             while (rs.next()) {
                 KhachHang entity = new KhachHang();
-                entity.setMaKH(rs.getString("maKH"));
+                entity.setMaKH(rs.getString("maKh"));
                 entity.setHoTen(rs.getString("hoTen"));
                 entity.setEmail(rs.getString("email"));
                 entity.setSdt(rs.getString("sdt"));

@@ -85,4 +85,36 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
             throw new RuntimeException(e);
         }
     }
+    
+    public List<Integer> selectYears() {
+        String sql="SELECT DISTINCT year(ngayXP) Year FROM LichTrinh ORDER BY Year DESC";
+        List<Integer> list=new ArrayList<>();
+        try {
+           ResultSet rs = Xjdbc.query(sql);
+           while(rs.next()){
+                 list.add(rs.getInt(1));
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } 
+        catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    
+    public List<Integer> selectMonth() {
+        String sql="SELECT DISTINCT month(ngayXP) Month FROM LichTrinh ORDER BY Month DESC";
+        List<Integer> lists=new ArrayList<>();
+        try {
+           ResultSet rs = Xjdbc.query(sql);
+           while(rs.next()){
+                 lists.add(rs.getInt(1));
+            }
+            rs.getStatement().getConnection().close();
+            return lists;
+        } 
+        catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }

@@ -318,7 +318,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 
         this.delete();
-        this.fillTable();
+//        this.fillTable();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnFirstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstActionPerformed
@@ -501,8 +501,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
                 try {
                     lsmvdao.delete(maLS);
-//                    this.fillTable();
-//                    MsgBox.alert(this, "Xoa thanh cong");
+                    this.fillTable();
+                    MsgBox.alert(this, "Xoa thanh cong");
                 } catch (Exception e) {
                     MsgBox.alert(this, "Xoa that bai");
                     e.printStackTrace();

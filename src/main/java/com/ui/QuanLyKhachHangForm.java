@@ -498,7 +498,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
     void delete() { // [btnXoa]
         if (!XValidations.checkIsEmpty(this, txtLSMV)) {
             int maLS = Integer.parseInt(txtLSMV.getText());
-//            if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
+            if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
                 try {
                     lsmvdao.delete(maLS);
 //                    this.fillTable();
@@ -507,23 +507,23 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                     MsgBox.alert(this, "Xoa that bai");
                     e.printStackTrace();
                 }
-//            }
-        }
-        if (!XValidations.checkIsEmpty(this, txtMaKH)) {
-            String maKh = txtMaKH.getText();
-            
-            if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
-                try {
-//                    lsmvdao.delete(maLS);
-                    khDao.delete(maKh);
-//                    this.fillTable();
-                    MsgBox.alert(this, "Xoa thanh cong");
-                } catch (Exception e) {
-                    MsgBox.alert(this, "Xoa that bai");
-                    e.printStackTrace();
-                }
             }
         }
+//        if (!XValidations.checkIsEmpty(this, txtMaKH)) {
+//            String maKh = txtMaKH.getText();
+//            
+//            if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
+//                try {
+////                    lsmvdao.delete(maLS);
+//                    khDao.delete(maKh);
+////                    this.fillTable();
+//                    MsgBox.alert(this, "Xoa thanh cong");
+//                } catch (Exception e) {
+//                    MsgBox.alert(this, "Xoa that bai");
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
         
     }
 

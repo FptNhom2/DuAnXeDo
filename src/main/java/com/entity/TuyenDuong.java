@@ -1,6 +1,7 @@
 package com.entity;
 
 public class TuyenDuong {
+
     int maTD;
     String tenTD;
     String tenMien;
@@ -42,6 +43,5 @@ public class TuyenDuong {
     public String toString() {
         return this.tenTD;
     }
-    
-    
+
 }

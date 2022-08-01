@@ -121,6 +121,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
+        cboDemo = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(248, 250, 254));
 
@@ -459,7 +460,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -569,6 +570,16 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         jLabel25.setText("còn 30 vé");
 
+        cboTD.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTDItemStateChanged(evt);
+            }
+        });
+        cboTD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboTDMouseClicked(evt);
+            }
+        });
         cboTD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboTDActionPerformed(evt);
@@ -706,6 +717,12 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnLamMoi);
 
+        cboDemo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboDemoItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelDatVeLayout = new javax.swing.GroupLayout(PanelDatVe);
         PanelDatVe.setLayout(PanelDatVeLayout);
         PanelDatVeLayout.setHorizontalGroup(
@@ -721,12 +738,18 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)))
+            .addGroup(PanelDatVeLayout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(cboDemo, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelDatVeLayout.setVerticalGroup(
             PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelDatVeLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(22, 22, 22)
+                .addComponent(cboDemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatVeLayout.createSequentialGroup()
                         .addComponent(jScrollPane2)
@@ -738,7 +761,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panelBorderForGioiThieuForm1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelBorderForGioiThieuForm4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Đặt vé", PanelDatVe);
@@ -789,14 +812,17 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }//GEN-LAST:event_cboLTActionPerformed
 
     private void cboNgayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNgayActionPerformed
+        fillComboBoxTGDuKien();
         setEnabledCbo(true, cboTG);
     }//GEN-LAST:event_cboNgayActionPerformed
 
     private void cboTGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTGActionPerformed
+        fillComboBoxMaLT();
         setEnabledCbo(true, cboLT);
     }//GEN-LAST:event_cboTGActionPerformed
 
     private void cboTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTDActionPerformed
+        fillComboBoxNgayXP();
         setEnabledCbo(true, cboNgay);
     }//GEN-LAST:event_cboTDActionPerformed
 
@@ -855,6 +881,18 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblLichTrinhMouseClicked
 
+    private void cboTDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboTDMouseClicked
+
+    }//GEN-LAST:event_cboTDMouseClicked
+
+    private void cboDemoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboDemoItemStateChanged
+
+    }//GEN-LAST:event_cboDemoItemStateChanged
+
+    private void cboTDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTDItemStateChanged
+
+    }//GEN-LAST:event_cboTDItemStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatVe;
@@ -872,6 +910,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JButton btnTangSoLuongVeDat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JComboBox<TuyenDuong> cboDemo;
     private javax.swing.JComboBox<String> cboLT;
     private javax.swing.JComboBox<String> cboMaPT;
     private javax.swing.JComboBox<String> cboMaTD;
@@ -1054,6 +1093,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private void initData() {
         this.fillComboBoxTuyenDuong(cboMaTD);
         this.fillComboBoxTuyenDuong(cboTD);
+        this.fillComboBoxTuyenDuong(cboDemo);
         this.fillComboBoxPhuongTien();
         this.fillComboBoxTaiXe();
         this.fillTable();
@@ -1067,7 +1107,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         }
     }
 
-void fillTable() { // Fill data to lichTrinh table
+    void fillTable() { // Fill data to lichTrinh table
         DefaultTableModel model = (DefaultTableModel) tblLichTrinh.getModel();
         model.setRowCount(0);
         try {
@@ -1076,7 +1116,7 @@ void fillTable() { // Fill data to lichTrinh table
             for (LichTrinh lt : list) {
 //                PhuongTien pt = ptDao.selectById(lt.getMaPT());
 //                TuyenDuong td = tdDao.selectById(lt.getMaTD());
-                Object[] row = {lt.getMaLT(), lt.getMaTD(),lt.getMaPT(), lt.getMaTX(), lt.getMaNV(),
+                Object[] row = {lt.getMaLT(), lt.getMaTD(), lt.getMaPT(), lt.getMaTX(), lt.getMaNV(),
                     XDate.formatDate(lt.getNgayXP(), "dd-MM-uuuu"), XDate.formatTime(lt.getTgDuKien()),
                     String.valueOf(lt.getTongVe()), String.valueOf(lt.getChiPhiPhatSinh()), String.valueOf(lt.getTongDoanhThu())};
                 model.addRow(row);
@@ -1122,19 +1162,39 @@ void fillTable() { // Fill data to lichTrinh table
     void fillComboBoxNgayXP() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboNgay.getModel();
         model.removeAllElements();
-        List<String> list = null;
-        for (String tx : list) {
-
+        int maTD = ((TuyenDuong) cboTD.getSelectedItem()).getMaTD();
+        System.out.println("MATD: " + maTD);
+        List<String> list = ltDao.getNgayXP(maTD);
+        for (String ngay : list) {
+            model.addElement(ngay);
         }
     }
 
     void fillComboBoxTGDuKien() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboTG.getModel();
         model.removeAllElements();
-        List<String> list = null;
-        for (String tx : list) {
-
+        int maTD = ((TuyenDuong) cboTD.getSelectedItem()).getMaTD();
+        String ngayString = (String) cboNgay.getSelectedItem();
+        List<String> list = ltDao.getTGDuKien(ngayString, maTD);
+        for (String tg : list) {
+            model.addElement(tg.substring(0, 8));
         }
+    }
+
+    void fillComboBoxMaLT() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboLT.getModel();
+        model.removeAllElements();
+        int maTD = ((TuyenDuong) cboTD.getSelectedItem()).getMaTD();
+        String ngayString = (String) cboNgay.getSelectedItem();
+        String tgString = (String) cboTG.getSelectedItem();
+        List<String> list = ltDao.getMaLT(ngayString, maTD, tgString + ".0000000");
+        for (String lt : list) {
+            model.addElement(lt);
+        }
+    }
+
+    void setFormDateVe() {
+
     }
 
     // tăng giảm số lượng vé đang đặt

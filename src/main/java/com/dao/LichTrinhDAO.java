@@ -85,36 +85,82 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
             throw new RuntimeException(e);
         }
     }
-    
+
     public List<Integer> selectYears() {
-        String sql="SELECT DISTINCT year(ngayXP) Year FROM LichTrinh ORDER BY Year DESC";
-        List<Integer> list=new ArrayList<>();
+        String sql = "SELECT DISTINCT year(ngayXP) Year FROM LichTrinh ORDER BY Year DESC";
+        List<Integer> list = new ArrayList<>();
         try {
-           ResultSet rs = Xjdbc.query(sql);
-           while(rs.next()){
-                 list.add(rs.getInt(1));
+            ResultSet rs = Xjdbc.query(sql);
+            while (rs.next()) {
+                list.add(rs.getInt(1));
             }
             rs.getStatement().getConnection().close();
             return list;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
-    
+
     public List<Integer> selectMonth() {
-        String sql="SELECT DISTINCT month(ngayXP) Month FROM LichTrinh ORDER BY Month DESC";
-        List<Integer> lists=new ArrayList<>();
+        String sql = "SELECT DISTINCT month(ngayXP) Month FROM LichTrinh ORDER BY Month DESC";
+        List<Integer> lists = new ArrayList<>();
         try {
-           ResultSet rs = Xjdbc.query(sql);
-           while(rs.next()){
-                 lists.add(rs.getInt(1));
+            ResultSet rs = Xjdbc.query(sql);
+            while (rs.next()) {
+                lists.add(rs.getInt(1));
             }
             rs.getStatement().getConnection().close();
             return lists;
-        } 
-        catch (SQLException ex) {
+        } catch (SQLException ex) {
             throw new RuntimeException(ex);
         }
     }
+
+    public List<String> getNgayXP(int maTD) {
+        String sql = "{CALL getNgayXPByTuyenDuong(?)}";
+        List<String> list = new ArrayList<>();
+        try {
+            ResultSet rs = Xjdbc.query(sql, maTD);
+            while (rs.next()) {
+                list.add(rs.getString("ngayXP"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public List<String> getTGDuKien(Object... args) {
+        String sql = "{CALL getTGByNgayInLichTrinh(?,?)}";
+        List<String> list = new ArrayList<>();
+        try {
+            ResultSet rs = Xjdbc.query(sql, args);
+            while (rs.next()) {
+                list.add(rs.getString("TGDuKien"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+    public List<String> getMaLT(Object... args) {
+        String sql = "{CALL getLTByNgayTGInLichTrinh(?,?,?)}";
+        List<String> list = new ArrayList<>();
+        try {
+            ResultSet rs = Xjdbc.query(sql, args);
+            while (rs.next()) {
+                list.add(rs.getString("maLT"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
 }

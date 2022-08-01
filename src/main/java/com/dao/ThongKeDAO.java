@@ -35,13 +35,13 @@ public class ThongKeDAO {
         return list;
     }
     
-    public List<Object[]>getDoanhThuThang(Integer maLT){
+    public List<Object[]>getDoanhThuThang(Object ...args){
         List<Object[]> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
-                String sql = "{call sp_ThongKeDoanhThuThang (?)}";
-                rs = Xjdbc.query(sql, maLT);
+                String sql = "{call sp_ThongKeDoanhThuThangNam (?,?)}";
+                rs = Xjdbc.query(sql, args);
                 while (rs.next()) {
                     Object[] model = {
                         rs.getString("tenTD"),

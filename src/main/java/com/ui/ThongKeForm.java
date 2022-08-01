@@ -60,12 +60,18 @@ public class ThongKeForm extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cboThongKeTheoNamMouseClicked(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cboThongKeTheoNamMouseReleased(evt);
+            }
         });
 
         cboThongKeTheoThang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" }));
         cboThongKeTheoThang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cboThongKeTheoThangMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cboThongKeTheoThangMouseReleased(evt);
             }
         });
 
@@ -151,13 +157,23 @@ public class ThongKeForm extends javax.swing.JPanel {
 
     private void cboThongKeTheoThangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboThongKeTheoThangMouseClicked
         // TODO add your handling code here:
-        fillCboDoanhThuThang();
+//        fillTableDoanhThuThang();
     }//GEN-LAST:event_cboThongKeTheoThangMouseClicked
 
     private void cboThongKeTheoNamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboThongKeTheoNamMouseClicked
         // TODO add your handling code here:
-        fillTableDoanhThuNam();
+//        fillTableDoanhThuNam();
     }//GEN-LAST:event_cboThongKeTheoNamMouseClicked
+
+    private void cboThongKeTheoNamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboThongKeTheoNamMouseReleased
+        // TODO add your handling code here:
+        fillTableDoanhThuNam();
+    }//GEN-LAST:event_cboThongKeTheoNamMouseReleased
+
+    private void cboThongKeTheoThangMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboThongKeTheoThangMouseReleased
+        // TODO add your handling code here:
+        fillTableDoanhThuThang();
+    }//GEN-LAST:event_cboThongKeTheoThangMouseReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -228,8 +244,9 @@ public class ThongKeForm extends javax.swing.JPanel {
     void fillTableDoanhThuThang(){
         DefaultTableModel model = (DefaultTableModel) tblThongKe.getModel();
         model.setRowCount(0);
-        int Thang = (Integer) cboThongKeTheoNam.getSelectedItem();
-        List<Object[]> list = tkDao.getDoanhThuNam(Thang);
+        int Thang = (Integer) cboThongKeTheoThang.getSelectedItem();
+        int nam = (Integer) cboThongKeTheoNam.getSelectedItem();
+        List<Object[]> list = tkDao.getDoanhThuThang(Thang,nam);
         for (Object[] row : list) {
             model.addRow(row);
         } 

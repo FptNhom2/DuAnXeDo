@@ -3,10 +3,14 @@ package com.ui;
 import com.dao.NhanVienDAO;
 import com.entity.NhanVien;
 import com.utils.Auth;
+import com.utils.ImageAvatar;
 import com.utils.MsgBox;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import com.utils.XValidations;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -59,6 +63,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         btnPre = new javax.swing.JButton();
         btnFirst = new javax.swing.JButton();
         panelBorderForGioiThieuForm1 = new com.ui.PanelBorderForGioiThieuForm();
+        lblHinhNV = new javax.swing.JLabel();
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
 
@@ -217,15 +222,27 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
             }
         });
 
+        lblHinhNV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHinhNVMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBorderForGioiThieuForm1Layout = new javax.swing.GroupLayout(panelBorderForGioiThieuForm1);
         panelBorderForGioiThieuForm1.setLayout(panelBorderForGioiThieuForm1Layout);
         panelBorderForGioiThieuForm1Layout.setHorizontalGroup(
             panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHinhNV, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addContainerGap())
         );
         panelBorderForGioiThieuForm1Layout.setVerticalGroup(
             panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 287, Short.MAX_VALUE)
+            .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHinhNV, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -407,6 +424,11 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
         first();
     }//GEN-LAST:event_btnFirstActionPerformed
 
+    private void lblHinhNVMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhNVMouseClicked
+        // TODO add your handling code here:
+        this.chonAnh();
+    }//GEN-LAST:event_lblHinhNVMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -423,6 +445,7 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblHinhNV;
     private javax.swing.JLabel lblMaNV;
     private javax.swing.JLabel lblMatKhau;
     private javax.swing.JLabel lblSoDienThoai;
@@ -605,6 +628,17 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
     public void showDetails() {
         if (row > -1) {
             tblNhanVien.setRowSelectionInterval(row, row);
+        }
+    }
+    JFileChooser fileChooser = new JFileChooser();
+    void chonAnh() {
+        if(fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            ImageAvatar.save(file); // lưu hình vào thư mục logos
+            ImageIcon icon = ImageAvatar.read(file.getName()); // đọc hình từ logos
+            lblHinhNV.setIcon(icon);
+            
+            lblHinhNV.setToolTipText(file.getName()); // giữ tên hình trong tooltip
         }
     }
 }

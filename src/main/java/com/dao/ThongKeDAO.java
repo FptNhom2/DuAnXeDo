@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.utils.FormatHelper;
 import com.utils.Xjdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -49,6 +50,33 @@ public class ThongKeDAO {
                         rs.getInt("tongVe"),
                         rs.getString("bangSoXe"),
                         rs.getDouble("DoanhThu"),
+                    };
+                    list.add(model);
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    
+     public List<Object[]>getKhachHangNam(Integer maLT){
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = null;
+            try {
+                String sql = "{call sp_ThongKeKhachHangNam (?)}";
+                rs = Xjdbc.query(sql, maLT);
+                while (rs.next()) {
+                    Object[] model = {
+                        rs.getString("maKH"),
+                        rs.getString("hoTen"),
+                        rs.getString("sdt"),
+                        rs.getString("email"),
+                        rs.getInt("tongVe")
                     };
                     list.add(model);
                 }

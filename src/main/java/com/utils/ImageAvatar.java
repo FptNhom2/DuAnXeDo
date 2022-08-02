@@ -14,12 +14,18 @@ import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 
-public class ImageAvatar extends JComponent{
-        public Icon getImage() {
+public class ImageAvatar extends JComponent {
+
+    public Icon getImage() {
         return image;
     }
 
@@ -139,5 +145,25 @@ public class ImageAvatar extends JComponent{
 
     private Image toImage(Icon icon) {
         return ((ImageIcon) icon).getImage();
+    }
+
+    public static void save(File src) {
+        File dst = new File("logos", src.getName());
+        if (!dst.getParentFile().exists()) {
+            dst.getParentFile().mkdirs();
+        }
+        try {
+            Path from = Paths.get(src.getAbsolutePath());
+            Path to = Paths.get(dst.getAbsolutePath());
+            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    public static ImageIcon read(String fileName) {
+        File path = new File("logos", fileName);
+//        return new ImageIcon(path.getAbsolutePath());
+        return new ImageIcon(new ImageIcon(path.getAbsolutePath()).getImage().getScaledInstance(180, 250, Image.SCALE_DEFAULT));
     }
 }

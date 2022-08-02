@@ -6,8 +6,12 @@ import javax.swing.table.DefaultTableModel;
 import com.entity.TaiXe;
 import com.utils.MsgBox;
 import com.utils.Auth;
+import com.utils.ImageAvatar;
 import com.utils.XValidations;
 import java.awt.Color;
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class QuanLyTaiXeForm extends javax.swing.JPanel {
@@ -45,7 +49,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         rdoDangHoatDong = new javax.swing.JRadioButton();
         lblDiaChi = new javax.swing.JLabel();
         panelBorderForGioiThieuForm1 = new com.ui.PanelBorderForGioiThieuForm();
-        jLabel2 = new javax.swing.JLabel();
+        lblHinhTX = new javax.swing.JLabel();
         txtDiaChi = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblTaiXe = new javax.swing.JTable();
@@ -101,24 +105,21 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
         panelBorderForGioiThieuForm1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/ngoisao.png"))); // NOI18N
+        lblHinhTX.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHinhTXMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBorderForGioiThieuForm1Layout = new javax.swing.GroupLayout(panelBorderForGioiThieuForm1);
         panelBorderForGioiThieuForm1.setLayout(panelBorderForGioiThieuForm1Layout);
         panelBorderForGioiThieuForm1Layout.setHorizontalGroup(
             panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(lblHinhTX, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
         );
         panelBorderForGioiThieuForm1Layout.setVerticalGroup(
             panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(lblHinhTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         tblTaiXe.setModel(new javax.swing.table.DefaultTableModel(
@@ -530,6 +531,11 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         last();
     }//GEN-LAST:event_btnLastActionPerformed
 
+    private void lblHinhTXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhTXMouseClicked
+        // TODO add your handling code here:
+        this.chonAnh();
+    }//GEN-LAST:event_lblHinhTXMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -542,11 +548,11 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     private javax.swing.JButton btnXoa;
     private javax.swing.ButtonGroup btngroupVaiTro;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblDiaChi;
+    private javax.swing.JLabel lblHinhTX;
     private javax.swing.JLabel lblMaTX;
     private javax.swing.JLabel lblTenTX;
     private javax.swing.JLabel lblTinhTrang;
@@ -558,4 +564,15 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaTX;
     private javax.swing.JTextField txtTenTX;
     // End of variables declaration//GEN-END:variables
+    JFileChooser fileChooser = new JFileChooser();
+
+    void chonAnh() {
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            ImageAvatar.save(file); // lưu hình vào thư mục logos
+            ImageIcon icon = ImageAvatar.read(file.getName()); // đọc hình từ logos
+            lblHinhTX.setIcon(icon);
+            lblHinhTX.setToolTipText(file.getName()); // giữ tên hình trong tooltip
+        }
+    }
 }

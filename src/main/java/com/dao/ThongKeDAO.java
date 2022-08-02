@@ -76,7 +76,7 @@ public class ThongKeDAO {
                         rs.getString("hoTen"),
                         rs.getString("sdt"),
                         rs.getString("email"),
-                        rs.getInt("veMua")
+                        rs.getInt("tongVe")
                     };
                     list.add(model);
                 }

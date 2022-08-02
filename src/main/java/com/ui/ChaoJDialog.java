@@ -158,7 +158,7 @@ public class ChaoJDialog extends javax.swing.JDialog {
                 int value = pgbLoading.getValue(); // lấy được giá trị hiện tại của nó với số nguyên
                 if(value < pgbLoading.getMaximum())
                 {
-                    pgbLoading.setValue(value + 1);
+                    pgbLoading.setValue(value + 2);
                 }
                 else
                 {

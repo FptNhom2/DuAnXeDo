@@ -3,6 +3,7 @@ package com.ui;
 import com.dao.TuyenDuongDAO;
 import com.entity.TuyenDuong;
 import com.utils.Auth;
+import com.utils.FormatHelper;
 import com.utils.MsgBox;
 import com.utils.XValidations;
 import java.awt.Color;
@@ -364,7 +365,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
                     td.getMaTD(),
                     td.getTenTD(),
                     td.getTenMien(),
-                    td.getGia()
+                    FormatHelper.formatMoney(td.getGia())
                 };
                 model.addRow(row); //Thêm 1 hàng vào JTable
             }
@@ -387,7 +388,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         txtMaTuyenDuong.setText(String.valueOf(td.getMaTD()));
         txtTenTuyenDuong.setText(td.getTenTD());
         cboTenMien.setSelectedItem(td.getTenMien());
-        txtGia.setText(String.valueOf(td.getGia()));
+        txtGia.setText(FormatHelper.formatMoney(td.getGia()));
     } // Hiển thị dữ liệu tuyến đường lên form
 
     private TuyenDuong getForm() {

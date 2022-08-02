@@ -388,7 +388,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         this.row = -1;
         this.updateStatus();
     }
-//    LichTrinhDAO ltdao = new LichTrinhDAO();
+
     LichSuMuaVeDAO lsmvdao = new LichSuMuaVeDAO();
 
     void fillTable() { // Fill data to tblNhanVien
@@ -398,7 +398,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             List<LichSuMuaVe> list = lsmvdao.selectAll();
             for (LichSuMuaVe lsmv : list) {
                 KhachHang kh = khDao.selectById(lsmv.getMaKH());
-                Object[] row = {lsmv.getMaKH(), kh.getHoTen(), kh.getEmail(), kh.getSdt(), lsmv.getMaLT(), lsmv.getVeMua(),lsmv.getMaLSMV()};
+                Object[] row = {lsmv.getMaKH(), kh.getHoTen(), kh.getEmail(), 
+                    kh.getSdt(), lsmv.getMaLT(), lsmv.getVeMua(),lsmv.getMaLSMV()};
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -426,7 +427,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         KhachHang kh = new KhachHang();
         boolean isValidated = false;
         if (!XValidations.checkIsEmpty(this, txtMaKH, txtHoTen, txtEmail, txtSoDienThoai)) {
-            isValidated = XValidations.checkEmailPttern(this, txtEmail) ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
+            isValidated = XValidations.checkEmailPttern(this, txtEmail) 
+                    ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
         } else {
             isValidated = false;
         }
@@ -441,7 +443,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         LichSuMuaVe ls = new LichSuMuaVe();
         boolean isValidated = false;
         if (!XValidations.checkIsEmpty(this, txtLSMV, txtMaLT, txtSoVe)) {
-            isValidated = XValidations.checkEmailPttern(this, txtEmail) ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
+            isValidated = XValidations.checkEmailPttern(this, txtEmail) 
+                    ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
         } else {
             isValidated = false;
         }
@@ -509,21 +512,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                 }
             }
         }
-//        if (!XValidations.checkIsEmpty(this, txtMaKH)) {
-//            String maKh = txtMaKH.getText();
-//            
-//            if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
-//                try {
-////                    lsmvdao.delete(maLS);
-//                    khDao.delete(maKh);
-////                    this.fillTable();
-//                    MsgBox.alert(this, "Xoa thanh cong");
-//                } catch (Exception e) {
-//                    MsgBox.alert(this, "Xoa that bai");
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+
         
     }
 

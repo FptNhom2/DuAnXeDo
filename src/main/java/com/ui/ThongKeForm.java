@@ -7,6 +7,7 @@ import com.dao.TuyenDuongDAO;
 import com.entity.LichTrinh;
 import com.entity.PhuongTien;
 import com.entity.TuyenDuong;
+import com.utils.FormatHelper;
 import com.utils.MsgBox;
 import java.awt.Color;
 import java.util.List;
@@ -19,9 +20,8 @@ public class ThongKeForm extends javax.swing.JPanel {
     public ThongKeForm() {
         initComponents();
         DefaultTableCellRenderer headerCellRenderer = new DefaultTableCellRenderer();
-        headerCellRenderer.setBackground(new Color(192,227,149));
-        for(int i = 0; i < tblThongKe.getModel().getColumnCount(); ++i)
-        {
+        headerCellRenderer.setBackground(new Color(192, 227, 149));
+        for (int i = 0; i < tblThongKe.getModel().getColumnCount(); ++i) {
             tblThongKe.getColumnModel().getColumn(i).setHeaderRenderer(headerCellRenderer);
         }
         init();
@@ -40,7 +40,7 @@ public class ThongKeForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblThongKe = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblTongDoanhThu = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(248, 250, 254));
 
@@ -90,9 +90,9 @@ public class ThongKeForm extends javax.swing.JPanel {
         jLabel4.setForeground(new java.awt.Color(255, 0, 0));
         jLabel4.setText("TỔNG:");
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel5.setText("12.000.000VND");
+        lblTongDoanhThu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTongDoanhThu.setForeground(new java.awt.Color(255, 0, 0));
+        lblTongDoanhThu.setText("12.000.000VND");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,7 +105,7 @@ public class ThongKeForm extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
+                        .addComponent(lblTongDoanhThu))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -139,7 +139,7 @@ public class ThongKeForm extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(lblTongDoanhThu))
                 .addGap(13, 13, 13))
         );
 
@@ -183,89 +183,80 @@ public class ThongKeForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTongDoanhThu;
     private javax.swing.JTable tblThongKe;
     // End of variables declaration//GEN-END:variables
-    
+
     private LichTrinhDAO ltDao = new LichTrinhDAO();
     private TuyenDuongDAO tdDao = new TuyenDuongDAO();
     private PhuongTienDAO ptDao = new PhuongTienDAO();
     private ThongKeDAO tkDao = new ThongKeDAO();
-    
-    
+
     private void init() {
         // design giao diện
         // combobox theo năm
-        cboThongKeTheoNam.setBackground(new Color(235,235,235)); // background
+        cboThongKeTheoNam.setBackground(new Color(235, 235, 235)); // background
         cboThongKeTheoNam.setForeground(Color.decode("#7A8C8D"));
         cboThongKeTheoNam.setFont(new java.awt.Font("sansserif", 0, 13));
         // combobox theo tháng
-        cboThongKeTheoThang.setBackground(new Color(235,235,235)); // background
+        cboThongKeTheoThang.setBackground(new Color(235, 235, 235)); // background
         cboThongKeTheoThang.setForeground(Color.decode("#7A8C8D"));
         cboThongKeTheoThang.setFont(new java.awt.Font("sansserif", 0, 13));
 //        fillTableThongKe();
-        
+//        fillTableDoanhThuNam();
         fillCboDoanhThuNam();
         fillCboDoanhThuThang();
-//        fillTableDoanhThuNam();
-//        fillTableDoanhThuThang();
+        fillTableDoanhThuNam();
     }
-    
-//    void fillTableThongKe(){
-//       DefaultTableModel model = (DefaultTableModel) tblThongKe.getModel();
-//        model.setRowCount(0);
-//        try {
-//
-//            List<LichTrinh> list = ltDao.selectAll();
-//            for (LichTrinh lt : list) {
-//                PhuongTien pt = ptDao.selectById(lt.getMaPT());
-//                TuyenDuong td = tdDao.selectById(lt.getMaTD());
-//                Object[] row = {td.getTenTD(), lt.getMaLT(), lt.getTongVe(), pt.getBangXoSe(), lt.getTongDoanhThu(),
-//                };
-//                model.addRow(row);
-//            }
-//        } catch (Exception e) {
-//            MsgBox.alert(this, "Loi truy van du lieu");
-//            e.printStackTrace();
-//        } 
-//    }
-    
-    void fillTableDoanhThuNam(){
+
+    void fillTableDoanhThuNam() {
+        LichTrinh lt = new LichTrinh();
         DefaultTableModel model = (DefaultTableModel) tblThongKe.getModel();
         model.setRowCount(0);
         int nam = (Integer) cboThongKeTheoNam.getSelectedItem();
         List<Object[]> list = tkDao.getDoanhThuNam(nam);
+        double tong = 0.0;
         for (Object[] row : list) {
-            model.addRow(row);
-        } 
+            Object[] r = {row[0], row[1], row[2], row[3], FormatHelper.formatMoney((double) row[4])};
+            model.addRow(r);
+            tong += (double) row[4];
+        }
+        lblTongDoanhThu.setText(FormatHelper.formatMoney(tong));
     }
-    void fillTableDoanhThuThang(){
+
+    void fillTableDoanhThuThang() {
+        LichTrinh lt = new LichTrinh();
         DefaultTableModel model = (DefaultTableModel) tblThongKe.getModel();
         model.setRowCount(0);
         int Thang = (Integer) cboThongKeTheoThang.getSelectedItem();
         int nam = (Integer) cboThongKeTheoNam.getSelectedItem();
-        List<Object[]> list = tkDao.getDoanhThuThang(Thang,nam);
+        List<Object[]> list = tkDao.getDoanhThuThang(Thang, nam);
+        double tong = 0.0;
         for (Object[] row : list) {
-            model.addRow(row);
-        } 
+            Object[] r = {row[0], row[1], row[2], row[3], FormatHelper.formatMoney((double) row[4])};
+            model.addRow(r);
+            tong += (double) row[4];
+        }
+        lblTongDoanhThu.setText(FormatHelper.formatMoney(tong));
+
     }
-    
-    void fillCboDoanhThuNam(){
+
+    void fillCboDoanhThuNam() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboThongKeTheoNam.getModel();
         model.removeAllElements();
-        List<Integer> list=ltDao.selectYears();
-        for(Integer years: list){
+        List<Integer> list = ltDao.selectYears();
+        for (Integer years : list) {
             model.addElement(years);
         }
     }
-    
-    void fillCboDoanhThuThang(){
+
+    void fillCboDoanhThuThang() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboThongKeTheoThang.getModel();
         model.removeAllElements();
-        List<Integer> lists=ltDao.selectMonth();
-        for(Integer month: lists){
+        List<Integer> lists = ltDao.selectMonth();
+        for (Integer month : lists) {
             model.addElement(month);
         }
     }

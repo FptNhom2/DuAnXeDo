@@ -62,4 +62,31 @@ public class ThongKeDAO {
         }
         return list;
     }
+    
+     public List<Object[]>getKhachHangNam(Integer maLT){
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = null;
+            try {
+                String sql = "{call sp_ThongKeKhachHangNam (?)}";
+                rs = Xjdbc.query(sql, maLT);
+                while (rs.next()) {
+                    Object[] model = {
+                        rs.getString("maKH"),
+                        rs.getString("hoTen"),
+                        rs.getString("sdt"),
+                        rs.getString("email"),
+                        rs.getInt("veMua")
+                    };
+                    list.add(model);
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 }

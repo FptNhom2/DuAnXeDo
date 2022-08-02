@@ -271,6 +271,7 @@ public class ThongKeForm extends javax.swing.JPanel {
         fillCboDoanhThuNam();
         fillCboDoanhThuThang();
         fillTableDoanhThuNam();
+        this.fillTableKhachHangNam();
     }
 
     void fillTableDoanhThuNam() {
@@ -320,6 +321,16 @@ public class ThongKeForm extends javax.swing.JPanel {
         List<Integer> lists = ltDao.selectMonth();
         for (Integer month : lists) {
             model.addElement(month);
+        }
+    }
+
+    void fillTableKhachHangNam() {
+        DefaultTableModel model = (DefaultTableModel) tblKhachHang.getModel();
+        model.setRowCount(0);
+        int nam = (Integer) cboThongKeTheoNam.getSelectedItem();
+        List<Object[]> list = tkDao.getKhachHangNam(nam);
+        for (Object[] row : list) {
+            model.addRow(row);
         }
     }
 }

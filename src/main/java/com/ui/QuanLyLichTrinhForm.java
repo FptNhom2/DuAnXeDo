@@ -1,13 +1,17 @@
 package com.ui;
 
+import com.dao.KhachHangDAO;
+import com.dao.LichSuMuaVeDAO;
 import com.dao.LichTrinhDAO;
 import com.dao.TuyenDuongDAO;
 import com.dao.PhuongTienDAO;
 import com.dao.TaiXeDAO;
+import com.entity.KhachHang;
 import com.entity.LichTrinh;
 import com.entity.TuyenDuong;
 import com.entity.PhuongTien;
 import com.entity.TaiXe;
+import com.entity.LichSuMuaVe;
 import com.utils.Auth;
 import com.utils.XDate;
 import com.utils.MsgBox;
@@ -21,7 +25,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -97,7 +100,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtMaLichTrinh = new javax.swing.JTextField();
-        searchSdt = new javax.swing.JTextField();
+        txtSearchSdt = new javax.swing.JTextField();
+        timBtn = new javax.swing.JButton();
         panelBorderForGioiThieuForm2 = new com.ui.PanelBorderForGioiThieuForm();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -468,7 +472,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jblTongTienVe, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(datVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -478,28 +482,32 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         jLabel2.setText("Mã khách hàng:");
 
-        txtMaKhachHang.setText("PS19749");
+        txtMaKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaKhachHangActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Họ và tên:");
 
-        txtHoVaTen.setText("Lai Bỉnh An");
-
         jLabel4.setText("Số điện thoại");
-
-        txtSoDienThoai.setText("0939806784");
 
         jLabel5.setText("Email:");
 
-        txtEmail.setText("an.chantroimoi@gmail.com");
-
         jLabel6.setText("Mã lịch trình:");
 
-        txtMaLichTrinh.setText("SG - DL");
-
-        searchSdt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm số điện thoại", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI Semibold", 1, 10), new java.awt.Color(192, 227, 149))); // NOI18N
-        searchSdt.addActionListener(new java.awt.event.ActionListener() {
+        txtSearchSdt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm số điện thoại", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI Semibold", 1, 10), new java.awt.Color(192, 227, 149))); // NOI18N
+        txtSearchSdt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchSdtActionPerformed(evt);
+                txtSearchSdtActionPerformed(evt);
+            }
+        });
+
+        timBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        timBtn.setText("Tìm");
+        timBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timBtnActionPerformed(evt);
             }
         });
 
@@ -510,6 +518,11 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
+                        .addComponent(txtSearchSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
                         .addGroup(panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -522,15 +535,18 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                             .addComponent(txtMaKhachHang)
                             .addComponent(txtHoVaTen)
                             .addComponent(txtSoDienThoai)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                            .addComponent(txtMaLichTrinh)))
-                    .addComponent(searchSdt))
+                            .addComponent(txtEmail)
+                            .addComponent(txtMaLichTrinh))))
                 .addContainerGap())
         );
         panelBorderForGioiThieuForm1Layout.setVerticalGroup(
             panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorderForGioiThieuForm1Layout.createSequentialGroup()
-                .addComponent(searchSdt)
+                .addGroup(panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSearchSdt)
+                    .addGroup(panelBorderForGioiThieuForm1Layout.createSequentialGroup()
+                        .addComponent(timBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelBorderForGioiThieuForm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -765,7 +781,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addGap(24, 24, 24)
                 .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 607, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)))
         );
         PanelDatVeLayout.setVerticalGroup(
             PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -913,12 +929,20 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }//GEN-LAST:event_cboTDItemStateChanged
 
     private void datVeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datVeBtnActionPerformed
-
+        updateFormDatVe();
     }//GEN-LAST:event_datVeBtnActionPerformed
 
-    private void searchSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSdtActionPerformed
+    private void txtSearchSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchSdtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_searchSdtActionPerformed
+    }//GEN-LAST:event_txtSearchSdtActionPerformed
+
+    private void timBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timBtnActionPerformed
+        timSdtKhachHang();
+    }//GEN-LAST:event_timBtnActionPerformed
+
+    private void txtMaKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaKhachHangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaKhachHangActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -993,8 +1017,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm1;
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm2;
     private com.ui.PanelBorderForGioiThieuForm panelBorderForGioiThieuForm4;
-    private javax.swing.JTextField searchSdt;
     private javax.swing.JTable tblLichTrinh;
+    private javax.swing.JButton timBtn;
     private javax.swing.JTextField txtChiPhiLichTrinh;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoVaTen;
@@ -1003,6 +1027,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaLichTrinh;
     private javax.swing.JTextField txtNgayXP;
     private javax.swing.JTextArea txtNoiDung;
+    private javax.swing.JTextField txtSearchSdt;
     private javax.swing.JTextField txtSoDienThoai;
     private javax.swing.JTextField txtTimKiemNgayKhoiHanh;
     // End of variables declaration//GEN-END:variables
@@ -1011,6 +1036,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private TuyenDuongDAO tdDao = new TuyenDuongDAO();
     private PhuongTienDAO ptDao = new PhuongTienDAO();
     private TaiXeDAO txDao = new TaiXeDAO();
+    private KhachHangDAO khDao = new KhachHangDAO();
+    private LichSuMuaVeDAO lsmvDao = new LichSuMuaVeDAO();
     private int soLuong = 0;
     private double tongTienVe = 0;
     private int row = -1;
@@ -1117,6 +1144,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         btnLamMoi.setForeground(new Color(250, 250, 250));
         btnGiamSoLuongVeDat.setBackground(new Color(250, 250, 250));
         btnTangSoLuongVeDat.setBackground(new Color(250, 250, 250));
+        timBtn.setBackground(new Color(22, 116, 66));
+        timBtn.setForeground(new Color(250, 250, 250));
         setEnabledCbo(false, cboNgay, cboTG, cboLT);
 //        LineBorder lineBorder = new LineBorder(Color.white, 2, true);
 //        searchSdt.setBorder(lineBorder);
@@ -1192,7 +1221,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboNgay.getModel();
         model.removeAllElements();
         int maTD = ((TuyenDuong) cboTD.getSelectedItem()).getMaTD();
-        System.out.println("MATD: " + maTD);
         List<String> list = ltDao.getNgayXP(maTD);
         for (String ngay : list) {
             model.addElement(ngay);
@@ -1234,6 +1262,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             jblNhanVien.setText(lt.getMaNV());
             jblPhiLichTrinh.setText(FormatHelper.formatMoney(lt.getChiPhiPhatSinh()));
             displayTinhTrangVe(pt.getSlChoNgoi(), lt.getTongVe());
+            //KhachHang
+            txtMaLichTrinh.setText(maLT);
         }
 
     }
@@ -1389,6 +1419,34 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         }
     }
 
+    void updateFormDatVe() {
+        String maLT = cboLT.getItemAt(cboLT.getSelectedIndex());
+        LichTrinh lt = ltDao.selectById(maLT);
+        if (lt != null) {
+            lt.setTongVe(lt.getTongVe() + this.soLuong);
+
+            lt.setTongDoanhThu(lt.getTongDoanhThu() + this.tongTienVe);
+            try {
+                ltDao.update(lt);
+                this.fillTable();
+                if (timSdtKhachHang()) {
+                    insertLsmvFromDatVe();
+                } else {
+                    insertKhFromDatVe();
+                    insertLsmvFromDatVe();
+                }
+                this.soLuong = 0;
+                this.tongTienVe = 0.0;
+                lblSoLuongVe.setText(String.valueOf(this.soLuong));
+                jblTongTienVe.setText(FormatHelper.formatMoney(this.tongTienVe));
+                MsgBox.alert(this, "Đặt vé thành công");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Cap nhat that bai");
+                e.printStackTrace();
+            }
+        }
+    }
+
     void delete() { // [btnXoa]
         if (!XValidations.checkIsEmpty(this, txtMaLT)) {
             String maLt = txtMaLT.getText();
@@ -1444,6 +1502,69 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     public void showDetails() {
         if (row > -1) {
             tblLichTrinh.setRowSelectionInterval(row, row);
+        }
+    }
+
+    public boolean timSdtKhachHang() {
+        KhachHang kh = khDao.selectBySdt(txtSearchSdt.getText());
+        boolean ketQuaTim = false;
+        if (kh != null) {
+            ketQuaTim = true;
+            txtMaKhachHang.setText(kh.getMaKH());
+            txtHoVaTen.setText(kh.getHoTen());
+            txtSoDienThoai.setText(kh.getSdt());
+            txtEmail.setText(kh.getEmail());
+        } else {
+//            MsgBox.alert(this, "Không tìm thấy số điện thoại");
+        }
+        return ketQuaTim;
+    }
+
+    //Khach Hang va Lich sua mua ve
+    KhachHang getKhachHangFromDatVe() {
+        KhachHang kh = new KhachHang();
+        kh.setMaKH(txtMaKhachHang.getText());
+        kh.setHoTen(txtHoVaTen.getText());
+        kh.setSdt(txtSoDienThoai.getText());
+        kh.setEmail(txtEmail.getText());
+        return kh;
+    }
+
+    LichSuMuaVe getLichSuMuaVeFromDatVe() {
+        LichSuMuaVe lsmv = new LichSuMuaVe();
+        lsmv.setMaKH(txtMaKhachHang.getText());
+        lsmv.setMaLT(txtMaLichTrinh.getText());
+        lsmv.setVeMua(this.soLuong);
+        return lsmv;
+    }
+
+    void insertKhFromDatVe() {
+        if (getKhachHangFromDatVe() != null) {
+            KhachHang kh = getKhachHangFromDatVe();
+            try {
+                khDao.insert(kh);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Them moi thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Them moi that bai");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    void insertLsmvFromDatVe() {
+        if (getLichSuMuaVeFromDatVe() != null) {
+            LichSuMuaVe lsmv = getLichSuMuaVeFromDatVe();
+            try {
+                lsmvDao.insert(lsmv);
+                this.fillTable();
+                this.clearForm();
+                MsgBox.alert(this, "Them moi thanh cong");
+            } catch (Exception e) {
+                MsgBox.alert(this, "Them moi that bai");
+                e.printStackTrace();
+            }
         }
     }
 

@@ -16,6 +16,7 @@ public class KhachHangDAO extends AtbusDAO<KhachHang, String> {
     String DELETE_SQL = "DELETE FROM KhachHang WHERE maKH = ?";
     String SELECT_ALL_SQL = "SELECT * FROM KhachHang";
     String SELECT_BY_ID_SQL = "SELECT * FROM KhachHang WHERE MaKH = ?";
+    String SELECT_BY_SDT_SQL = "SELECT * FROM KhachHang WHERE sdt = ?";
 
     @Override
     public void insert(KhachHang entity) {
@@ -76,5 +77,13 @@ public class KhachHangDAO extends AtbusDAO<KhachHang, String> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public KhachHang selectBySdt(String sdt) {
+        List<KhachHang> list = this.selectBySql(SELECT_BY_SDT_SQL, sdt);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 }

@@ -13,7 +13,7 @@ import com.utils.XDate;
 public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
 
     String INSERT_SQL = "INSERT INTO LichTrinh (maLT,maTD,maPT,maNV,maTX,ngayXP,TGDuKien,chiPhiPhatSinh,tongVe,tongDoanhThu) VALUES (?,?,?,?,?,?,?,?,?,?)";
-    String UPDATE_SQL = "UPDATE LichTrinh SET maTD = ?, maPT = ?, maNV = ?, ngayXP = ?, TGDuKien = ?, maTX = ?, chiPhiPhatSinh = ?, tongDoanhThu = ? WHERE maLT = ?";
+    String UPDATE_SQL = "UPDATE LichTrinh SET maTD = ?, maPT = ?, maNV = ?, ngayXP = ?, TGDuKien = ?, tongVe = ?, chiPhiPhatSinh = ?, tongDoanhThu = ? WHERE maLT = ?";
     String DELETE_SQL = "DELETE FROM LichTrinh WHERE maLT = ?";
     String SELECT_ALL_SQL = "SELECT * FROM LichTrinh";
     String SELECT_BY_ID_SQL = "SELECT * FROM LichTrinh WHERE maLT = ?";
@@ -29,8 +29,9 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
 
     @Override
     public void update(LichTrinh entity) {
+        System.out.println(entity);
         try {
-            Xjdbc.update(UPDATE_SQL, entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getMaTX(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu(), entity.getMaLT());
+            Xjdbc.update(UPDATE_SQL, entity.getMaTD(), entity.getMaPT(), entity.getMaNV(), entity.getNgayXP(), entity.getTgDuKien(), entity.getTongVe(), entity.getChiPhiPhatSinh(), entity.getTongDoanhThu(), entity.getMaLT());
         } catch (SQLException ex) {
             Logger.getLogger(LichTrinhDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -72,6 +73,7 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
                 entity.setMaPT(rs.getInt("maPT"));
                 entity.setMaNV(rs.getString("maNV"));
                 entity.setMaTX(rs.getString("maTX"));
+                entity.setTongVe(rs.getInt("tongVe"));
                 entity.setNgayXP(XDate.createDate(rs.getString("ngayXP")));
                 entity.setTgDuKien(XDate.createTime(times[0], times[1], times[2].substring(0, 2)));
                 entity.setChiPhiPhatSinh(rs.getDouble("chiPhiPhatSinh"));

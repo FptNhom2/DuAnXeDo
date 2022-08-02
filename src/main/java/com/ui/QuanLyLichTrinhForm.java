@@ -778,11 +778,11 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PanelDatVeLayout.createSequentialGroup()
                         .addComponent(panelBorderForGioiThieuForm2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panelBorderForGioiThieuForm1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelBorderForGioiThieuForm4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Đặt vé", PanelDatVe);
@@ -1273,8 +1273,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             btnGiamSoLuongVeDat.setEnabled(false);
         } else {
             btnGiamSoLuongVeDat.setEnabled(true);
-            displayTinhTrangVe(data.get(0), data.get(1));
         }
+        displayTinhTrangVe(data.get(0), data.get(1));
         lblSoLuongVe.setText("" + soLuong);
     } // btnGiam
 

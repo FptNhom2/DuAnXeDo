@@ -15,6 +15,8 @@ public class LichTrinh {
     double chiPhiPhatSinh;
     double tongDoanhThu = 0.0;
     int tongVe = 0;
+    
+    
 
     public String getMaLT() {
         return maLT;

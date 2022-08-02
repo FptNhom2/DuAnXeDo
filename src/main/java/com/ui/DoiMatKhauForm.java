@@ -3,9 +3,6 @@ package com.ui;
 import com.dao.NhanVienDAO;
 import com.utils.Auth;
 import com.utils.MsgBox;
-import java.awt.Color;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import com.utils.XValidations;
 
 public class DoiMatKhauForm extends javax.swing.JPanel {

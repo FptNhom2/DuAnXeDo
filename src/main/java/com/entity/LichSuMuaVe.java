@@ -9,6 +9,7 @@ public class LichSuMuaVe {
     String maLT;
     String maKH;
     int veMua;
+    double thanhTien;
 
     public int getMaLSMV() {
         return maLSMV;
@@ -40,6 +41,14 @@ public class LichSuMuaVe {
 
     public void setVeMua(int veMua) {
         this.veMua = veMua;
+    }
+
+    public double getThanhTien() {
+        return thanhTien;
+    }
+
+    public void setThanhTien(double thanhTien) {
+        this.thanhTien = thanhTien;
     }
     
     

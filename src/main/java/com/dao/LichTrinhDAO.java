@@ -16,7 +16,9 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
     String UPDATE_SQL = "UPDATE LichTrinh SET maTD = ?, maPT = ?, maNV = ?, ngayXP = ?, TGDuKien = ?, tongVe = ?, chiPhiPhatSinh = ?, tongDoanhThu = ? WHERE maLT = ?";
     String DELETE_SQL = "DELETE FROM LichTrinh WHERE maLT = ?";
     String SELECT_ALL_SQL = "SELECT * FROM LichTrinh";
+    String SELECT_ALL_BY_NGAYXP_SQL = "SELECT * FROM LichTrinh";
     String SELECT_BY_ID_SQL = "SELECT * FROM LichTrinh WHERE maLT = ?";
+    String SELECT_BY_KHOI_HANH_SQL = "SELECT * FROM LichTrinh WHERE ngayXP LIKE '%' + ? + '%'";
 
     @Override
     public void insert(LichTrinh entity) {
@@ -119,7 +121,7 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
     }
 
     public List<String> getNgayXP(int maTD) {
-        String sql = "{CALL getNgayXPByTuyenDuong(?)}";
+        String sql = "{CALL getNgayXPByTuyenDuong2(?)}";
         List<String> list = new ArrayList<>();
         try {
             ResultSet rs = Xjdbc.query(sql, maTD);
@@ -165,4 +167,7 @@ public class LichTrinhDAO extends AtbusDAO<LichTrinh, String> {
         return list;
     }
 
+    public List<LichTrinh> selectAllByNgayKhoiHanh(String ngayKhoiHanh) {
+        return this.selectBySql(SELECT_BY_KHOI_HANH_SQL, ngayKhoiHanh);
+    }
 }

@@ -852,25 +852,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        txtNoiDung.append("\t\t\tCông Ty ATBus \n\n");
-        txtNoiDung.append("\t\t 1 Nguyễn Thái Bình Phường Bến Nghé Quận 1 \n");
-        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tVé xe ATBus \n\n");
-        txtNoiDung.append("\t Tên tuyến:\t\t" + cboTD.getSelectedItem() + "\t Tên miền: \t" + jblMien.getText() + "\n");
-        txtNoiDung.append("\t Ngày xuất phát:\t" + cboNgay.getSelectedItem() + "\t\t Giờ: \t" + cboTG.getSelectedItem() + "\n");
-        txtNoiDung.append("\t Biển số: \t" + jblBangSoXe.getText() + "\n");
-        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tThông tin khách hàng \n\n");
-        txtNoiDung.append("\t Mã khách hàng:    " + txtMaKhachHang.getText() + "\n");
-        txtNoiDung.append("\t Họ tên: \t" + txtHoVaTen.getText() + "\n");
-        txtNoiDung.append("\t Số điện thoại: \t" + txtSoDienThoai.getText() + "\n");
-        txtNoiDung.append("\t Email: \t" + txtEmail.getText() + "\n");
-        txtNoiDung.append("\t Mã lịch trình: \t" + txtMaLichTrinh.getText() + "\n");
-        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tGhi chú \n\n");
-        txtNoiDung.append("\t Số lượng vé: \t" + lblSoLuongVe.getText() + "\n");
-        txtNoiDung.append("\t Giá: " + jblGia.getText() + "\n\n\n");
-        txtNoiDung.append("\tXin cảm ơn quý khách đã tin tưởng và đồng hành cùng chúng tôi \n");
+        inVe();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void cboLTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLTActionPerformed
@@ -1083,6 +1065,33 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private int soLuong = 0;
     private double tongTienVe = 0;
     private int row = -1;
+
+    void inVe() {
+        txtNoiDung.append("\t\t\tCông Ty ATBus \n\n");
+        txtNoiDung.append("\t\t 1 Nguyễn Thái Bình Phường Bến Nghé Quận 1 \n");
+        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
+        txtNoiDung.append("\t\t\tVé xe ATBus \n\n");
+        txtNoiDung.append("\t Tên tuyến:\t\t" + cboTD.getSelectedItem() + "\t Tên miền: \t" + jblMien.getText() + "\n");
+        txtNoiDung.append("\t Ngày xuất phát:\t" + cboNgay.getSelectedItem() + "\t\t Giờ: \t" + cboTG.getSelectedItem() + "\n");
+        txtNoiDung.append("\t Biển số: \t" + jblBangSoXe.getText() + "\n");
+        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
+        txtNoiDung.append("\t\t\tThông tin khách hàng \n\n");
+        txtNoiDung.append("\t Mã khách hàng:    " + txtMaKhachHang.getText() + "\n");
+        txtNoiDung.append("\t Họ tên: \t" + txtHoVaTen.getText() + "\n");
+        txtNoiDung.append("\t Số điện thoại: \t" + txtSoDienThoai.getText() + "\n");
+        txtNoiDung.append("\t Email: \t" + txtEmail.getText() + "\n");
+        txtNoiDung.append("\t Mã lịch trình: \t" + txtMaLichTrinh.getText() + "\n");
+        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
+        txtNoiDung.append("\t\t\tGhi chú \n\n");
+        txtNoiDung.append("\t Số lượng vé: \t" + lblSoLuongVe.getText() + "\n");
+        txtNoiDung.append("\t Giá: " + jblGia.getText() + "\n\n\n");
+        txtNoiDung.append("\tXin cảm ơn quý khách đã tin tưởng và đồng hành cùng chúng tôi \n");
+        clearKhachHangForm();
+        this.soLuong = 0;
+        this.tongTienVe = 0.0;
+        lblSoLuongVe.setText(String.valueOf(this.soLuong));
+        jblTongTienVe.setText(FormatHelper.formatMoney(this.tongTienVe));
+    }
 
     private void initUI() {
         // design giao diện 
@@ -1501,11 +1510,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                     insertKhFromDatVe();
                     insertLsmvFromDatVe();
                 }
-                clearKhachHangForm();
-                this.soLuong = 0;
-                this.tongTienVe = 0.0;
-                lblSoLuongVe.setText(String.valueOf(this.soLuong));
-                jblTongTienVe.setText(FormatHelper.formatMoney(this.tongTienVe));
                 MsgBox.alert(this, "Đặt vé thành công");
             } catch (Exception e) {
                 MsgBox.alert(this, "Đặt vé thất bại");

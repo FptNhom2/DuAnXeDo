@@ -17,6 +17,7 @@ public class KhachHangDAO extends AtbusDAO<KhachHang, String> {
     String SELECT_ALL_SQL = "SELECT * FROM KhachHang";
     String SELECT_BY_ID_SQL = "SELECT * FROM KhachHang WHERE MaKH = ?";
     String SELECT_BY_SDT_SQL = "SELECT * FROM KhachHang WHERE sdt = ?";
+    
 
     @Override
     public void insert(KhachHang entity) {
@@ -85,5 +86,63 @@ public class KhachHangDAO extends AtbusDAO<KhachHang, String> {
             return null;
         }
         return list.get(0);
+    }
+
+    public List<Object[]> filterKhachHangBySdt(String sdt) {
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = null;
+            try {
+                String sql = "{CALL filterKhBySdt(?)}";
+                rs = Xjdbc.query(sql, sdt);
+                while (rs.next()) {
+                    Object[] model = {
+                        rs.getString("maKh"),
+                        rs.getString("hoTen"),
+                        rs.getString("email"),
+                        rs.getString("sdt"),
+                        rs.getString("maLt"),
+                        rs.getInt("veMua"),
+                        rs.getDouble("thanhTien"),
+                        rs.getInt("maLSMV"),};
+                    list.add(model);
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public List<Object[]> getAll() {
+        List<Object[]> list = new ArrayList<>();
+        try {
+            ResultSet rs = null;
+            try {
+                String sql = "{CALL getAllKhAndLsmv}";
+                rs = Xjdbc.query(sql);
+                while (rs.next()) {
+                    Object[] model = {
+                        rs.getString("maKh"),
+                        rs.getString("hoTen"),
+                        rs.getString("email"),
+                        rs.getString("sdt"),
+                        rs.getString("maLt"),
+                        rs.getInt("veMua"),
+                        rs.getDouble("thanhTien"),
+                        rs.getInt("maLSMV"),};
+                    list.add(model);
+                }
+            } finally {
+                rs.getStatement().getConnection().close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 }

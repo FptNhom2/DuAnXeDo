@@ -15,16 +15,17 @@ import java.util.logging.Logger;
  */
 public class LichSuMuaVeDAO extends AtbusDAO<LichSuMuaVe, Integer> {
 
-    String INSERT_SQL = "INSERT INTO LichSuMuaVe (maLT,maKH,veMua) VALUES (?,?,?)";
-    String UPDATE_SQL = "UPDATE LichSuMuaVe SET maLT = ?, maKH = ?, veMua = ? WHERE maLSMV = ?";
+    String INSERT_SQL = "INSERT INTO LichSuMuaVe (maLT,maKH,veMua,thanhTien) VALUES (?,?,?,?)";
+    String UPDATE_SQL = "UPDATE LichSuMuaVe SET maLT = ?, maKH = ?, veMua = ? thanhTien = ? WHERE maLSMV = ?";
     String DELETE_SQL = "DELETE FROM LichSuMuaVe WHERE maLSMV = ?";
     String SELECT_ALL_SQL = "SELECT * FROM LichSuMuaVe";
     String SELECT_BY_ID_SQL = "SELECT * FROM LichSuMuaVe WHERE maLSMV = ?";
+    String SELECT_BY_KHLT_SQL = "SELECT * FROM LichSuMuaVe WHERE maKH = ? AND maLT = ?";
 
     @Override
     public void insert(LichSuMuaVe entity) {
         try {
-            Xjdbc.update(INSERT_SQL, entity.getMaLT(), entity.getMaKH(), entity.getVeMua());
+            Xjdbc.update(INSERT_SQL, entity.getMaLT(), entity.getMaKH(), entity.getVeMua(), entity.getThanhTien());
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -33,7 +34,7 @@ public class LichSuMuaVeDAO extends AtbusDAO<LichSuMuaVe, Integer> {
     @Override
     public void update(LichSuMuaVe entity) {
         try {
-            Xjdbc.update(UPDATE_SQL, entity.getMaLT(), entity.getMaKH(), entity.getVeMua(), entity.getMaLSMV());
+            Xjdbc.update(UPDATE_SQL, entity.getMaLT(), entity.getMaKH(), entity.getVeMua(),entity.getThanhTien(), entity.getMaLSMV());
         } catch (SQLException ex) {
             Logger.getLogger(NhanVienDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,6 +74,7 @@ public class LichSuMuaVeDAO extends AtbusDAO<LichSuMuaVe, Integer> {
                 entity.setMaLT(rs.getString("maLT"));
                 entity.setMaKH(rs.getString("maKH"));
                 entity.setVeMua(rs.getInt("veMua"));
+                entity.setThanhTien(rs.getDouble("thanhTien"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -80,6 +82,14 @@ public class LichSuMuaVeDAO extends AtbusDAO<LichSuMuaVe, Integer> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public LichSuMuaVe select_by_KHLT(String maKH, String maLT) {
+        List<LichSuMuaVe> list = this.selectBySql(SELECT_BY_KHLT_SQL, maKH, maLT);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
 }

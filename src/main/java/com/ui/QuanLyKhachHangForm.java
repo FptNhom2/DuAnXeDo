@@ -2,12 +2,13 @@ package com.ui;
 
 import com.dao.KhachHangDAO;
 import com.dao.LichSuMuaVeDAO;
-import com.dao.LichTrinhDAO;
 import com.entity.KhachHang;
 import com.entity.LichSuMuaVe;
-import com.entity.LichTrinh;
 import com.utils.MsgBox;
 import com.utils.XValidations;
+import com.utils.FormatHelper;
+import java.awt.Color;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -55,6 +56,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         txtLSMV = new javax.swing.JTextField();
         lblSoDienThoai2 = new javax.swing.JLabel();
         txtMaLT = new javax.swing.JTextField();
+        txtSearchSdt = new javax.swing.JTextField();
+        timBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
@@ -81,17 +84,17 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
 
         tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã khách hàng", "Họ và tên", "Email", "Số điện thoại", "Mã Lịch trình", "Số vẽ mua", "Mã lịch sử mua vé"
+                "Mã khách hàng", "Họ và tên", "Email", "Số điện thoại", "Mã Lịch trình", "Số vẽ mua", "Thành tiền", "Lịch sử mua vé"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, true
+                false, false, false, false, true, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -190,6 +193,21 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
 
         txtMaLT.setEnabled(false);
 
+        txtSearchSdt.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TÌm khách hàng bằng số điện thoại", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 14), new java.awt.Color(0, 153, 102))); // NOI18N
+        txtSearchSdt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchSdtKeyReleased(evt);
+            }
+        });
+
+        timBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        timBtn.setText("Tìm");
+        timBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -197,6 +215,10 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(190, 190, 190)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(txtSearchSdt, javax.swing.GroupLayout.PREFERRED_SIZE, 841, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(timBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
@@ -259,9 +281,13 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaLT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSoDienThoai2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtSearchSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,9 +323,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-
         this.update();
-        this.fillTable();
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -336,6 +360,16 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
+    private void txtSearchSdtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchSdtKeyReleased
+        String txtSearch = txtSearchSdt.getText().trim();
+    }//GEN-LAST:event_txtSearchSdtKeyReleased
+
+    private void timBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timBtnActionPerformed
+        if (!timSdtKhachHang()) {
+            MsgBox.alert(this, "Không tìm thấy số điện thoại");
+        }
+    }//GEN-LAST:event_timBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFirst;
@@ -357,36 +391,42 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
     private javax.swing.JLabel lblSoDienThoai1;
     private javax.swing.JLabel lblSoDienThoai2;
     private javax.swing.JTable tblKhachHang;
+    private javax.swing.JButton timBtn;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtLSMV;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtMaLT;
+    private javax.swing.JTextField txtSearchSdt;
     private javax.swing.JTextField txtSoDienThoai;
     private javax.swing.JTextField txtSoVe;
     // End of variables declaration//GEN-END:variables
 
     KhachHangDAO khDao = new KhachHangDAO();
+    private LichSuMuaVeDAO lsmvDao = new LichSuMuaVeDAO();
     int row = -1; // Seleted row when NhanVien table open
+    List<Object[]> list = new ArrayList<>();
 
     void init() {
-        this.fillTable();
+        timBtn.setBackground(new Color(22, 116, 66));
+        timBtn.setForeground(new Color(250, 250, 250));
+        list = khDao.getAll();
+        this.fillTable(list);
         this.row = -1;
         this.updateStatus();
     }
 
     LichSuMuaVeDAO lsmvdao = new LichSuMuaVeDAO();
 
-    void fillTable() { // Fill data to tblNhanVien
+    void fillTable(List<Object[]> l) { // Fill data to tblNhanVien
         DefaultTableModel model = (DefaultTableModel) tblKhachHang.getModel();
         model.setRowCount(0);
         try {
-            List<LichSuMuaVe> list = lsmvdao.selectAll();
-            for (LichSuMuaVe lsmv : list) {
-                KhachHang kh = khDao.selectById(lsmv.getMaKH());
-                Object[] row = {lsmv.getMaKH(), kh.getHoTen(), kh.getEmail(), 
-                    kh.getSdt(), lsmv.getMaLT(), lsmv.getVeMua(),lsmv.getMaLSMV()};
-                model.addRow(row);
+            List<Object[]> list = l;
+            for (Object[] row : list) {
+                double thanhTien = (double) row[6];
+                Object[] rows = {row[0], row[1], row[2], row[3], row[4], row[5], FormatHelper.formatMoney(thanhTien), row[7]};
+                model.addRow(rows);
             }
         } catch (Exception e) {
             MsgBox.alert(this, "Loi truy van du lieu");
@@ -413,7 +453,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         KhachHang kh = new KhachHang();
         boolean isValidated = false;
         if (!XValidations.checkIsEmpty(this, txtMaKH, txtHoTen, txtEmail, txtSoDienThoai)) {
-            isValidated = XValidations.checkEmailPttern(this, txtEmail) 
+            isValidated = XValidations.checkEmailPttern(this, txtEmail)
                     ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
         } else {
             isValidated = false;
@@ -429,7 +469,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         LichSuMuaVe ls = new LichSuMuaVe();
         boolean isValidated = false;
         if (!XValidations.checkIsEmpty(this, txtLSMV, txtMaLT, txtSoVe)) {
-            isValidated = XValidations.checkEmailPttern(this, txtEmail) 
+            isValidated = XValidations.checkEmailPttern(this, txtEmail)
                     ? XValidations.checkPhoneNumberPttern(this, txtSoDienThoai) : false;
         } else {
             isValidated = false;
@@ -471,11 +511,12 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                 e.printStackTrace();
             }
         }
-        if (getFormLSMV()!= null) {
+        if (getFormLSMV() != null) {
             LichSuMuaVe ls = getFormLSMV();
             try {
                 lsmvdao.update(ls);
-//                this.fillTable();
+                list = khDao.getAll();
+                this.fillTable(list);
                 MsgBox.alert(this, "Cap nhat thanh cong");
             } catch (Exception e) {
                 MsgBox.alert(this, "Cap nhat that bai");
@@ -490,7 +531,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             if (MsgBox.confirm(this, "Ban thuc su muon xoa khach hang nay?")) {
                 try {
                     lsmvdao.delete(maLS);
-                    this.fillTable();
+                    list = khDao.getAll();
+                    this.fillTable(list);
                     MsgBox.alert(this, "Xoa thanh cong");
                 } catch (Exception e) {
                     MsgBox.alert(this, "Xoa that bai");
@@ -499,7 +541,6 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
             }
         }
 
-        
     }
 
     void edit() { // [tblNhanVien double click]
@@ -507,13 +548,23 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         KhachHang kh = khDao.selectById(maKH);
         this.setForm(kh);
         this.updateStatus();
-        int maLS = (Integer) tblKhachHang.getValueAt(this.row, 6);
+        int maLS = (Integer) tblKhachHang.getValueAt(this.row, 7);
         LichSuMuaVe ls = lsmvdao.selectById(maLS);
         this.setFormLSMV(ls);
         this.updateStatus();
     }
 
-    
+    public boolean timSdtKhachHang() {
+        boolean ketQuaTim = false;
+        if (txtSearchSdt.getText().length() > 0) {
+            list = khDao.filterKhachHangBySdt(txtSearchSdt.getText());
+            if (!list.isEmpty()) {
+                ketQuaTim = true;
+                fillTable(list);
+            }
+        }
+        return ketQuaTim;
+    }
 
     private void first() {
         this.row = 0;

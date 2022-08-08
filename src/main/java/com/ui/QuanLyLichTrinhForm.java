@@ -18,6 +18,8 @@ import com.utils.MsgBox;
 import com.utils.XValidations;
 import com.utils.FormatHelper;
 import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.print.PrinterException;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,8 +80,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         cboMaPT = new javax.swing.JComboBox<>();
         cboMaTX = new javax.swing.JComboBox<>();
         cboTGDuKien = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        txtTimKiemNgayKhoiHanh = new javax.swing.JTextField();
+        txtSearchKhoiHanh = new javax.swing.JTextField();
         PanelDatVe = new javax.swing.JPanel();
         panelBorderForGioiThieuForm4 = new com.ui.PanelBorderForGioiThieuForm();
         jLabel26 = new javax.swing.JLabel();
@@ -89,6 +90,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         jLabel28 = new javax.swing.JLabel();
         jblTongTienVe = new javax.swing.JLabel();
         datVeBtn = new javax.swing.JButton();
+        huyVeBtn = new javax.swing.JButton();
         panelBorderForGioiThieuForm1 = new com.ui.PanelBorderForGioiThieuForm();
         jLabel2 = new javax.swing.JLabel();
         txtMaKhachHang = new javax.swing.JTextField();
@@ -297,56 +299,58 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
         cboTGDuKien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "07:00:00", "13:00:00", "18:00:00" }));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel10.setText("Tìm ngày KH:");
+        txtSearchKhoiHanh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TÌm kiếm ngày khởi hành", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI Semibold", 1, 14), new java.awt.Color(0, 153, 102))); // NOI18N
+        txtSearchKhoiHanh.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKhoiHanhKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout PanelLichTrinhLayout = new javax.swing.GroupLayout(PanelLichTrinh);
         PanelLichTrinh.setLayout(PanelLichTrinhLayout);
         PanelLichTrinhLayout.setHorizontalGroup(
             PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLichTrinhLayout.createSequentialGroup()
+            .addGroup(PanelLichTrinhLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane3)
-                    .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
+                    .addComponent(txtSearchKhoiHanh, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1140, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLichTrinhLayout.createSequentialGroup()
                         .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1140, Short.MAX_VALUE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLichTrinhLayout.createSequentialGroup()
-                                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblTenTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblMaTX, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(lblTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblDiaChi1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(lblDiaChi, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblTenTX, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblMaTX, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblTinhTrang, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblDiaChi1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelLichTrinhLayout.createSequentialGroup()
                                 .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtMaLT, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNgayXP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
-                                    .addComponent(cboMaTD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cboMaTD, 0, 415, Short.MAX_VALUE)
                                     .addComponent(cboMaPT, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cboMaTX, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(lblDiaChi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblDiaChi3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblDiaChi2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                                            .addComponent(lblDiaChi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                                            .addComponent(txtChiPhiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
-                                            .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cboTGDuKien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                    .addGroup(PanelLichTrinhLayout.createSequentialGroup()
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtTimKiemNgayKhoiHanh)))))))
+                                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(lblDiaChi4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDiaChi3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblDiaChi2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                    .addComponent(lblDiaChi5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                                    .addComponent(txtChiPhiLichTrinh, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                                    .addComponent(lblTongVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cboTGDuKien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txtNgayXP))))
                 .addGap(165, 165, 165))
+            .addGroup(PanelLichTrinhLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelLichTrinhLayout.setVerticalGroup(
             PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,16 +381,15 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addComponent(lblDiaChi5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cboMaTX, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblTongDoanhThu, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblDiaChi1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNgayXP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtTimKiemNgayKhoiHanh))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PanelLichTrinhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDiaChi1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNgayXP, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearchKhoiHanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(139, 139, 139)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,7 +401,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         PanelDatVe.setBackground(new java.awt.Color(248, 250, 254));
 
         panelBorderForGioiThieuForm4.setBackground(new java.awt.Color(248, 250, 254));
-        panelBorderForGioiThieuForm4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Đặt vé", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 15), new java.awt.Color(192, 227, 149))); // NOI18N
+        panelBorderForGioiThieuForm4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Đặt vé", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 15), new java.awt.Color(22, 116, 66))); // NOI18N
 
         jLabel26.setText("Số lượng vé:");
 
@@ -434,6 +437,14 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             }
         });
 
+        huyVeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/thoatchuongtrinh.png"))); // NOI18N
+        huyVeBtn.setText("Hủy vé");
+        huyVeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                huyVeBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBorderForGioiThieuForm4Layout = new javax.swing.GroupLayout(panelBorderForGioiThieuForm4);
         panelBorderForGioiThieuForm4.setLayout(panelBorderForGioiThieuForm4Layout);
         panelBorderForGioiThieuForm4Layout.setHorizontalGroup(
@@ -452,10 +463,13 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                                 .addComponent(btnTangSoLuongVeDat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 78, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorderForGioiThieuForm4Layout.createSequentialGroup()
-                        .addGroup(panelBorderForGioiThieuForm4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(datVeBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jblTongTienVe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelBorderForGioiThieuForm4Layout.createSequentialGroup()
+                        .addGroup(panelBorderForGioiThieuForm4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jblTongTienVe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panelBorderForGioiThieuForm4Layout.createSequentialGroup()
+                                .addComponent(datVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(huyVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
         panelBorderForGioiThieuForm4Layout.setVerticalGroup(
@@ -472,13 +486,15 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jblTongTienVe, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(datVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGroup(panelBorderForGioiThieuForm4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(datVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(huyVeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         panelBorderForGioiThieuForm1.setBackground(new java.awt.Color(248, 250, 254));
-        panelBorderForGioiThieuForm1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin khách hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 15), new java.awt.Color(192, 227, 149))); // NOI18N
+        panelBorderForGioiThieuForm1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin khách hàng", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 15), new java.awt.Color(22, 116, 66))); // NOI18N
 
         jLabel2.setText("Mã khách hàng:");
 
@@ -571,7 +587,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         );
 
         panelBorderForGioiThieuForm2.setBackground(new java.awt.Color(248, 250, 254));
-        panelBorderForGioiThieuForm2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin lịch trình", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 15), new java.awt.Color(192, 227, 149))); // NOI18N
+        panelBorderForGioiThieuForm2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin lịch trình", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Segoe UI", 1, 15), new java.awt.Color(22, 116, 66))); // NOI18N
 
         jLabel7.setText("Mã lịch trình:");
 
@@ -798,7 +814,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                         .addGroup(PanelDatVeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panelBorderForGioiThieuForm1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelBorderForGioiThieuForm4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Đặt vé", PanelDatVe);
@@ -836,25 +852,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnPrintActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        txtNoiDung.append("\t\t\tCông Ty ATBus \n\n");
-        txtNoiDung.append("\t\t 1 Nguyễn Thái Bình Phường Bến Nghé Quận 1 \n");
-        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tVé xe ATBus \n\n");
-        txtNoiDung.append("\t Tên tuyến:\t\t" + cboTD.getSelectedItem() + "\t Tên miền: \t" + jblMien.getText() + "\n");
-        txtNoiDung.append("\t Ngày xuất phát:\t" + cboNgay.getSelectedItem() + "\t\t Giờ: \t" + cboTG.getSelectedItem() + "\n");
-        txtNoiDung.append("\t Biển số: \t" + jblBangSoXe.getText() + "\n");
-        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tThông tin khách hàng \n\n");
-        txtNoiDung.append("\t Mã khách hàng:    " + txtMaKhachHang.getText() + "\n");
-        txtNoiDung.append("\t Họ tên: \t" + txtHoVaTen.getText() + "\n");
-        txtNoiDung.append("\t Số điện thoại: \t" + txtSoDienThoai.getText() + "\n");
-        txtNoiDung.append("\t Email: \t" + txtEmail.getText() + "\n");
-        txtNoiDung.append("\t Mã lịch trình: \t" + txtMaLichTrinh.getText() + "\n");
-        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tGhi chú \n\n");
-        txtNoiDung.append("\t Số lượng vé: \t" + lblSoLuongVe.getText() + "\n");
-        txtNoiDung.append("\t Giá: " + jblGia.getText() + "\n\n\n");
-        txtNoiDung.append("\tXin cảm ơn quý khách đã tin tưởng và đồng hành cùng chúng tôi \n");
+        inVe();
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void cboLTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLTActionPerformed
@@ -950,12 +948,24 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSearchSdtActionPerformed
 
     private void timBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timBtnActionPerformed
-        timSdtKhachHang();
+        if (!timSdtKhachHang()) {
+            MsgBox.alert(this, "Không tìm thấy số điện thoại");
+        }
     }//GEN-LAST:event_timBtnActionPerformed
 
     private void txtMaKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaKhachHangActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaKhachHangActionPerformed
+
+    private void txtSearchKhoiHanhKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKhoiHanhKeyReleased
+        String txtSearch = txtSearchKhoiHanh.getText().trim();
+        List<LichTrinh> list = ltDao.selectAllByNgayKhoiHanh(txtSearch);
+        fillTable(list);
+    }//GEN-LAST:event_txtSearchKhoiHanhKeyReleased
+
+    private void huyVeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_huyVeBtnActionPerformed
+        huyVe();
+    }//GEN-LAST:event_huyVeBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -983,8 +993,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cboTG;
     private javax.swing.JComboBox<String> cboTGDuKien;
     private javax.swing.JButton datVeBtn;
+    private javax.swing.JButton huyVeBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
@@ -1040,9 +1050,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JTextField txtMaLichTrinh;
     private javax.swing.JTextField txtNgayXP;
     private javax.swing.JTextArea txtNoiDung;
+    private javax.swing.JTextField txtSearchKhoiHanh;
     private javax.swing.JTextField txtSearchSdt;
     private javax.swing.JTextField txtSoDienThoai;
-    private javax.swing.JTextField txtTimKiemNgayKhoiHanh;
     // End of variables declaration//GEN-END:variables
 
     private LichTrinhDAO ltDao = new LichTrinhDAO();
@@ -1051,9 +1061,37 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private TaiXeDAO txDao = new TaiXeDAO();
     private KhachHangDAO khDao = new KhachHangDAO();
     private LichSuMuaVeDAO lsmvDao = new LichSuMuaVeDAO();
+    private List<LichTrinh> lichTrinhList = new ArrayList<>();
     private int soLuong = 0;
     private double tongTienVe = 0;
     private int row = -1;
+
+    void inVe() {
+        txtNoiDung.append("\t\t\tCông Ty ATBus \n\n");
+        txtNoiDung.append("\t\t 1 Nguyễn Thái Bình Phường Bến Nghé Quận 1 \n");
+        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
+        txtNoiDung.append("\t\t\tVé xe ATBus \n\n");
+        txtNoiDung.append("\t Tên tuyến:\t\t" + cboTD.getSelectedItem() + "\t Tên miền: \t" + jblMien.getText() + "\n");
+        txtNoiDung.append("\t Ngày xuất phát:\t" + cboNgay.getSelectedItem() + "\t\t Giờ: \t" + cboTG.getSelectedItem() + "\n");
+        txtNoiDung.append("\t Biển số: \t" + jblBangSoXe.getText() + "\n");
+        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
+        txtNoiDung.append("\t\t\tThông tin khách hàng \n\n");
+        txtNoiDung.append("\t Mã khách hàng:    " + txtMaKhachHang.getText() + "\n");
+        txtNoiDung.append("\t Họ tên: \t" + txtHoVaTen.getText() + "\n");
+        txtNoiDung.append("\t Số điện thoại: \t" + txtSoDienThoai.getText() + "\n");
+        txtNoiDung.append("\t Email: \t" + txtEmail.getText() + "\n");
+        txtNoiDung.append("\t Mã lịch trình: \t" + txtMaLichTrinh.getText() + "\n");
+        txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
+        txtNoiDung.append("\t\t\tGhi chú \n\n");
+        txtNoiDung.append("\t Số lượng vé: \t" + lblSoLuongVe.getText() + "\n");
+        txtNoiDung.append("\t Giá: " + jblGia.getText() + "\n\n\n");
+        txtNoiDung.append("\tXin cảm ơn quý khách đã tin tưởng và đồng hành cùng chúng tôi \n");
+        clearKhachHangForm();
+        this.soLuong = 0;
+        this.tongTienVe = 0.0;
+        lblSoLuongVe.setText(String.valueOf(this.soLuong));
+        jblTongTienVe.setText(FormatHelper.formatMoney(this.tongTienVe));
+    }
 
     private void initUI() {
         // design giao diện 
@@ -1144,11 +1182,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         txtMaLichTrinh.setForeground(Color.decode("#7A8C8D"));
         txtMaLichTrinh.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
         txtMaLichTrinh.setSelectionColor(new Color(75, 175, 152));
-        txtTimKiemNgayKhoiHanh.setBorder(javax.swing.BorderFactory.createEmptyBorder(8, 8, 8, 8)); // độ lớn của ô nhập
-        txtTimKiemNgayKhoiHanh.setBackground(new Color(192, 227, 149)); // background
-        txtTimKiemNgayKhoiHanh.setForeground(Color.decode("#7A8C8D"));
-        txtTimKiemNgayKhoiHanh.setFont(new java.awt.Font("sansserif", 1, 12)); // độ đậm nhạt và size chữ
-        txtTimKiemNgayKhoiHanh.setSelectionColor(new Color(75, 175, 152));
         btnCreate.setBackground(new Color(22, 116, 66));
         btnCreate.setForeground(new Color(250, 250, 250));
         btnPrint.setBackground(new Color(22, 116, 66));
@@ -1159,9 +1192,32 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         btnTangSoLuongVeDat.setBackground(new Color(250, 250, 250));
         timBtn.setBackground(new Color(22, 116, 66));
         timBtn.setForeground(new Color(250, 250, 250));
+        huyVeBtn.setBackground(new Color(22, 116, 66));
+        huyVeBtn.setForeground(new Color(250, 250, 250));
         setEnabledCbo(false, cboNgay, cboTG, cboLT);
-//        LineBorder lineBorder = new LineBorder(Color.white, 2, true);
-//        searchSdt.setBorder(lineBorder);
+        placeholderSearchNgayKhoiHanh();
+    }
+
+    private void placeholderSearchNgayKhoiHanh() {
+        txtSearchKhoiHanh.setText("vd: 01-01-1900");
+        txtSearchKhoiHanh.setForeground(Color.GRAY);
+        txtSearchKhoiHanh.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (txtSearchKhoiHanh.getText().equals("vd: 01-01-1900")) {
+                    txtSearchKhoiHanh.setText("");
+                    txtSearchKhoiHanh.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (txtSearchKhoiHanh.getText().isEmpty()) {
+                    txtSearchKhoiHanh.setForeground(Color.GRAY);
+                    txtSearchKhoiHanh.setText("vd: 01-01-1900");
+                }
+            }
+        });
     }
 
     private void initData() {
@@ -1169,8 +1225,11 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         this.fillComboBoxTuyenDuong(cboTD);
         this.fillComboBoxPhuongTien();
         this.fillComboBoxTaiXe();
-        this.fillTable();
+        List<LichTrinh> list = ltDao.selectAll();
+        this.fillTable(list);
+
         this.row = -1;
+
         this.updateStatus();
     }
 
@@ -1180,12 +1239,12 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         }
     }
 
-    void fillTable() { // Fill data to lichTrinh table
+    void fillTable(List<LichTrinh> l) { // Fill data to lichTrinh table
         DefaultTableModel model = (DefaultTableModel) tblLichTrinh.getModel();
         model.setRowCount(0);
         try {
 
-            List<LichTrinh> list = ltDao.selectAll();
+            List<LichTrinh> list = l;
             for (LichTrinh lt : list) {
                 Object[] row = {lt.getMaLT(), lt.getMaTD(), lt.getMaPT(), lt.getMaTX(), lt.getMaNV(),
                     XDate.formatDate(lt.getNgayXP(), "dd-MM-uuuu"), XDate.formatTime(lt.getTgDuKien()),
@@ -1407,7 +1466,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             LichTrinh lt = getForm();
             try {
                 ltDao.insert(lt);
-                this.fillTable();
+                List<LichTrinh> list = ltDao.selectAll();
+                this.fillTable(list);
                 this.clearForm();
                 MsgBox.alert(this, "Them moi thanh cong");
             } catch (Exception e) {
@@ -1423,7 +1483,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             LichTrinh lt = getForm();
             try {
                 ltDao.update(lt);
-                this.fillTable();
+                List<LichTrinh> list = ltDao.selectAll();
+                this.fillTable(list);
                 MsgBox.alert(this, "Cap nhat thanh cong");
             } catch (Exception e) {
                 MsgBox.alert(this, "Cap nhat that bai");
@@ -1441,20 +1502,17 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             lt.setTongDoanhThu(lt.getTongDoanhThu() + this.tongTienVe);
             try {
                 ltDao.update(lt);
-                this.fillTable();
+                List<LichTrinh> list = ltDao.selectAll();
+                this.fillTable(list);
                 if (timSdtKhachHang()) {
                     insertLsmvFromDatVe();
                 } else {
                     insertKhFromDatVe();
                     insertLsmvFromDatVe();
                 }
-                this.soLuong = 0;
-                this.tongTienVe = 0.0;
-                lblSoLuongVe.setText(String.valueOf(this.soLuong));
-                jblTongTienVe.setText(FormatHelper.formatMoney(this.tongTienVe));
                 MsgBox.alert(this, "Đặt vé thành công");
             } catch (Exception e) {
-                MsgBox.alert(this, "Cap nhat that bai");
+                MsgBox.alert(this, "Đặt vé thất bại");
                 e.printStackTrace();
             }
         }
@@ -1466,7 +1524,8 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             if (MsgBox.confirm(this, "Ban thuc su muon xoa lich trinh nay?")) {
                 try {
                     ltDao.delete(maLt);
-                    this.fillTable();
+                    List<LichTrinh> list = ltDao.selectAll();
+                    this.fillTable(list);
                     this.clearForm();
                     MsgBox.alert(this, "Xoa thanh cong");
                 } catch (Exception e) {
@@ -1519,16 +1578,16 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }
 
     public boolean timSdtKhachHang() {
-        KhachHang kh = khDao.selectBySdt(txtSearchSdt.getText());
         boolean ketQuaTim = false;
-        if (kh != null) {
-            ketQuaTim = true;
-            txtMaKhachHang.setText(kh.getMaKH());
-            txtHoVaTen.setText(kh.getHoTen());
-            txtSoDienThoai.setText(kh.getSdt());
-            txtEmail.setText(kh.getEmail());
-        } else {
-//            MsgBox.alert(this, "Không tìm thấy số điện thoại");
+        if (txtSearchSdt.getText().length() > 0) {
+            KhachHang kh = khDao.selectBySdt(txtSearchSdt.getText());
+            if (kh != null) {
+                ketQuaTim = true;
+                txtMaKhachHang.setText(kh.getMaKH());
+                txtHoVaTen.setText(kh.getHoTen());
+                txtSoDienThoai.setText(kh.getSdt());
+                txtEmail.setText(kh.getEmail());
+            }
         }
         return ketQuaTim;
     }
@@ -1544,10 +1603,12 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     }
 
     LichSuMuaVe getLichSuMuaVeFromDatVe() {
+        double giaVe = ((TuyenDuong) cboTD.getSelectedItem()).getGia();
         LichSuMuaVe lsmv = new LichSuMuaVe();
         lsmv.setMaKH(txtMaKhachHang.getText());
         lsmv.setMaLT(txtMaLichTrinh.getText());
         lsmv.setVeMua(this.soLuong);
+        lsmv.setThanhTien(lsmv.getVeMua() * giaVe);
         return lsmv;
     }
 
@@ -1556,14 +1617,19 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             KhachHang kh = getKhachHangFromDatVe();
             try {
                 khDao.insert(kh);
-                this.fillTable();
-                this.clearForm();
-                MsgBox.alert(this, "Them moi thanh cong");
+                MsgBox.alert(this, "Them moi khach hang thanh cong");
             } catch (Exception e) {
-                MsgBox.alert(this, "Them moi that bai");
+                MsgBox.alert(this, "Them moi khach hang that bai");
                 e.printStackTrace();
             }
         }
+    }
+
+    void clearKhachHangForm() {
+        txtMaKhachHang.setText("");
+        txtHoVaTen.setText("");
+        txtSoDienThoai.setText("");
+        txtEmail.setText("");
     }
 
     void insertLsmvFromDatVe() {
@@ -1571,14 +1637,40 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             LichSuMuaVe lsmv = getLichSuMuaVeFromDatVe();
             try {
                 lsmvDao.insert(lsmv);
-                this.fillTable();
-                this.clearForm();
-                MsgBox.alert(this, "Them moi thanh cong");
+                MsgBox.alert(this, "Them moi lich su mua ve thanh cong");
             } catch (Exception e) {
-                MsgBox.alert(this, "Them moi that bai");
+                MsgBox.alert(this, "Them moi lich su mua ve that bai");
                 e.printStackTrace();
             }
         }
+    }
+
+    void huyVe() {
+        if (!XValidations.checkIsEmpty(this, txtMaKhachHang, txtMaLichTrinh)) {
+            String txtKh = txtMaKhachHang.getText();
+            String txtLt = txtMaLichTrinh.getText();
+            if (MsgBox.confirm(this, "Ban thuc su muon huy vé?")) {
+                String maLT = cboLT.getItemAt(cboLT.getSelectedIndex());
+                LichTrinh lt = ltDao.selectById(maLT);
+                if (lt != null) {
+                    LichSuMuaVe lsmv = lsmvDao.select_by_KHLT(txtKh, txtLt);
+                    lsmvDao.delete(lsmv.getMaLSMV());
+                    lt.setTongVe(lt.getTongVe() - lsmv.getVeMua());
+                    lt.setTongDoanhThu(lt.getTongDoanhThu() - lsmv.getThanhTien());
+                    try {
+                        ltDao.update(lt);
+                        setFormDateVe();
+                        List<LichTrinh> list = ltDao.selectAll();
+                        this.fillTable(list);
+                        MsgBox.alert(this, "Hủy vé thành công");
+                    } catch (Exception e) {
+                        MsgBox.alert(this, "Hủy vé thất bại");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
     }
 
 }

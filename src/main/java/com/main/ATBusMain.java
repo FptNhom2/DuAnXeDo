@@ -8,6 +8,7 @@ import com.ui.QuanLyTaiXeForm;
 import com.ui.ShowMessage;
 import com.ui.GioiThieuForm;
 import com.ui.DoiMatKhauForm;
+import com.ui.GuiMail;
 import com.ui.QuanLyKhachHangForm;
 import com.ui.QuanLyLichTrinhForm;
 
@@ -155,7 +156,7 @@ public class ATBusMain extends javax.swing.JFrame {
                     }
 
                 } else if (index == 8) {
-//                    showForm(new QuanLyTuyenDuong(index + ""));
+                    showForm(new GuiMail());
                 } else if (index == 9) {
                     if (Auth.isManager()) {
                         showForm(new DoiMatKhauForm());

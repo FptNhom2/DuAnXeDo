@@ -54,7 +54,6 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
         jLabel17.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         jLabel17.setText("Mật khẩu hiện tại:");
 
-        btnXacNhan.setBackground(new java.awt.Color(255, 255, 255));
         btnXacNhan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/xacnhan.png"))); // NOI18N
         btnXacNhan.setText("Xác nhận");
         btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +62,6 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
             }
         });
 
-        btnBoQua.setBackground(new java.awt.Color(255, 255, 255));
         btnBoQua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boqua.png"))); // NOI18N
         btnBoQua.setText("Bỏ qua");
         btnBoQua.addActionListener(new java.awt.event.ActionListener() {
@@ -212,15 +210,15 @@ public class DoiMatKhauForm extends javax.swing.JPanel {
             String matKhauMoi = new String(txtMatKhauMoi.getPassword());
             String matKhauMoi2 = new String(txtXacNhanMatKhau.getPassword());
             if (!manv.equalsIgnoreCase(Auth.user.getMaNV())) {
-                MsgBox.alert(this, "Sai tên đăng nhập!");
+                MsgBox.alert(this, "Sai tÃªn Ä‘Äƒng nháº­p!");
             } else if (!matKhau.equals(Auth.user.getMatKhau())) {
-                MsgBox.alert(this, "Sai mật khẩu!");
+                MsgBox.alert(this, "Sai máº­t kháº©u!");
             } else if (!matKhauMoi.equals(matKhauMoi2)) {
-                MsgBox.alert(this, "Xác nhận mật khẩu không đúng!");
+                MsgBox.alert(this, "XÃ¡c nháº­n máº­t kháº©u khÃ´ng Ä‘Ãºng!");
             } else {
                 Auth.user.setMatKhau(matKhauMoi);
                 dao.update(Auth.user);
-                MsgBox.alert(this, "Đổi mật khẩu thành công!");
+                MsgBox.alert(this, "Ä�á»•i máº­t kháº©u thÃ nh cÃ´ng!");
             }
         }
     }

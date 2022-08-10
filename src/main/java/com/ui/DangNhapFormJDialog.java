@@ -98,6 +98,7 @@ public class DangNhapFormJDialog extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnDangNhap.setBackground(new java.awt.Color(51, 255, 51));
         btnDangNhap.setText("Đăng nhập");
         btnDangNhap.setPreferredSize(new java.awt.Dimension(127, 30));
         btnDangNhap.addActionListener(new java.awt.event.ActionListener() {

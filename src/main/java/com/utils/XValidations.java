@@ -11,7 +11,7 @@ public class XValidations {
 
     private static final String emailPattern = "^[a-z][a-z0-9_\\.]{5,32}@[a-z0-9]{2,}(\\.[a-z0-9]{2,4}){1,2}$";
     private static final String phoneNumberPattern = "^((09|03|07|08|05)+([0-9]{8})\\b)$";
-
+    
     public static boolean checkIsEmpty(Component ui, JTextComponent... data) {
         boolean isEmpty = false;
         for (JTextComponent field : data) {
@@ -57,8 +57,9 @@ public class XValidations {
         List<String> errors = new ArrayList<>();
         try {
             for (JTextComponent field : data) {
-                if (!field.getText().matches("[0-9]")) {
+                if (false) {
                     errors.add(error2);
+                    System.out.println("loi");
                     return errors;
                 } else if (Double.valueOf(field.getText()) <= 0) {
                     errors.add(error1);
@@ -67,6 +68,7 @@ public class XValidations {
             }
         } catch (NumberFormatException e) {
             MsgBox.alert(ui, e.getMessage());
+            e.printStackTrace();
         }
         return errors;
     }

@@ -8,6 +8,7 @@ import com.utils.MsgBox;
 import com.utils.XValidations;
 import java.awt.Color;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -385,9 +386,10 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
     //=============================Form============================//
     private void setForm(TuyenDuong td) {
+        DefaultComboBoxModel cbModel = (DefaultComboBoxModel) cboTenMien.getModel();
         txtMaTuyenDuong.setText(String.valueOf(td.getMaTD()));
         txtTenTuyenDuong.setText(td.getTenTD());
-        cboTenMien.setSelectedItem(td.getTenMien());
+        cbModel.setSelectedItem(td.getTenMien());
         txtGia.setText(FormatHelper.formatMoney(td.getGia()));
     } // Hiển thị dữ liệu tuyến đường lên form
 
@@ -438,9 +440,11 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
             try {
                 tddao.update(td); // cập nhật thành công thì:
                 this.fillTable(); // load lại dữ liệu lên bảng
+                this.edit();
                 MsgBox.alert(this, "Cập nhật thành công!");
             } catch (Exception e) {
                 MsgBox.alert(this, "Cập nhật thất bại");
+                e.printStackTrace();
             }
         }
 //        }

@@ -17,16 +17,26 @@ import com.utils.XDate;
 import com.utils.MsgBox;
 import com.utils.XValidations;
 import com.utils.FormatHelper;
+import jakarta.mail.Message;
+import jakarta.mail.PasswordAuthentication;
+import jakarta.mail.Session;
+import jakarta.mail.Transport;
+import jakarta.mail.internet.InternetAddress;
+import jakarta.mail.internet.MimeBodyPart;
+import jakarta.mail.internet.MimeMessage;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.print.PrinterException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.security.auth.Subject;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -130,6 +140,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
+        btngui = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(248, 250, 254));
@@ -462,7 +473,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnTangSoLuongVeDat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 78, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(panelBorderForGioiThieuForm4Layout.createSequentialGroup()
                         .addGroup(panelBorderForGioiThieuForm4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jblTongTienVe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -772,6 +783,14 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnPrint);
 
+        btngui.setText("Gửi mail");
+        btngui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnguiActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btngui);
+
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnLamMoi.setText("Làm mới");
         btnLamMoi.setPreferredSize(new java.awt.Dimension(187, 35));
@@ -941,6 +960,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
 
     private void datVeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datVeBtnActionPerformed
         updateFormDatVe();
+        DatVe();
+                this.soLuong = 0;
+        this.tongTienVe = 0.0;
     }//GEN-LAST:event_datVeBtnActionPerformed
 
     private void txtSearchSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchSdtActionPerformed
@@ -967,6 +989,10 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         huyVe();
     }//GEN-LAST:event_huyVeBtnActionPerformed
 
+    private void btnguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguiActionPerformed
+        
+    }//GEN-LAST:event_btnguiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatVe;
@@ -984,6 +1010,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JButton btnTangSoLuongVeDat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btngui;
     private javax.swing.JComboBox<String> cboLT;
     private javax.swing.JComboBox<String> cboMaPT;
     private javax.swing.JComboBox<String> cboMaTD;
@@ -1067,28 +1094,28 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private int row = -1;
 
     void inVe() {
-        txtNoiDung.append("\t\t\tCông Ty ATBus \n\n");
-        txtNoiDung.append("\t\t 1 Nguyễn Thái Bình Phường Bến Nghé Quận 1 \n");
+        txtNoiDung.append("\t\t\tCong Ty ATBus \n\n");
+        txtNoiDung.append("\t\t 1 Nguyen Thai Binh, Phuong Ben Nghe, Quan 1 \n");
         txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tVé xe ATBus \n\n");
-        txtNoiDung.append("\t Tên tuyến:\t\t" + cboTD.getSelectedItem() + "\t Tên miền: \t" + jblMien.getText() + "\n");
-        txtNoiDung.append("\t Ngày xuất phát:\t" + cboNgay.getSelectedItem() + "\t\t Giờ: \t" + cboTG.getSelectedItem() + "\n");
-        txtNoiDung.append("\t Biển số: \t" + jblBangSoXe.getText() + "\n");
+        txtNoiDung.append("\t\t\tVe xe ATBus \n\n");
+        txtNoiDung.append("\t Ten Tuyen:\t\t" + cboTD.getSelectedItem() + "\t Mien: \t" + jblMien.getText() + "\n");
+        txtNoiDung.append("\t Ngay khoi hanh:\t" + cboNgay.getSelectedItem() + "\t\t Gio: \t" + cboTG.getSelectedItem() + "\n");
+        txtNoiDung.append("\t Bien so: \t" + jblBangSoXe.getText() + "\n");
         txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tThông tin khách hàng \n\n");
-        txtNoiDung.append("\t Mã khách hàng:    " + txtMaKhachHang.getText() + "\n");
-        txtNoiDung.append("\t Họ tên: \t" + txtHoVaTen.getText() + "\n");
-        txtNoiDung.append("\t Số điện thoại: \t" + txtSoDienThoai.getText() + "\n");
+        txtNoiDung.append("\t\t\tThong tin khach hang \n\n");
+        txtNoiDung.append("\t Ma khach hang:    " + txtMaKhachHang.getText() + "\n");
+        txtNoiDung.append("\t Ho ten: \t" + txtHoVaTen.getText() + "\n");
+        txtNoiDung.append("\t So dien thoai: \t" + txtSoDienThoai.getText() + "\n");
         txtNoiDung.append("\t Email: \t" + txtEmail.getText() + "\n");
-        txtNoiDung.append("\t Mã lịch trình: \t" + txtMaLichTrinh.getText() + "\n");
+        txtNoiDung.append("\t Ma lich trinh: \t" + txtMaLichTrinh.getText() + "\n");
         txtNoiDung.append("-----------------------------------------------------------------------------------------------------------------------------------------\n");
-        txtNoiDung.append("\t\t\tGhi chú \n\n");
-        txtNoiDung.append("\t Số lượng vé: \t" + lblSoLuongVe.getText() + "\n");
-        txtNoiDung.append("\t Giá: " + jblGia.getText() + "\n\n\n");
-        txtNoiDung.append("\tXin cảm ơn quý khách đã tin tưởng và đồng hành cùng chúng tôi \n");
-        clearKhachHangForm();
-        this.soLuong = 0;
-        this.tongTienVe = 0.0;
+        txtNoiDung.append("\t\t\tGhi chu \n\n");
+        txtNoiDung.append("\t So luong ve: \t" + lblSoLuongVe.getText() + "\n");
+        txtNoiDung.append("\t Gia: " + jblGia.getText() + "\n\n\n");
+        txtNoiDung.append("\tXin cam on quy khach \n");
+//        clearKhachHangForm();
+//        this.soLuong = 0;
+//        this.tongTienVe = 0.0;
         lblSoLuongVe.setText(String.valueOf(this.soLuong));
         jblTongTienVe.setText(FormatHelper.formatMoney(this.tongTienVe));
     }
@@ -1339,6 +1366,62 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         }
 
     }
+    
+    void DatVe(){
+         try {
+            String username = "lamdungtrung262001@gmail.com";
+            String password = "wgxguwhvpmxyjxrl";
+
+            Properties p = new Properties();
+            p.put("mail.smtp.auth", "true");
+            p.put("mail.smtp.starttls.enable", "true");
+            p.put("mail.smtp.host", "smtp.gmail.com");
+            p.put("mail.smtp.port", "587");
+            //-----
+            Session s = Session.getInstance(p,
+                new jakarta.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+                //--------
+                String from = username;
+                String to = txtEmail.getText();
+                String subject = "ATBUS - VÉ XE";
+                String body = txtNoiDung.getText();
+                String ccmail = txtEmail.getText();
+
+                Message msg = new MimeMessage(s);
+                msg.setFrom(new InternetAddress(from));
+                msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+//                msg.addRecipients(Message.RecipientType.CC, InternetAddress.parse(ccmail));
+
+                MimeBodyPart contentpart = new  MimeBodyPart();
+                contentpart.setContent(body, "text/html; charset=utf-8");
+                msg.setSubject(subject);
+                msg.setText(body);
+
+//                MimeBodyPart filePart = new MimeBodyPart();
+//                File file = new File(duongdan);
+//                FileDataSource fds = new FileDataSource(file);
+//                filePart.setDataHandler(new DataHandler(fds));
+//                filePart.setFileName(file.getName());
+
+//                MimeMultipart multipart = new MimeMultipart();
+//                multipart.addBodyPart(contentpart);
+//                multipart.addBodyPart(filePart);
+
+//                msg.setContent(multipart);
+
+                Transport.send(msg);
+
+                JOptionPane.showMessageDialog(null, "Gửi thành công", "Thông báo",
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            } catch (Exception e) {
+                e.printStackTrace();
+                //            Logger.getLogger(GuiMail.class.getName()).log(level.SERVE, null)
+            }
+    }
 
     int displayTinhTrangVe(int slChoNgoi, int tongVeLichTrinh) {
         int soVeToiDa = slChoNgoi - tongVeLichTrinh;
@@ -1469,9 +1552,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 List<LichTrinh> list = ltDao.selectAll();
                 this.fillTable(list);
                 this.clearForm();
-                MsgBox.alert(this, "Them moi thanh cong");
+                MsgBox.alert(this, "Thêm mới thành công");
             } catch (Exception e) {
-                MsgBox.alert(this, "Them moi that bai");
+                MsgBox.alert(this, "Thêm mới thất bại");
                 e.printStackTrace();
             }
         }
@@ -1485,9 +1568,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
                 ltDao.update(lt);
                 List<LichTrinh> list = ltDao.selectAll();
                 this.fillTable(list);
-                MsgBox.alert(this, "Cap nhat thanh cong");
+                MsgBox.alert(this, "Cập nhật thành công");
             } catch (Exception e) {
-                MsgBox.alert(this, "Cap nhat that bai");
+                MsgBox.alert(this, "Cập nhật thất bại");
                 e.printStackTrace();
             }
         }
@@ -1521,15 +1604,15 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     void delete() { // [btnXoa]
         if (!XValidations.checkIsEmpty(this, txtMaLT)) {
             String maLt = txtMaLT.getText();
-            if (MsgBox.confirm(this, "Ban thuc su muon xoa lich trinh nay?")) {
+            if (MsgBox.confirm(this, "Xác nhận xóa lịch trình này?")) {
                 try {
                     ltDao.delete(maLt);
                     List<LichTrinh> list = ltDao.selectAll();
                     this.fillTable(list);
                     this.clearForm();
-                    MsgBox.alert(this, "Xoa thanh cong");
+                    MsgBox.alert(this, "Đã xóa");
                 } catch (Exception e) {
-                    MsgBox.alert(this, "Xoa that bai");
+                    MsgBox.alert(this, "Xóa thất bại");
                     e.printStackTrace();
                 }
             }
@@ -1617,9 +1700,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             KhachHang kh = getKhachHangFromDatVe();
             try {
                 khDao.insert(kh);
-                MsgBox.alert(this, "Them moi khach hang thanh cong");
+                MsgBox.alert(this, "Thêm mới khách hàng thành công");
             } catch (Exception e) {
-                MsgBox.alert(this, "Them moi khach hang that bai");
+                MsgBox.alert(this, "Thêm mới thất bại");
                 e.printStackTrace();
             }
         }
@@ -1637,9 +1720,9 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
             LichSuMuaVe lsmv = getLichSuMuaVeFromDatVe();
             try {
                 lsmvDao.insert(lsmv);
-                MsgBox.alert(this, "Them moi lich su mua ve thanh cong");
+                MsgBox.alert(this, "Thêm mới lịch sử mua vé thành công");
             } catch (Exception e) {
-                MsgBox.alert(this, "Them moi lich su mua ve that bai");
+                MsgBox.alert(this, "Thêm mới lịch sử mua vé thất bại");
                 e.printStackTrace();
             }
         }
@@ -1649,7 +1732,7 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         if (!XValidations.checkIsEmpty(this, txtMaKhachHang, txtMaLichTrinh)) {
             String txtKh = txtMaKhachHang.getText();
             String txtLt = txtMaLichTrinh.getText();
-            if (MsgBox.confirm(this, "Ban thuc su muon huy vé?")) {
+            if (MsgBox.confirm(this, "XÁc nhận hủy vé?")) {
                 String maLT = cboLT.getItemAt(cboLT.getSelectedIndex());
                 LichTrinh lt = ltDao.selectById(maLT);
                 if (lt != null) {

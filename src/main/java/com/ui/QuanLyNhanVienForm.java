@@ -8,6 +8,7 @@ import com.utils.MsgBox;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import com.utils.XValidations;
+import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -21,6 +22,8 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
     /**
      * Creates new form QuanLyNhanVienForm
      */
+    public String pathString = "";
+    public String hinhPath = "src\\main\\resources\\Avatar\\";
     public QuanLyNhanVienForm() {
         initComponents();
         init();
@@ -221,6 +224,8 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
                 btnFirstActionPerformed(evt);
             }
         });
+
+        panelBorderForGioiThieuForm1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 204, 204), null, null, new java.awt.Color(204, 204, 204)));
 
         lblHinhNV.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -496,6 +501,10 @@ public class QuanLyNhanVienForm extends javax.swing.JPanel {
             rdoNhanVien.setSelected(!nv.getVaiTro());
             txtEmail.setText(nv.getEmail());
             txtSoDienThoai.setText(nv.getSdt());
+            pathString = nv.getHinh();
+            ImageIcon nvA = new ImageIcon(new ImageIcon(hinhPath + pathString).getImage()
+                    .getScaledInstance(lblHinhNV.getWidth(), lblHinhNV.getHeight(), Image.SCALE_DEFAULT));
+            lblHinhNV.setIcon(nvA);
         } catch (Exception e) {
             rdoTruongPhong.setSelected(false);
         }

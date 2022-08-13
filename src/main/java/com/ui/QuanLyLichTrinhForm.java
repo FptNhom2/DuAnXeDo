@@ -140,7 +140,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         btnCreate = new javax.swing.JButton();
         btnPrint = new javax.swing.JButton();
-        btngui = new javax.swing.JButton();
         btnLamMoi = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(248, 250, 254));
@@ -783,14 +782,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnPrint);
 
-        btngui.setText("Gửi mail");
-        btngui.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnguiActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btngui);
-
         btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnLamMoi.setText("Làm mới");
         btnLamMoi.setPreferredSize(new java.awt.Dimension(187, 35));
@@ -989,10 +980,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
         huyVe();
     }//GEN-LAST:event_huyVeBtnActionPerformed
 
-    private void btnguiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguiActionPerformed
-        
-    }//GEN-LAST:event_btnguiActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatVe;
@@ -1010,7 +997,6 @@ public class QuanLyLichTrinhForm extends javax.swing.JPanel {
     private javax.swing.JButton btnTangSoLuongVeDat;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton btngui;
     private javax.swing.JComboBox<String> cboLT;
     private javax.swing.JComboBox<String> cboMaPT;
     private javax.swing.JComboBox<String> cboMaTD;

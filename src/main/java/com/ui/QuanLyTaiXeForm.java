@@ -148,6 +148,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(248, 250, 254));
 
+        btnThem.setBackground(new java.awt.Color(255, 255, 255));
         btnThem.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnThem.setText("Thêm");
@@ -159,6 +160,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnThem);
 
+        btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
@@ -170,6 +172,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnSua);
 
+        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
@@ -181,6 +184,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel1.add(btnXoa);
 
+        btnMoi.setBackground(new java.awt.Color(255, 255, 255));
         btnMoi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
@@ -194,6 +198,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(248, 250, 254));
 
+        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         btnFirst.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -204,6 +209,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnFirst);
 
+        btnPre.setBackground(new java.awt.Color(255, 255, 255));
         btnPre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
         btnPre.setPreferredSize(new java.awt.Dimension(251, 35));
@@ -214,6 +220,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnPre);
 
+        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
         btnNext.setPreferredSize(new java.awt.Dimension(251, 35));
@@ -224,6 +231,7 @@ public class QuanLyTaiXeForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnNext);
 
+        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
         btnLast.setPreferredSize(new java.awt.Dimension(260, 35));

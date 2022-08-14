@@ -10,6 +10,7 @@ import com.utils.FormatHelper;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 public class QuanLyKhachHangForm extends javax.swing.JPanel {
@@ -19,6 +20,11 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
      */
     public QuanLyKhachHangForm() {
         initComponents();
+        DefaultTableCellRenderer headerCellRenderer = new DefaultTableCellRenderer();
+        headerCellRenderer.setBackground(new Color(192, 227, 149));
+        for (int i = 0; i < tblKhachHang.getModel().getColumnCount(); ++i) {
+            tblKhachHang.getColumnModel().getColumn(i).setHeaderRenderer(headerCellRenderer);
+        }
         this.init();
     }
 
@@ -59,6 +65,8 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         txtSearchSdt = new javax.swing.JTextField();
         timBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(248, 250, 254));
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
 
@@ -101,6 +109,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        tblKhachHang.setSelectionBackground(new java.awt.Color(35, 166, 97));
         tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblKhachHangMouseClicked(evt);
@@ -116,10 +125,11 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(248, 250, 254));
 
+        btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
-        btnSua.setPreferredSize(new java.awt.Dimension(275, 35));
+        btnSua.setPreferredSize(new java.awt.Dimension(415, 35));
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaActionPerformed(evt);
@@ -127,10 +137,11 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnSua);
 
+        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
-        btnXoa.setPreferredSize(new java.awt.Dimension(275, 35));
+        btnXoa.setPreferredSize(new java.awt.Dimension(415, 35));
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -140,6 +151,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
 
         jPanel4.setBackground(new java.awt.Color(248, 250, 254));
 
+        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         btnFirst.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(205, 35));
@@ -150,6 +162,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         });
         jPanel4.add(btnFirst);
 
+        btnPre.setBackground(new java.awt.Color(255, 255, 255));
         btnPre.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnPre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
         btnPre.setPreferredSize(new java.awt.Dimension(205, 35));
@@ -160,6 +173,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         });
         jPanel4.add(btnPre);
 
+        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
         btnNext.setPreferredSize(new java.awt.Dimension(205, 35));
@@ -170,6 +184,7 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
         });
         jPanel4.add(btnNext);
 
+        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
         btnLast.setPreferredSize(new java.awt.Dimension(205, 35));
@@ -293,8 +308,9 @@ public class QuanLyKhachHangForm extends javax.swing.JPanel {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jLabel1.setBackground(new java.awt.Color(204, 204, 204));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(248, 250, 254));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(192, 227, 149));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUẢN LÝ KHÁCH HÀNG");
 

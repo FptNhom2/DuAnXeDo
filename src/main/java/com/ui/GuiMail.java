@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package com.ui;
 
 import com.utils.MsgBox;
@@ -62,15 +58,14 @@ public class GuiMail extends javax.swing.JPanel {
         txtduongdan = new javax.swing.JTextField();
         btncancel = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(248, 250, 254));
-        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(153, 153, 153), null, null));
+        setBackground(new java.awt.Color(192, 227, 149));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 255));
         jLabel6.setText("Báo lỗi");
         jLabel6.setToolTipText("");
 
-        jPanel4.setBackground(new java.awt.Color(192, 227, 149));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, null, null, new java.awt.Color(204, 204, 204)));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
@@ -91,6 +86,7 @@ public class GuiMail extends javax.swing.JPanel {
         txtmessage.setRows(5);
         jScrollPane3.setViewportView(txtmessage);
 
+        btnSend.setBackground(new java.awt.Color(255, 255, 255));
         btnSend.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnSend.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mail.png"))); // NOI18N
         btnSend.setText("Gửi");
@@ -100,6 +96,7 @@ public class GuiMail extends javax.swing.JPanel {
             }
         });
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(153, 153, 153), null, null));
         jPanel7.setForeground(new java.awt.Color(153, 255, 153));
         jPanel7.setFocusTraversalPolicyProvider(true);
@@ -113,6 +110,7 @@ public class GuiMail extends javax.swing.JPanel {
             }
         });
 
+        btndinhkem2.setBackground(new java.awt.Color(255, 255, 255));
         btndinhkem2.setText("Đính kèm");
         btndinhkem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,6 +154,7 @@ public class GuiMail extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btncancel.setBackground(new java.awt.Color(255, 255, 255));
         btncancel.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         btncancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/boqua.png"))); // NOI18N
         btncancel.setText("Hủy");

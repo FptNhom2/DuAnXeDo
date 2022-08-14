@@ -106,6 +106,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(248, 250, 254));
 
+        btnThem.setBackground(new java.awt.Color(255, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/add.png"))); // NOI18N
         btnThem.setText("Thêm mới");
         btnThem.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -116,6 +117,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnThem);
 
+        btnSua.setBackground(new java.awt.Color(255, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/update.png"))); // NOI18N
         btnSua.setText("Sửa");
         btnSua.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -126,6 +128,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnSua);
 
+        btnXoa.setBackground(new java.awt.Color(255, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -136,6 +139,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel2.add(btnXoa);
 
+        btnMoi.setBackground(new java.awt.Color(255, 255, 255));
         btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.setPreferredSize(new java.awt.Dimension(260, 35));
@@ -148,6 +152,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(248, 250, 254));
 
+        btnFirst.setBackground(new java.awt.Color(255, 255, 255));
         btnFirst.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/first.png"))); // NOI18N
         btnFirst.setPreferredSize(new java.awt.Dimension(260, 35));
         btnFirst.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +162,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnFirst);
 
+        btnPrevious.setBackground(new java.awt.Color(255, 255, 255));
         btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/previous.png"))); // NOI18N
         btnPrevious.setPreferredSize(new java.awt.Dimension(260, 35));
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +172,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnPrevious);
 
+        btnNext.setBackground(new java.awt.Color(255, 255, 255));
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/next.png"))); // NOI18N
         btnNext.setPreferredSize(new java.awt.Dimension(260, 35));
         btnNext.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +182,7 @@ public class QuanLyTuyenDuongForm extends javax.swing.JPanel {
         });
         jPanel3.add(btnNext);
 
+        btnLast.setBackground(new java.awt.Color(255, 255, 255));
         btnLast.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/last.png"))); // NOI18N
         btnLast.setPreferredSize(new java.awt.Dimension(260, 35));
         btnLast.addActionListener(new java.awt.event.ActionListener() {
